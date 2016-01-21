@@ -13,6 +13,7 @@ def clean(str):
     c = str.replace(u"\u00A0", " ")
     c = c.replace(u"\xa0", " ")
     c = c.replace("// ", "")
+    c = re.sub(" +$", "", c)
     return c
 
 def getData(url):
@@ -48,8 +49,10 @@ def getData(url):
         functionParamDescs[name] = clean(text)
         i += 1
 
+    classes = ["f_Keywords", "f_Functions", "f_Param", "f_Comments"]
+    contains = ' or '.join('contains(@class,("%s"))' % c for c in classes)
 
-    codeBasePath = basePath + '/div/table[@class="help"]/tr/td/p[@class="p_CodeExample"]/span/text()'
+    codeBasePath = basePath + '/div/table[@class="help"]/tr/td/p[@class="p_CodeExample"]/span[%s]/text()' % contains
     code = tree.xpath(codeBasePath)
 
     i=0
@@ -59,36 +62,38 @@ def getData(url):
     function = {}
     paramName = ''
     paramType = ''
+    prev = ''
+    paramCheck = False
 
     for c in code:
         c = clean(c)
         if re.search('[a-z0-9();]+', c):
-            if re.search('\(', c):
-                continue;
-            if re.search('\);', c):
-                data['functions'].append(function);
-                i=0;
-                continue;
-            if re.search('Script program start', c):
-                break;
+            if re.search(data['title'], c):
+                if function:
+                    data['functions'].append(function);
 
-            if i == 0:
                 function = {
                     'parameters': [],
-                    'returnType': c.replace(" ", "")
+                    'name': c,
+                    'returnType': prev
                 }
-            elif i == 1:
-                function['name'] = c
-            elif j == 0:
+                paramCheck = True
+                p=0
+
+            elif paramCheck and p == 0:
                 paramType = c;
-                j+=1
-            elif j == 1:
+                p=1
+            elif paramCheck and p == 1:
                 paramName = c;
-                j+=1
-            elif j == 2:
+                p=2
+            elif paramCheck and p == 2:
                 function['parameters'].append({'name': paramName, 'type': paramType, 'description': functionParamDescs[paramName]})
-                j=0
+                p=0
             i+=1
+        prev = c
+
+    data['functions'].append(function);
+
 
     return data
 
