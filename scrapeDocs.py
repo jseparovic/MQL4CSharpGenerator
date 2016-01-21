@@ -1,6 +1,7 @@
 from lxml import html
 import requests
 import json
+import argparse
 import re
 from lxml import etree as ET
 
@@ -89,11 +90,32 @@ def getData(url):
                 j=0
             i+=1
 
-    print json.dumps(data, indent=4)
+    return data
 
 
-''' get main data page '''
-url = 'http://docs.mql4.com/objects/objectmove'
+baseUrl = 'http://docs.mql4.com/'
 
-getData(url)
+
+
+
+def usage():
+    print "python scrapeDocs.py -u <relativeurl>"
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-u',  '--url')
+    args = parser.parse_args()
+
+
+    if args.url:
+        data = getData(baseUrl + args.url)
+        print json.dumps(data, indent=4)
+    else:
+        print "Must enter a relative url. Eg. objects/objectmove"
+
+
+if __name__ == "__main__":
+    main()
+
+
 
