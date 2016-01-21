@@ -3,17 +3,17 @@
 This scraper will be used in conjunction with MQL4CSharp to populate the MQL commands part of the application
 
 Run:
-'''
+```
   python scrapeDocs.py <relativeUrl>
-'''
+```
 
 For example:
-'''
+```
   python scrapeDocs.py /objects/objectmove
-'''
+```
 
 Output:
-'''
+```
 {
     "url": "http://docs.mql4.com/objects/objectmove", 
     "functions": [
@@ -73,6 +73,6 @@ Output:
     "description": "The function changes coordinates of the specified anchor point of the object at the specified chart. There are two variants of the function:", 
     "title": "ObjectMove"
 }
-'''
+```
 
 TODO: write a script to output the c# function based on the docs, associated enum value, and to also create the mql4 function
