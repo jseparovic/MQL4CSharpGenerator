@@ -66,7 +66,7 @@ def getData(url):
         }
         i += 1
 
-    print functionParamDescs
+    #print functionParamDescs
 
     classes = ["f_Keywords", "f_Functions", "f_Param", "f_Comments"]
     contains = ' or '.join('contains(@class,("%s"))' % c for c in classes)
@@ -104,12 +104,12 @@ def getData(url):
                 p = 0
             else:
                 paramType = c
-                print "paramType %s" % c
+                #print "paramType %s" % c
                 p = 1
 
         elif paramCheck and p == 1:
             paramName, paramDefault = parseParamName(c)
-            print "paramName %s" % c
+            #print "paramName %s" % c
             p = 2
 
         elif paramCheck and p == 2:
