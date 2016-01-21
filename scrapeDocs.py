@@ -16,6 +16,15 @@ def clean(str):
     c = re.sub(" +$", "", c)
     return c
 
+def parseParamName(str):
+    bits = str.split("=")
+    pname = bits[0]
+    pdefault = ''
+    if len(bits) > 1:
+        pdefault = bits[1]
+
+    return pname,pdefault
+
 def getData(url):
 
     data = {
@@ -38,6 +47,8 @@ def getData(url):
 
     i=0
     for name in paramNames:
+        pname, pdefault = parseParamName(name)
+
         text = paramDescs[i].text
         a = paramDescs[i].xpath('./a/text()')
 
@@ -46,8 +57,16 @@ def getData(url):
 
         if paramDescs[i].tail:
             text += paramDescs[i].tail
-        functionParamDescs[name] = clean(text)
+
+        name = clean(pname)
+        functionParamDescs[name] = {
+            'name': name,
+            'description': clean(text),
+            'default': clean(pdefault)
+        }
         i += 1
+
+    print functionParamDescs
 
     classes = ["f_Keywords", "f_Functions", "f_Param", "f_Comments"]
     contains = ' or '.join('contains(@class,("%s"))' % c for c in classes)
@@ -55,45 +74,56 @@ def getData(url):
     codeBasePath = basePath + '/div/table[@class="help"]/tr/td/p[@class="p_CodeExample"]/span[%s]/text()' % contains
     code = tree.xpath(codeBasePath)
 
-    i=0
-    j=0
     p=0
 
     function = {}
     paramName = ''
     paramType = ''
+    paramDefault = ''
     prev = ''
     paramCheck = False
 
     for c in code:
         c = clean(c)
-        if re.search('[a-z0-9();]+', c):
-            if re.search(data['title'], c):
-                if function:
-                    data['functions'].append(function);
+#        print c
+        if re.search(data['title'], c):
+            if function:
+                data['functions'].append(function)
 
-                function = {
-                    'parameters': [],
-                    'name': c,
-                    'returnType': prev
-                }
-                paramCheck = True
-                p=0
+            function = {
+                'parameters': [],
+                'name': c,
+                'returnType': prev
+            }
+            paramCheck = True
+            p = 0
 
-            elif paramCheck and p == 0:
-                paramType = c;
-                p=1
-            elif paramCheck and p == 1:
-                paramName = c;
-                p=2
-            elif paramCheck and p == 2:
-                function['parameters'].append({'name': paramName, 'type': paramType, 'description': functionParamDescs[paramName]})
-                p=0
-            i+=1
+
+        elif paramCheck and p == 0:
+            if not re.search('[A-Za-z]+', c):
+                p = 0
+            else:
+                paramType = c
+                print "paramType %s" % c
+                p = 1
+
+        elif paramCheck and p == 1:
+            paramName, paramDefault = parseParamName(c)
+            print "paramName %s" % c
+            p = 2
+
+        elif paramCheck and p == 2:
+            function['parameters'].append({
+                'name': paramName,
+                'type': paramType,
+                'default': paramDefault,
+                'description': functionParamDescs[paramName]['description']
+            })
+            p = 0
+
         prev = c
 
-    data['functions'].append(function);
-
+    data['functions'].append(function)
 
     return data
 
