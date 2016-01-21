@@ -100,6 +100,7 @@ def getData(url):
 
 
         elif paramCheck and p == 0:
+            #print "p==0 %s" % c
             if not re.search('[A-Za-z]+', c):
                 p = 0
             else:
@@ -108,16 +109,24 @@ def getData(url):
                 p = 1
 
         elif paramCheck and p == 1:
+            #print "p==1 %s" % c
             paramName, paramDefault = parseParamName(c)
             #print "paramName %s" % c
             p = 2
-
+        elif paramCheck and (re.search("^,$", c) or re.search("^$", c)): # for some crappy rubbish tags
+            p = p
         elif paramCheck and p == 2:
+            #print "p==2 %s" % c
+            try:
+                description = functionParamDescs[paramName]['description']
+            except Exception:
+                description = ''
+
             function['parameters'].append({
                 'name': paramName,
                 'type': paramType,
                 'default': paramDefault,
-                'description': functionParamDescs[paramName]['description']
+                'description': description
             })
             p = 0
 
