@@ -14,6 +14,8 @@ def clean(str):
     c = c.replace(u"\xa0", " ")
     c = c.replace("// ", "")
     c = re.sub(" +$", "", c)
+    c = re.sub("^ +", "", c)
+    c = re.sub("  ", " ", c)
     return c
 
 def parseParamName(str):
@@ -35,10 +37,14 @@ def getData(url):
     page = requests.get(url)
     tree = html.fromstring(page.content)
 
+    titlePath = '//html/body/div/p/strong/text()'
+
+    #print page.content
+
     basePath = '//html/body/div/table/tbody/tr/td[@class="doctext"]/div[@id="help"]'
 
-    data['title'] = tree.xpath(basePath + '/h1/text()')[0]
-    data['description'] = tree.xpath(basePath + '/p[@class="p_Function"]/span/text()')[0]
+    data['title'] = clean(tree.xpath(titlePath)[0])
+    data['description'] = clean(tree.xpath(basePath + '/p[@class="p_Function"]/span/text()')[0])
 
     # get function descriptions
     paramNames = tree.xpath(basePath + '/p[@class="p_FunctionParameter"]/span[@class="f_FunctionParameter"]/text()')
@@ -60,15 +66,13 @@ def getData(url):
 
         name = clean(pname)
         functionParamDescs[name] = {
-            'name': name,
+            'name': clean(name),
             'description': clean(text),
             'default': clean(pdefault)
         }
         i += 1
 
-    #print functionParamDescs
-
-    classes = ["f_Keywords", "f_Functions", "f_Param", "f_Comments"]
+    classes = ["f_Keywords", "f_Functions", "f_Param", "f_Comments", "f_Indicators"]
     contains = ' or '.join('contains(@class,("%s"))' % c for c in classes)
 
     codeBasePath = basePath + '/div/table[@class="help"]/tr/td/p[@class="p_CodeExample"]/span[%s]/text()' % contains
@@ -123,10 +127,10 @@ def getData(url):
                 description = ''
 
             function['parameters'].append({
-                'name': paramName,
-                'type': paramType,
-                'default': paramDefault,
-                'description': description
+                'name': clean(paramName),
+                'type': clean(paramType),
+                'default': clean(paramDefault),
+                'description': clean(description)
             })
             p = 0
 
@@ -137,7 +141,7 @@ def getData(url):
     return data
 
 
-baseUrl = 'http://docs.mql4.com/'
+baseUrl = 'http://mm.l/mql4/docs.mql4.com/'
 
 
 

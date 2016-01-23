@@ -11,7 +11,7 @@ do
         echo ,
     fi
 
-    python scrapeDocs.py -u $i
+    python scrapeDocs.py -u ${i}.html
     if [ "$?" != "0" ]
     then
         exit 1
