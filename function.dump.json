@@ -70,7 +70,7 @@
                     "default": "", 
                     "type": "ENUM_CRYPT_METHOD", 
                     "name": "method", 
-                    "description": "[in] Data transformation method. Can be one of the values of ENUM_CRYPT_METHOD"
+                    "description": "[in] Data transformation method. Can be one of the values of enumeration."
                 }, 
                 {
                     "default": "", 
@@ -201,7 +201,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "flags", 
-                    "description": "[in] Optional flags"
+                    "description": "[in] Optional defining appearance and behavior of a message box. Flags can be a combination of a special group of flags."
                 }
             ]
         }
@@ -221,7 +221,7 @@
                     "default": "PERIOD_CURRENT", 
                     "type": "ENUM_TIMEFRAMES", 
                     "name": "period", 
-                    "description": "[in] Value of a chart period from the enumeration ENUM_TIMEFRAMES"
+                    "description": "[in] Value of a chart period from the enumeration . If the parameter isn't specified, it returns the number of seconds of the current chart period, at which the program runs."
                 }
             ]
         }
@@ -320,7 +320,7 @@
                     "default": "", 
                     "type": "const string", 
                     "name": "path", 
-                    "description": "[in] Relative path to the file, containing the resource data. If the path is started from \"\\\" (written as \"\\\\\"), it is assumed that file path is relative to"
+                    "description": "[in] Relative path to the file, containing the resource data. If the path is started from \"\\\" (written as \"\\\\\"), it is assumed that file path is relative to terminal_data_folder\\MQL4\\, otherwise it is assumed that file is specified relative to .EX4 program folder."
                 }
             ]
         }, 
@@ -344,37 +344,37 @@
                     "default": "", 
                     "type": "uint", 
                     "name": "img_width", 
-                    "description": "\\MQL4\\, otherwise it is assumed that file is specified relative to .EX4 program folder."
+                    "description": "[in] The width of the rectangular image area in pixels to be placed in the resource in the form of an image. It cannot be greater than the data_width value."
                 }, 
                 {
                     "default": "", 
                     "type": "uint", 
                     "name": "img_height", 
-                    "description": "[in] A one-dimensional or two-dimensional array for creating a complete image."
+                    "description": "[in] The height of the rectangular image area in pixels to be placed in the resource in the form of an image."
                 }, 
                 {
                     "default": "", 
                     "type": "uint", 
                     "name": "data_xoffset", 
-                    "description": "[in] The width of the rectangular image area in pixels to be placed in the resource in the form of an image. It cannot be greater than the"
+                    "description": "[in] The horizontal rightward offset of the rectangular area of the image."
                 }, 
                 {
                     "default": "", 
                     "type": "uint", 
                     "name": "data_yoffset", 
-                    "description": "value"
+                    "description": "[in] The vertical downward offset of the rectangular area of the image."
                 }, 
                 {
                     "default": "", 
                     "type": "uint", 
                     "name": "data_width", 
-                    "description": "[in] The height of the rectangular image area in pixels to be placed in the resource in the form of an image."
+                    "description": "[in] Required only for one-dimensional arrays. It denotes the full width of the image from the data set. If data_width=0, it is assumed to be equal to img_width. For two-dimensional arrays the parameter is ignored and is assumed to be equal to the second dimension of the data[] array."
                 }, 
                 {
                     "default": "", 
                     "type": "ENUM_COLOR_FORMAT", 
                     "name": "color_format", 
-                    "description": "[in] The horizontal rightward offset of the rectangular area of the image."
+                    "description": "[in] Color processing method, from a value from the enumeration."
                 }
             ]
         }
@@ -394,7 +394,7 @@
                     "default": "", 
                     "type": "const string", 
                     "name": "resource_name", 
-                    "description": "[in] Resource"
+                    "description": "[in] name should start with \"::\"."
                 }
             ]
         }
@@ -414,7 +414,7 @@
                     "default": "", 
                     "type": "const string", 
                     "name": "resource_name", 
-                    "description": "[in] Name of the graphical resource containing an image. To gain access to its own resources, the name is used in brief form \"::resourcename\". If we download a resource from a compiled EX4 file, the full name should be used with the path relative to MQL4 directory, file and resource names \u0096 \"path\\\\filename.ex4::resourcename\"."
+                    "description": "[in] Name of the graphical resource containing an image. To gain access to its own resources, the name is used in brief form \"::resourcename\". If we download a resource from a compiled EX4 file, the full name should be used with the path relative to MQL4 directory, file and resource names \"path\\\\filename.ex4::resourcename\"."
                 }, 
                 {
                     "default": "", 
@@ -478,7 +478,7 @@
                     "default": "", 
                     "type": "ushort", 
                     "name": "user_error", 
-                    "description": "[in] Error"
+                    "description": "[in] number set by a user."
                 }
             ]
         }
@@ -1014,7 +1014,7 @@
                     "default": "WHOLE_ARRAY", 
                     "type": "int", 
                     "name": "count", 
-                    "description": "[in] Number of elements that should be copied. By default, the whole array is copied (count=WHOLE_ARRAY"
+                    "description": "[in] Number of elements that should be copied. By default, the whole array is copied (count=)."
                 }
             ]
         }
@@ -1058,7 +1058,7 @@
                     "default": "WHOLE_ARRAY", 
                     "type": "int", 
                     "name": "count", 
-                    "description": "[in] Number of elements to be compared. All elements of both arrays participate in comparison by default (count=WHOLE_ARRAY"
+                    "description": "[in] Number of elements to be compared. All elements of both arrays participate in comparison by default (count=)."
                 }
             ]
         }
@@ -1270,13 +1270,13 @@
                     "default": "", 
                     "type": "void&", 
                     "name": "array[]", 
-                    "description": "[out] Array of simple type ("
+                    "description": "[out] Array of simple type (, , , , , , , , , , , , )."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "start", 
-                    "description": "[in] Starting index."
+                    "description": "[in] Starting index. In such a case, specified is ignored."
                 }, 
                 {
                     "default": "", 
@@ -1354,7 +1354,7 @@
                     "default": "WHOLE_ARRAY", 
                     "type": "int", 
                     "name": "count", 
-                    "description": "[in] Number of elements for search. By default, searches in the entire array (count=WHOLE_ARRAY"
+                    "description": "[in] Number of elements for search. By default, searches in the entire array (count=)."
                 }, 
                 {
                     "default": "0", 
@@ -1386,7 +1386,7 @@
                     "default": "WHOLE_ARRAY", 
                     "type": "int", 
                     "name": "count", 
-                    "description": "[in] Number of elements for search. By default, searches in the entire array (count=WHOLE_ARRAY"
+                    "description": "[in] Number of elements for search. By default, searches in the entire array (count=)."
                 }, 
                 {
                     "default": "0", 
@@ -1554,7 +1554,7 @@
                     "default": "", 
                     "type": "MqlRates&", 
                     "name": "rates_array[]", 
-                    "description": "[out] Destination array of MqlRates"
+                    "description": "[out] Destination array of type."
                 }, 
                 {
                     "default": "NULL", 
@@ -1566,7 +1566,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }
             ]
         }, 
@@ -1590,7 +1590,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }
             ]
         }
@@ -1616,7 +1616,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "series_index", 
-                    "description": "[in] Series array identifier. It can be any of the Series array identifier"
+                    "description": "[in] Series array identifier. It can be any of the enumeration values."
                 }, 
                 {
                     "default": "NULL", 
@@ -1628,7 +1628,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of Timeframe"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }
             ]
         }
@@ -1706,7 +1706,7 @@
                     "default": "CP_ACP", 
                     "type": "uint", 
                     "name": "codepage", 
-                    "description": "[in] The value of the code page. There is a number of built-in constants for the most used code pages"
+                    "description": "[in] The value of the code page. There is a number of built-in constants for the most used ."
                 }
             ]
         }
@@ -1732,7 +1732,7 @@
                     "default": "255", 
                     "type": "uchar", 
                     "name": "alpha", 
-                    "description": "[in] The value of the alpha channel used to receive the color in"
+                    "description": "[in] The value of the alpha channel used to receive the color in format. The value may be set from 0 (a color of a foreground pixel does not change the display of an underlying one) up to 255 (a color of an underlying pixel is completely replaced by the foreground pixel's one). Color transparency in percentage terms is calculated as (1-alpha/255)*100%. In other words, the lesser value of the alpha channel leads to more transparent color."
                 }
             ]
         }
@@ -1758,7 +1758,7 @@
                     "default": "", 
                     "type": "bool", 
                     "name": "color_name", 
-                    "description": "[in] Return color name if it is identical to one of predefined color constants"
+                    "description": "[in] Return color name if it is identical to one of predefined ."
                 }
             ]
         }
@@ -1784,7 +1784,7 @@
                     "default": "8", 
                     "type": "int", 
                     "name": "digits", 
-                    "description": "[in] Accuracy format. If the"
+                    "description": "[in] Accuracy format. If the digits value is in the range between 0 and 16, a string presentation of a number with the specified number of digits after the point will be obtained. If the digits value is in the range between -1 and -16, a string representation of a number in the scientific format with the specified number of digits after the decimal point will be obtained. In all other cases the string value will contain 8 digits after the decimal point."
                 }
             ]
         }
@@ -1914,7 +1914,7 @@
                     "default": "TIME_DATE|TIME_MINUTES", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Additional data input mode. Can be one or combined flag:"
+                    "description": "[in] Additional data input mode. Can be one or combined flag: TIME_DATE gets result as \"yyyy.mm.dd\", TIME_MINUTES gets result as \"hh:mm\", TIME_SECONDS gets results as \"hh:mm:ss\"."
                 }
             ]
         }
@@ -1984,7 +1984,7 @@
                     "default": "CP_ACP", 
                     "type": "uint", 
                     "name": "codepage", 
-                    "description": "[in] The value of the code page. For the most-used code pages"
+                    "description": "[in] The value of the code page. For the most-used provide appropriate constants."
                 }
             ]
         }
@@ -2004,7 +2004,7 @@
                     "default": "", 
                     "type": "string", 
                     "name": "color_string", 
-                    "description": "[in] String representation of a color of \"R,G,B\" type or name of one of predefined Web-colors"
+                    "description": "[in] String representation of a color of \"R,G,B\" type or name of one of predefined ."
                 }
             ]
         }
@@ -2024,7 +2024,7 @@
                     "default": "", 
                     "type": "string", 
                     "name": "value", 
-                    "description": "[in] String"
+                    "description": "[in] String containing a symbol representation of a number."
                 }
             ]
         }
@@ -2070,7 +2070,7 @@
                     "default": "", 
                     "type": "ushort&", 
                     "name": "array[]", 
-                    "description": "[out] Array of ushort"
+                    "description": "[out] Array of type (analog of wchar_t type)."
                 }, 
                 {
                     "default": "0", 
@@ -2122,7 +2122,7 @@
                     "default": "", 
                     "type": "string", 
                     "name": "format", 
-                    "description": "[in] String containing method of formatting. Formatting rules are the same as for the PrintFormat"
+                    "description": "[in] String containing method of formatting. Formatting rules are the same as for the function."
                 }
             ]
         }
@@ -2254,7 +2254,7 @@
                     "default": "TIME_DATE|TIME_MINUTES", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Optional data output mode can be one or combination of:"
+                    "description": "[in] Optional data output mode can be one or combination of:TIME_DATE gets result as \"yyyy.mm.dd\",TIME_MINUTES gets result as \"hh:mi\",TIME_SECONDS gets result as \"hh:mi:ss\"."
                 }
             ]
         }
@@ -2879,7 +2879,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "pos", 
-                    "description": "[in] Position of a symbol in the string. Can be from 0 to StringLen"
+                    "description": "[in] Position of a symbol in the string. Can be from 0 to (text) -1."
                 }
             ]
         }
@@ -2989,7 +2989,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "pos", 
-                    "description": "[in] Position of a character in a string. Can be from 0 to StringLen"
+                    "description": "[in] Position of a character in a string. Can be from 0 to (text)."
                 }, 
                 {
                     "default": "", 
@@ -3053,7 +3053,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "start_pos", 
-                    "description": "[in] Initial position of a substring. Can be from 0 to StringLen"
+                    "description": "[in] Initial position of a substring. Can be from 0 to (text) -1."
                 }, 
                 {
                     "default": "0", 
@@ -3165,7 +3165,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "pos", 
-                    "description": "[in] Char position in the string. Can be from 0 to StringLen"
+                    "description": "[in] Char position in the string. Can be from 0 to (text) -1."
                 }
             ]
         }
@@ -3191,7 +3191,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "pos", 
-                    "description": "[in] The character position in the string. Can be from 0 to StringLen"
+                    "description": "[in] The character position in the string. Can be from 0 to (text)."
                 }, 
                 {
                     "default": "", 
@@ -3222,7 +3222,7 @@
                     "default": "", 
                     "type": "MqlDateTime&", 
                     "name": "dt_struct", 
-                    "description": "[out] MqlDateTime"
+                    "description": "[out] structure type variable."
                 }
             ]
         }
@@ -3247,7 +3247,7 @@
                     "default": "", 
                     "type": "MqlDateTime&", 
                     "name": "dt_struct", 
-                    "description": "[out] Variable of structure type MqlDateTime"
+                    "description": "[out] Variable of structure type ."
                 }
             ]
         }
@@ -3272,7 +3272,7 @@
                     "default": "", 
                     "type": "MqlDateTime&", 
                     "name": "dt_struct", 
-                    "description": "[out] Variable of structure type MqlDateTime"
+                    "description": "[out] Variable of structure type ."
                 }
             ]
         }
@@ -3628,7 +3628,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of the property. The value can be one of the values of ENUM_ACCOUNT_INFO_DOUBLE"
+                    "description": "[in] Identifier of the property. The value can be one of the values of ."
                 }
             ]
         }
@@ -3648,7 +3648,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of the property. The value can be one of the values of ENUM_ACCOUNT_INFO_INTEGER"
+                    "description": "[in] Identifier of the property. The value can be one of the values of ."
                 }
             ]
         }
@@ -3668,7 +3668,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of the property. The value can be one of the values of ENUM_ACCOUNT_INFO_STRING"
+                    "description": "[in] Identifier of the property. The value can be one of the values of ."
                 }
             ]
         }
@@ -3954,7 +3954,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of a property. Can be one of values of the ENUM_MQL_INFO_INTEGER"
+                    "description": "[in] Identifier of a property. Can be one of values of the enumeration."
                 }
             ]
         }
@@ -3974,7 +3974,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of a property. Can be one of the ENUM_MQL_INFO_STRING"
+                    "description": "[in] Identifier of a property. Can be one of the enumeration."
                 }
             ]
         }
@@ -3994,13 +3994,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of a property. Only MQL_CODEPAGE"
+                    "description": "[in] Identifier of a property. Only is supported, as other properties cannot be changed."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "property_value", 
-                    "description": "[in] Value of property. Can be one of the Codepage constants"
+                    "description": "[in] Value of property. Can be one of the ."
                 }
             ]
         }
@@ -4020,7 +4020,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of a property. Can be one of the values of the ENUM_TERMINAL_INFO_INTEGER"
+                    "description": "[in] Identifier of a property. Can be one of the values of the enumeration."
                 }
             ]
         }
@@ -4040,7 +4040,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of a property. Can be one of the values of the ENUM_TERMINAL_INFO_DOUBLE"
+                    "description": "[in] Identifier of a property. Can be one of the values of the enumeration."
                 }
             ]
         }
@@ -4060,7 +4060,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "property_id", 
-                    "description": "[in] Identifier of a property. Can be one of the values of the ENUM_TERMINAL_INFO_STRING"
+                    "description": "[in] Identifier of a property. Can be one of the values of the enumeration."
                 }
             ]
         }
@@ -4325,7 +4325,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "type", 
-                    "description": "[in] Request identifier that defines the type"
+                    "description": "[in] Request of information to be returned. Can be any of values of request identifiers."
                 }
             ]
         }
@@ -4423,7 +4423,7 @@
                     "default": "", 
                     "type": "ENUM_SYMBOL_INFO_DOUBLE", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the ENUM_SYMBOL_INFO_DOUBLE"
+                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the enumeration."
                 }
             ]
         }, 
@@ -4441,7 +4441,7 @@
                     "default": "", 
                     "type": "ENUM_SYMBOL_INFO_DOUBLE", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the ENUM_SYMBOL_INFO_DOUBLE"
+                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -4473,7 +4473,7 @@
                     "default": "", 
                     "type": "ENUM_SYMBOL_INFO_INTEGER", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the ENUM_SYMBOL_INFO_INTEGER"
+                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the enumeration."
                 }
             ]
         }, 
@@ -4491,7 +4491,7 @@
                     "default": "", 
                     "type": "ENUM_SYMBOL_INFO_INTEGER", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the ENUM_SYMBOL_INFO_INTEGER"
+                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -4523,7 +4523,7 @@
                     "default": "", 
                     "type": "ENUM_SYMBOL_INFO_STRING", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the ENUM_SYMBOL_INFO_STRING"
+                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the enumeration."
                 }
             ]
         }, 
@@ -4541,7 +4541,7 @@
                     "default": "", 
                     "type": "ENUM_SYMBOL_INFO_STRING", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the ENUM_SYMBOL_INFO_STRING"
+                    "description": "[in] Identifier of a symbol property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -4573,7 +4573,7 @@
                     "default": "", 
                     "type": "MqlTick&", 
                     "name": "tick", 
-                    "description": "[out] Link to the structure of the MqlTick"
+                    "description": "[out] Link to the structure of the type, to which the current prices and time of the last price update will be placed."
                 }
             ]
         }
@@ -4693,7 +4693,7 @@
                     "default": "", 
                     "type": "ENUM_SERIES_INFO_INTEGER", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the requested property, value of the ENUM_SERIES_INFO_INTEGER"
+                    "description": "[in] Identifier of the requested property, value of the enumeration."
                 }
             ]
         }, 
@@ -4717,7 +4717,7 @@
                     "default": "", 
                     "type": "ENUM_SERIES_INFO_INTEGER", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the requested property, value of the ENUM_SERIES_INFO_INTEGER"
+                    "description": "[in] Identifier of the requested property, value of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -4780,7 +4780,7 @@
                     "default": "", 
                     "type": "MqlRates", 
                     "name": "rates_array[]", 
-                    "description": "[out] Array of MqlRates"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -4816,7 +4816,7 @@
                     "default": "", 
                     "type": "MqlRates", 
                     "name": "rates_array[]", 
-                    "description": "[out] Array of MqlRates"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -4852,7 +4852,7 @@
                     "default": "", 
                     "type": "MqlRates", 
                     "name": "rates_array[]", 
-                    "description": "[out] Array of MqlRates"
+                    "description": "[out] Array of type."
                 }
             ]
         }
@@ -4896,7 +4896,7 @@
                     "default": "", 
                     "type": "datetime", 
                     "name": "time_array[]", 
-                    "description": "[out] Array of datetime"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -4932,7 +4932,7 @@
                     "default": "", 
                     "type": "datetime", 
                     "name": "time_array[]", 
-                    "description": "[out] Array of datetime"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -4968,7 +4968,7 @@
                     "default": "", 
                     "type": "datetime", 
                     "name": "time_array[]", 
-                    "description": "[out] Array of datetime"
+                    "description": "[out] Array of type."
                 }
             ]
         }
@@ -5012,7 +5012,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "open_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5048,7 +5048,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "open_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5084,7 +5084,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "open_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }
@@ -5128,7 +5128,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "high_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5164,7 +5164,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "high_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5200,7 +5200,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "high_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }
@@ -5244,7 +5244,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "low_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5280,7 +5280,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "low_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5316,7 +5316,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "low_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }
@@ -5360,7 +5360,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "close_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5396,7 +5396,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "close_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5432,7 +5432,7 @@
                     "default": "", 
                     "type": "double", 
                     "name": "close_array[]", 
-                    "description": "[out] Array of double"
+                    "description": "[out] Array of type."
                 }
             ]
         }
@@ -5476,7 +5476,7 @@
                     "default": "", 
                     "type": "long", 
                     "name": "volume_array[]", 
-                    "description": "[out] Array of long"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5512,7 +5512,7 @@
                     "default": "", 
                     "type": "long", 
                     "name": "volume_array[]", 
-                    "description": "[out] Array of long"
+                    "description": "[out] Array of type."
                 }
             ]
         }, 
@@ -5548,7 +5548,7 @@
                     "default": "", 
                     "type": "long", 
                     "name": "volume_array[]", 
-                    "description": "[out] Array of long"
+                    "description": "[out] Array of type."
                 }
             ]
         }
@@ -5624,13 +5624,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol the data of which should be used to calculate indicator. NULL"
+                    "description": "[in] Symbol the data of which should be used to calculate indicator. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }
             ]
         }
@@ -5650,13 +5650,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -5688,13 +5688,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -5720,13 +5720,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -5752,19 +5752,19 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol the data of which should be used for search. NULL"
+                    "description": "[in] Symbol the data of which should be used for search. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "type", 
-                    "description": "[in] Series array identifier. It can be any of the Series array identifier"
+                    "description": "[in] Series array identifier. It can be any of the enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -5796,13 +5796,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -5828,19 +5828,19 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "type", 
-                    "description": "[in] Series array identifier. It can be any of the Series array identifier"
+                    "description": "[in] Series array identifier. It can be any of the enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -5872,13 +5872,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -5904,13 +5904,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -5936,13 +5936,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name. NULL"
+                    "description": "[in] Symbol name. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -6000,7 +6000,7 @@
                     "default": "", 
                     "type": "const string", 
                     "name": "filename", 
-                    "description": "[in] The filename to save the template. The \".tpl\" extension will be added to the filename automatically; there is no need to specify it. The template is saved in"
+                    "description": "[in] The filename to save the template. The \".tpl\" extension will be added to the filename automatically; there is no need to specify it. The template is saved in terminal_directory\\Profiles\\Templates\\ and can be used for manual application in the terminal. If a template with the same filename already exists, the contents of this file will be overwritten."
                 }
             ]
         }
@@ -6151,13 +6151,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Chart symbol. NULL"
+                    "description": "[in] Chart symbol. means the symbol of the current chart (the Expert Advisor is attached to)."
                 }, 
                 {
                     "default": "", 
                     "type": "ENUM_TIMEFRAMES", 
                     "name": "period", 
-                    "description": "[in] Chart period (timeframe). Can be one of the ENUM_TIMEFRAMES"
+                    "description": "[in] Chart period (timeframe). Can be one of the values. 0 means the current chart period."
                 }
             ]
         }
@@ -6296,7 +6296,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. Can be one of the ENUM_CHART_PROPERTY_DOUBLE"
+                    "description": "[in] Chart property ID. Can be one of the values (except the read-only properties)."
                 }, 
                 {
                     "default": "", 
@@ -6328,7 +6328,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. It can be one of the ENUM_CHART_PROPERTY_INTEGER"
+                    "description": "[in] Chart property ID. It can be one of the value (except the read-only properties)."
                 }, 
                 {
                     "default": "", 
@@ -6390,7 +6390,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. Its value can be one of the ENUM_CHART_PROPERTY_STRING"
+                    "description": "[in] Chart property ID. Its value can be one of the values (except the read-only properties)."
                 }, 
                 {
                     "default": "", 
@@ -6422,7 +6422,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. This value can be one of the ENUM_CHART_PROPERTY_DOUBLE"
+                    "description": "[in] Chart property ID. This value can be one of the values."
                 }, 
                 {
                     "default": "0", 
@@ -6446,7 +6446,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. This value can be one of the ENUM_CHART_PROPERTY_DOUBLE"
+                    "description": "[in] Chart property ID. This value can be one of the values."
                 }, 
                 {
                     "default": "", 
@@ -6484,7 +6484,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. This value can be one of the ENUM_CHART_PROPERTY_INTEGER"
+                    "description": "[in] Chart property ID. This value can be one of the values."
                 }, 
                 {
                     "default": "0", 
@@ -6508,7 +6508,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. This value can be one of the ENUM_CHART_PROPERTY_INTEGER"
+                    "description": "[in] Chart property ID. This value can be one of the values."
                 }, 
                 {
                     "default": "", 
@@ -6546,7 +6546,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. This value can be one of the ENUM_CHART_PROPERTY_STRING"
+                    "description": "[in] Chart property ID. This value can be one of the values."
                 }
             ]
         }, 
@@ -6564,7 +6564,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Chart property ID. This value can be one of the ENUM_CHART_PROPERTY_STRING"
+                    "description": "[in] Chart property ID. This value can be one of the values."
                 }, 
                 {
                     "default": "", 
@@ -6596,7 +6596,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "position", 
-                    "description": "[in] Chart position to perform a shift. Can be one of the ENUM_CHART_POSITION"
+                    "description": "[in] Chart position to perform a shift. Can be one of the values."
                 }, 
                 {
                     "default": "0", 
@@ -6679,7 +6679,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "index", 
-                    "description": "[in] the index of the indicator in the list of indicators. The numeration of indicators start with zero, i.e. the first indicator in the list has the 0 index. To obtain the number of indicators in the list use the ChartIndicatorsTotal()"
+                    "description": "[in] the index of the indicator in the list of indicators. The numeration of indicators start with zero, i.e. the first indicator in the list has the 0 index. To obtain the number of indicators in the list use the function."
                 }
             ]
         }
@@ -6796,13 +6796,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Chart symbol. NULL"
+                    "description": "[in] Chart symbol. value means the current chart symbol (Expert Advisor is attached to)"
                 }, 
                 {
                     "default": "", 
                     "type": "ENUM_TIMEFRAMES", 
                     "name": "period", 
-                    "description": "[in] Chart period (timeframe). Can be one of the ENUM_TIMEFRAMES"
+                    "description": "[in] Chart period (timeframe). Can be one of the values. 0 means the current chart period."
                 }
             ]
         }
@@ -6846,7 +6846,7 @@
                     "default": "ALIGN_RIGHT", 
                     "type": "ENUM_ALIGN_MODE", 
                     "name": "align_mode", 
-                    "description": "[in] Output mode of a narrow screenshot. A value of the"
+                    "description": "[in] Output mode of a narrow screenshot. A value of the enumeration. ALIGN_RIGHT means align to the right margin (the output from the end). ALIGN_LEFT means Left justify."
                 }
             ]
         }
@@ -6957,7 +6957,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of Timeframe"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }
             ]
         }
@@ -7485,7 +7485,7 @@
                     "default": "MODE_TRADES", 
                     "type": "int", 
                     "name": "pool", 
-                    "description": "SELECT_BY_POS - index in the order pool,"
+                    "description": "SELECT_BY_POS - index in the order pool, SELECT_BY_TICKET - index is order ticket."
                 }
             ]
         }
@@ -7511,7 +7511,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "cmd", 
-                    "description": "[in] Operation type. It can be any of the Trade operation"
+                    "description": "[in] Operation type. It can be any of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -7689,7 +7689,7 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_BASE_DOUBLE", 
                     "name": "property_id", 
-                    "description": "[in] Signal property identifier. The value can be one of the values of the ENUM_SIGNAL_BASE_DOUBLE"
+                    "description": "[in] Signal property identifier. The value can be one of the values of the enumeration."
                 }
             ]
         }
@@ -7709,7 +7709,7 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_BASE_INTEGER", 
                     "name": "property_id", 
-                    "description": "[in] Signal property identifier. The value can be one of the values of the ENUM_SIGNAL_BASE_INTEGER"
+                    "description": "[in] Signal property identifier. The value can be one of the values of the enumeration."
                 }
             ]
         }
@@ -7729,7 +7729,7 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_BASE_STRING", 
                     "name": "property_id", 
-                    "description": "[in] Signal property identifier. The value can be one of the values of the ENUM_SIGNAL_BASE_STRING"
+                    "description": "[in] Signal property identifier. The value can be one of the values of the enumeration."
                 }
             ]
         }
@@ -7782,7 +7782,7 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_INFO_DOUBLE", 
                     "name": "property_id", 
-                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the ENUM_SIGNAL_INFO_DOUBLE"
+                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the enumeration."
                 }
             ]
         }
@@ -7802,7 +7802,7 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_INFO_INTEGER", 
                     "name": "property_id", 
-                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the ENUM_SIGNAL_INFO_INTEGER"
+                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the enumeration."
                 }
             ]
         }
@@ -7822,7 +7822,7 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_INFO_STRING", 
                     "name": "property_id", 
-                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the ENUM_SIGNAL_INFO_STRING"
+                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the enumeration."
                 }
             ]
         }
@@ -7842,13 +7842,13 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_INFO_DOUBLE", 
                     "name": "property_id", 
-                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the ENUM_SIGNAL_INFO_DOUBLE"
+                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "double", 
                     "name": "value", 
-                    "description": "[in] The value of"
+                    "description": "[in] The value of signal copy settings property."
                 }
             ]
         }
@@ -7868,13 +7868,13 @@
                     "default": "", 
                     "type": "ENUM_SIGNAL_INFO_INTEGER", 
                     "name": "property_id", 
-                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the ENUM_SIGNAL_INFO_INTEGER"
+                    "description": "[in] Signal copy settings property identifier. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "long", 
                     "name": "value", 
-                    "description": "[in] The value of"
+                    "description": "[in] The value of signal copy settings property."
                 }
             ]
         }
@@ -8025,7 +8025,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "index", 
-                    "description": "[in] Sequence number in the list of global variables. It should be greater than or equal to 0 and less than GlobalVariablesTotal()"
+                    "description": "[in] Sequence number in the list of global variables. It should be greater than or equal to 0 and less than ."
                 }
             ]
         }
@@ -8187,7 +8187,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the location of the file. If common_flag = FILE_COMMON, then the file is located in a shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the file is located in a local folder."
                 }
             ]
         }
@@ -8207,7 +8207,7 @@
                     "default": "", 
                     "type": "long", 
                     "name": "search_handle", 
-                    "description": "[in] Search handle, retrieved by FileFindFirst()"
+                    "description": "[in] Search handle, retrieved by ."
                 }, 
                 {
                     "default": "", 
@@ -8233,7 +8233,7 @@
                     "default": "", 
                     "type": "long", 
                     "name": "search_handle", 
-                    "description": "[in] Search handle, retrieved by FileFindFirst()"
+                    "description": "[in] Search handle, retrieved by ."
                 }
             ]
         }
@@ -8259,7 +8259,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the location of the file. If common_flag = FILE_COMMON, then the file is located in a shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the file is located in a local folder."
                 }
             ]
         }
@@ -8285,19 +8285,19 @@
                     "default": "", 
                     "type": "int", 
                     "name": "open_flags", 
-                    "description": "[in] combination of flags"
+                    "description": "[in] determining the operation mode for the file. The flags are defined as follows:FILE_READ file is opened for readingFILE_WRITE file is opened for writingFILE_BIN binary read-write mode (no conversion from a string and to a string)FILE_CSV file of csv type (all recorded items are converted to the strings of unicode or ansi type, and are separated by a delimiter)FILE_TXT a simple text file (the same as csv, but the delimiter is not taken into account)FILE_ANSI lines of ANSI type (single-byte symbols) FILE_UNICODE lines of UNICODE type (double-byte characters)FILE_SHARE_READ shared reading from several programsFILE_SHARE_WRITE shared writing from several programsFILE_COMMON location of the file in a shared folder for all client terminals \\Terminal\\Common\\Files"
                 }, 
                 {
                     "default": "';'", 
                     "type": "short", 
                     "name": "delimiter", 
-                    "description": "FILE_READ file is opened for reading"
+                    "description": "[in] value to be used as a separator in txt or csv-file. If the csv-file delimiter is not specified, the default delimiter is \";\". If the txt-file delimiter is not specified, then no separator is used. If the separator is clearly set to 0, then no separator is used."
                 }, 
                 {
                     "default": "CP_ACP", 
                     "type": "uint", 
                     "name": "codepage", 
-                    "description": "FILE_WRITE file is opened for writing"
+                    "description": "[in] Optional parameter. The value of the code page. For the most-used provide appropriate constants."
                 }
             ]
         }
@@ -8343,19 +8343,19 @@
                     "default": "", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the location of the file. If common_flag = FILE_COMMON, then the file is located in a shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the file is located in a local folder (for example, common_flag=0)."
                 }, 
                 {
                     "default": "", 
                     "type": "const string", 
                     "name": "dst_file_name", 
-                    "description": ")."
+                    "description": "[in] Result file name."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode_flags", 
-                    "description": "[in] Result file name."
+                    "description": "[in] . The parameter can contain only 2 flags: FILE_REWRITE and/or FILE_COMMON - other flags are ignored. If the file already exists, and the FILE_REWRITE flag hasn't been specified, then the file will not be rewritten, and the function will return false."
                 }
             ]
         }
@@ -8381,7 +8381,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the file location. If common_flag = FILE_COMMON, then the file is located in a shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the file is located in a local folder."
                 }
             ]
         }
@@ -8407,19 +8407,19 @@
                     "default": "", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the location of the file. If common_flag = FILE_COMMON, then the file is located in a shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the file is located in a local folder (common_flag=0)."
                 }, 
                 {
                     "default": "", 
                     "type": "const string", 
                     "name": "dst_file_name", 
-                    "description": ")."
+                    "description": "[in] File name after operation"
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode_flags", 
-                    "description": "[in] File name after operation"
+                    "description": "[in] . The parameter can contain only 2 flags: FILE_REWRITE and/or FILE_COMMON - other flags are ignored. If the file already exists and the FILE_REWRITE flag isn't specified, the file will not be rewritten, and the function will return false."
                 }
             ]
         }
@@ -8439,7 +8439,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8459,13 +8459,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
                     "type": "ENUM_FILE_PROPERTY_INTEGER", 
                     "name": "property_id", 
-                    "description": "[in] File property ID. The value can be one of the values of the ENUM_FILE_PROPERTY_INTEGER"
+                    "description": "[in] File property ID. The value can be one of the values of the enumeration. If the second variant of the function is used, you can receive only the values of the : FILE_EXISTS, FILE_CREATE_DATE, FILE_MODIFY_DATE, FILE_ACCESS_DATE and FILE_SIZE."
                 }
             ]
         }, 
@@ -8483,13 +8483,13 @@
                     "default": "", 
                     "type": "ENUM_FILE_PROPERTY_INTEGER", 
                     "name": "property_id", 
-                    "description": "[in] File property ID. The value can be one of the values of the ENUM_FILE_PROPERTY_INTEGER"
+                    "description": "[in] File property ID. The value can be one of the values of the enumeration. If the second variant of the function is used, you can receive only the values of the : FILE_EXISTS, FILE_CREATE_DATE, FILE_MODIFY_DATE, FILE_ACCESS_DATE and FILE_SIZE."
                 }, 
                 {
                     "default": "false", 
                     "type": "bool", 
                     "name": "common_folder", 
-                    "description": "[in] Points to the file location. If the parameter is false, terminal data folder is viewed. Otherwise it is assumed that the file is in the shared folder of all terminals \\Terminal\\Common\\Files (FILE_COMMON"
+                    "description": "[in] Points to the file location. If the parameter is false, terminal data folder is viewed. Otherwise it is assumed that the file is in the shared folder of all terminals \\Terminal\\Common\\Files ()."
                 }
             ]
         }
@@ -8509,7 +8509,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8529,7 +8529,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8549,7 +8549,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -8567,7 +8567,7 @@
                     "default": "WHOLE_ARRAY", 
                     "type": "int", 
                     "name": "count", 
-                    "description": "[in] Number of elements to read. By default, reads the entire array (count=WHOLE_ARRAY"
+                    "description": "[in] Number of elements to read. By default, reads the entire array (count=)."
                 }
             ]
         }
@@ -8587,7 +8587,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8607,7 +8607,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8627,7 +8627,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "DOUBLE_VALUE", 
@@ -8653,7 +8653,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8673,7 +8673,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "INT_VALUE", 
@@ -8699,7 +8699,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8719,7 +8719,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8739,7 +8739,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "0", 
@@ -8771,7 +8771,7 @@
                     "default": "", 
                     "type": "const void&", 
                     "name": "struct_object", 
-                    "description": "[out] The object of this structure. The structure should not contain strings, dynamic arrays"
+                    "description": "[out] The object of this structure. The structure should not contain strings, or ."
                 }, 
                 {
                     "default": "-1", 
@@ -8797,7 +8797,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -8809,7 +8809,7 @@
                     "default": "", 
                     "type": "ENUM_FILE_POSITION", 
                     "name": "origin", 
-                    "description": "[in] The starting point for the displacement. Can be one of values of ENUM_FILE_POSITION"
+                    "description": "[in] The starting point for the displacement. Can be one of values of ."
                 }
             ]
         }
@@ -8829,7 +8829,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8849,7 +8849,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8869,7 +8869,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }
             ]
         }
@@ -8889,7 +8889,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -8907,7 +8907,7 @@
                     "default": "WHOLE_ARRAY", 
                     "type": "int", 
                     "name": "count", 
-                    "description": "[in] Number of items to write (WHOLE_ARRAY"
+                    "description": "[in] Number of items to write ( means all items starting with the number start until the end of the array)."
                 }
             ]
         }
@@ -8927,7 +8927,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -8953,7 +8953,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -8979,7 +8979,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -9011,7 +9011,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -9037,7 +9037,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
@@ -9069,13 +9069,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "file_handle", 
-                    "description": "[in] File descriptor returned by FileOpen()"
+                    "description": "[in] File descriptor returned by ."
                 }, 
                 {
                     "default": "", 
                     "type": "const void&", 
                     "name": "struct_object", 
-                    "description": "[in] Reference to the object of this structure. The structure should not contain strings, dynamic arrays"
+                    "description": "[in] Reference to the object of this structure. The structure should not contain strings, or ."
                 }, 
                 {
                     "default": "-1", 
@@ -9107,7 +9107,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the location of the directory. If common_flag=FILE_COMMON, then the directory is in the shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the directory is in a local folder (MQL4\\Files or MQL4\\Tester\\Files in case of testing)."
                 }
             ]
         }
@@ -9133,7 +9133,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the location of the directory. If common_flag=FILE_COMMON, then the directory is in the shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the directory is in a local folder (MQL4\\Files or MQL4\\Tester\\Files in the case of testing)."
                 }
             ]
         }
@@ -9159,7 +9159,7 @@
                     "default": "0", 
                     "type": "int", 
                     "name": "common_flag", 
-                    "description": "[in] Flag"
+                    "description": "[in] determining the location of the directory. If common_flag = FILE_COMMON, then the directory is in the shared folder for all client terminals \\Terminal\\Common\\Files. Otherwise, the directory is in a local folder(MQL4\\files or MQL4\\tester\\files in case of testing)."
                 }
             ]
         }
@@ -9231,7 +9231,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the ENUM_CUSTOMIND_PROPERTY_DOUBLE"
+                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -9249,13 +9249,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the ENUM_CUSTOMIND_PROPERTY_DOUBLE"
+                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. Only level properties require a modifier. Numbering of levels starts from 0. It means that in order to set property for the second level you need to specify 1 (1 less than when using compiler directive"
+                    "description": "[in] Modifier of the specified property. Only level properties require a modifier. Numbering of levels starts from 0. It means that in order to set property for the second level you need to specify 1 (1 less than when using )."
                 }, 
                 {
                     "default": "", 
@@ -9281,7 +9281,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the ENUM_CUSTOMIND_PROPERTY_INTEGER"
+                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -9299,7 +9299,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the ENUM_CUSTOMIND_PROPERTY_INTEGER"
+                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -9331,7 +9331,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the ENUM_CUSTOMIND_PROPERTY_STRING"
+                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -9349,7 +9349,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the ENUM_CUSTOMIND_PROPERTY_STRING"
+                    "description": "[in] Identifier of the indicator property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -9381,7 +9381,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "index", 
-                    "description": "[in] Number of the indicator buffer. The numbering starts with 0. The number must be less than the value declared in #property indicator_buffers"
+                    "description": "[in] Number of the indicator buffer. The numbering starts with 0. The number must be less than the value declared in ."
                 }, 
                 {
                     "default": "", 
@@ -9405,7 +9405,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "index", 
-                    "description": "[in] Number of the indicator buffer. The numbering starts with 0. The number must be less than the value declared in #property indicator_buffers"
+                    "description": "[in] Number of the indicator buffer. The numbering starts with 0. The number must be less than the value declared in ."
                 }, 
                 {
                     "default": "", 
@@ -9510,7 +9510,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "code", 
-                    "description": "[in] Symbol code from Wingdings font"
+                    "description": "[in] Symbol code from or predefined ."
                 }
             ]
         }
@@ -9640,13 +9640,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "type", 
-                    "description": "[in] Shape style. Can be one ofDrawing shape styles"
+                    "description": "[in] Shape style. Can be one of listed."
                 }, 
                 {
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "style", 
-                    "description": "[in] Drawing style. It is used for one-pixel thick lines. It can be one of the Drawing shape styles"
+                    "description": "[in] Drawing style. It is used for one-pixel thick lines. It can be one of the listed. EMPTY value means that the style will not be changed."
                 }, 
                 {
                     "default": "EMPTY", 
@@ -9678,7 +9678,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "draw_style", 
-                    "description": "[in] Drawing style. Can be one of theDrawing shape styles"
+                    "description": "[in] Drawing style. Can be one of the listed. EMPTY value means that the style will not be changed."
                 }, 
                 {
                     "default": "", 
@@ -9748,13 +9748,13 @@
                     "default": "", 
                     "type": "ENUM_OBJECT", 
                     "name": "object_type", 
-                    "description": "[in] Object type. The value can be one of the values of the ENUM_OBJECT"
+                    "description": "[in] Object type. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "sub_window", 
-                    "description": "[in] Number of the chart subwindow. 0 means the main chart window. The specified subwindow must exist (window index must be greater or equal to 0 and less than WindowsTotal()"
+                    "description": "[in] Number of the chart subwindow. 0 means the main chart window. The specified subwindow must exist (window index must be greater or equal to 0 and less than ), otherwise the function returns false."
                 }, 
                 {
                     "default": "", 
@@ -9796,13 +9796,13 @@
                     "default": "", 
                     "type": "ENUM_OBJECT", 
                     "name": "object_type", 
-                    "description": "[in] Object type. The value can be one of the values of the ENUM_OBJECT"
+                    "description": "[in] Object type. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "sub_window", 
-                    "description": "[in] Number of the chart subwindow. 0 means the main chart window. The specified subwindow must exist (window index must be greater or equal to 0 and less than WindowsTotal()"
+                    "description": "[in] Number of the chart subwindow. 0 means the main chart window. The specified subwindow must exist (window index must be greater or equal to 0 and less than ), otherwise the function returns false."
                 }, 
                 {
                     "default": "", 
@@ -9858,7 +9858,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "object_index", 
-                    "description": "[in] Object index. This value must be greater or equal to 0 and less than ObjectsTotal()"
+                    "description": "[in] Object index. This value must be greater or equal to 0 and less than ."
                 }
             ]
         }
@@ -9922,13 +9922,13 @@
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "sub_window", 
-                    "description": "[in] Number of the chart window. Must be greater or equal to -1 (-1 mean all subwindows, 0 means the main chart window) and less than WindowsTotal()"
+                    "description": "[in] Number of the chart window. Must be greater or equal to -1 (-1 mean all subwindows, 0 means the main chart window) and less than ."
                 }, 
                 {
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "object_type", 
-                    "description": "[in] Type of the object. The value can be one of the values of the ENUM_OBJECT"
+                    "description": "[in] Type of the object. The value can be one of the values of the enumeration. EMPTY (-1) means all types."
                 }
             ]
         }, 
@@ -9940,13 +9940,13 @@
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "sub_window", 
-                    "description": "[in] Number of the chart window. Must be greater or equal to -1 (-1 mean all subwindows, 0 means the main chart window) and less than WindowsTotal()"
+                    "description": "[in] Number of the chart window. Must be greater or equal to -1 (-1 mean all subwindows, 0 means the main chart window) and less than ."
                 }, 
                 {
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "object_type", 
-                    "description": "[in] Type of the object. The value can be one of the values of the ENUM_OBJECT"
+                    "description": "[in] Type of the object. The value can be one of the values of the enumeration. EMPTY (-1) means all types."
                 }
             ]
         }, 
@@ -9964,19 +9964,19 @@
                     "default": "", 
                     "type": "const string", 
                     "name": "prefix", 
-                    "description": "[in] Prefix in object names. All objects whose names start with this set of characters will be removed from chart. You can specify prefix as 'name' or 'name*' \u0096 both variants will work the same. If an empty string is specified as the prefix, objects with all possible names will be removed."
+                    "description": "[in] Prefix in object names. All objects whose names start with this set of characters will be removed from chart. You can specify prefix as 'name' or 'name*' both variants will work the same. If an empty string is specified as the prefix, objects with all possible names will be removed."
                 }, 
                 {
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "sub_window", 
-                    "description": "[in] Number of the chart window. Must be greater or equal to -1 (-1 mean all subwindows, 0 means the main chart window) and less than WindowsTotal()"
+                    "description": "[in] Number of the chart window. Must be greater or equal to -1 (-1 mean all subwindows, 0 means the main chart window) and less than ."
                 }, 
                 {
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "object_type", 
-                    "description": "[in] Type of the object. The value can be one of the values of the ENUM_OBJECT"
+                    "description": "[in] Type of the object. The value can be one of the values of the enumeration. EMPTY (-1) means all types."
                 }
             ]
         }
@@ -10110,7 +10110,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "point_index", 
-                    "description": "[in] Index of the anchor point. The number of anchor points depends on the type of object"
+                    "description": "[in] Index of the anchor point. The number of anchor points depends on the ."
                 }, 
                 {
                     "default": "", 
@@ -10140,7 +10140,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "point_index", 
-                    "description": "[in] Index of the anchor point. The number of anchor points depends on the type of object"
+                    "description": "[in] Index of the anchor point. The number of anchor points depends on the ."
                 }, 
                 {
                     "default": "", 
@@ -10184,7 +10184,7 @@
                     "default": "-1", 
                     "type": "int", 
                     "name": "type", 
-                    "description": "[in] Type of the object. The value can be one of the values of the ENUM_OBJECT"
+                    "description": "[in] Type of the object. The value can be one of the values of the enumeration. EMPTY(-1) means all types."
                 }
             ]
         }, 
@@ -10196,7 +10196,7 @@
                     "default": "EMPTY", 
                     "type": "int", 
                     "name": "type", 
-                    "description": "[in] Type of the object. The value can be one of the values of the ENUM_OBJECT"
+                    "description": "[in] Type of the object. The value can be one of the values of the enumeration. EMPTY(-1) means all types."
                 }
             ]
         }
@@ -10228,13 +10228,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_DOUBLE"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "0", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }
             ]
         }, 
@@ -10258,13 +10258,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_DOUBLE"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }, 
                 {
                     "default": "", 
@@ -10302,13 +10302,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_INTEGER"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "0", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }
             ]
         }, 
@@ -10332,13 +10332,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_INTEGER"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }, 
                 {
                     "default": "", 
@@ -10376,13 +10376,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_STRING"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "0", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }
             ]
         }, 
@@ -10406,13 +10406,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_STRING"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. For the first variant, the default modifier value is equal to 0. Most properties do not require a modifier. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }, 
                 {
                     "default": "", 
@@ -10450,7 +10450,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_DOUBLE"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -10480,13 +10480,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_DOUBLE"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }, 
                 {
                     "default": "", 
@@ -10524,7 +10524,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_INTEGER"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -10554,13 +10554,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_INTEGER"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }, 
                 {
                     "default": "", 
@@ -10598,7 +10598,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_STRING"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
@@ -10628,13 +10628,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "prop_id", 
-                    "description": "[in] ID of the object property. The value can be one of the values of the ENUM_OBJECT_PROPERTY_STRING"
+                    "description": "[in] ID of the object property. The value can be one of the values of the enumeration."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "prop_modifier", 
-                    "description": "[in] Modifier of the specified property. It denotes the number of the level in Fibonacci tools"
+                    "description": "[in] Modifier of the specified property. It denotes the number of the level in and in the graphical object Andrew's pitchfork. The numeration of levels starts from zero."
                 }, 
                 {
                     "default": "", 
@@ -10672,13 +10672,13 @@
                     "default": "0", 
                     "type": "uint", 
                     "name": "flags", 
-                    "description": "[in] Combination of flags"
+                    "description": "[in] Combination of describing font style."
                 }, 
                 {
                     "default": "0", 
                     "type": "int", 
                     "name": "orientation", 
-                    "description": "[in] Text's horizontal inclination to X axis, the unit of measurement is 0.1 degrees. It means that"
+                    "description": "[in] Text's horizontal inclination to X axis, the unit of measurement is 0.1 degrees. It means that orientation=450 stands for inclination equal to 45 degrees."
                 }
             ]
         }
@@ -10716,7 +10716,7 @@
                     "default": "", 
                     "type": "uint", 
                     "name": "anchor", 
-                    "description": "[in] The value out of the 9 pre-defined methods of the displayed text's anchor point location. The value is set by a combination of two flags \u0096 flags of horizontal and vertical text align. Flag names are listed in the Note below."
+                    "description": "[in] The value out of the 9 pre-defined methods of the displayed text's anchor point location. The value is set by a combination of two flags flags of horizontal and vertical text align. Flag names are listed in the Note below."
                 }, 
                 {
                     "default": "", 
@@ -10746,7 +10746,7 @@
                     "default": "", 
                     "type": "ENUM_COLOR_FORMAT", 
                     "name": "color_format", 
-                    "description": "[in] Color format is set by ENUM_COLOR_FORMAT"
+                    "description": "[in] Color format is set by enumeration value."
                 }
             ]
         }
@@ -10824,7 +10824,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "index", 
-                    "description": "[in] Object property index. It can be any of the Object properties"
+                    "description": "[in] Object property index. It can be any of the enumeration values."
                 }
             ]
         }
@@ -10928,7 +10928,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "index", 
-                    "description": "[in] Object property index. It can be any of object properties"
+                    "description": "[in] Object property index. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11050,13 +11050,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11082,13 +11082,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11114,13 +11114,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11132,19 +11132,19 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of the Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of the enumeration value. (0 - MODE_MAIN, 1 - MODE_PLUSDI, 2 - MODE_MINUSDI)."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": ")."
+                    "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
                 }
             ]
         }
@@ -11164,13 +11164,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11212,25 +11212,25 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] MA method. It can be any of Moving Average methods. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] MA method. It can be any of Moving Average methods. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Data source, identifier of the indicator line"
+                    "description": "[in] Data source, identifier of the . It can be any of the following values:"
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": "MODE_GATORJAW - Gator Jaw (blue) balance line,"
+                    "description": "MODE_GATORJAW - Gator Jaw (blue) balance line,MODE_GATORTEETH - Gator Teeth (red) balance line,MODE_GATORLIPS - Gator Lips (green) balance line."
                 }
             ]
         }
@@ -11250,13 +11250,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11282,13 +11282,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11320,13 +11320,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11338,7 +11338,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11364,13 +11364,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11394,24 +11394,24 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of the Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of the enumeration value (0 - MODE_MAIN, 1 - MODE_UPPER, 2 - MODE_LOWER)."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": ")."
+                    "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
                 }
             ]
         }
     ], 
-    "description": "Calculates the Bollinger Bands\u00ae indicator and returns its value.", 
+    "description": "Calculates the Bollinger Bands indicator and returns its value.", 
     "title": "iBands"
 }
 ,
@@ -11456,18 +11456,18 @@
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of the Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of the enumeration value (0 - MODE_MAIN, 1 - MODE_UPPER, 2 - MODE_LOWER)."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": ")."
+                    "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
                 }
             ]
         }
     ], 
-    "description": "Calculates the Bollinger Bands\u00ae indicator on data, stored in array, and returns its value.", 
+    "description": "Calculates the Bollinger Bands indicator on data, stored in array, and returns its value.", 
     "title": "iBandsOnArray"
 }
 ,
@@ -11482,13 +11482,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11500,7 +11500,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11526,13 +11526,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11544,7 +11544,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11608,19 +11608,19 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
                     "type": "string", 
                     "name": "name", 
-                    "description": "[in] Custom indicator compiled program name, relative to the root indicators directory (MQL4/Indicators/). If the indicator is located in subdirectory, for example, in MQL4/Indicators/"
+                    "description": "[in] Custom indicator compiled program name, relative to the root indicators directory (MQL4/Indicators/). If the indicator is located in subdirectory, for example, in MQL4/Indicators/Examples, its name must be specified as \"Examples\\\\indicator_name\" (double backslash \"\\\\\"must be specified as separator instead of a single one)."
                 }, 
                 {
                     "default": "", 
@@ -11652,13 +11652,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11690,13 +11690,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11708,7 +11708,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11720,7 +11720,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11732,13 +11732,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of enumeration value (0 - MODE_MAIN, 1 - MODE_UPPER, 2 - MODE_LOWER)."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": ")."
+                    "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
                 }
             ]
         }
@@ -11776,7 +11776,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11794,13 +11794,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of enumeration value (0 - MODE_MAIN, 1 - MODE_UPPER, 2 - MODE_LOWER)."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": ")."
+                    "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
                 }
             ]
         }
@@ -11820,13 +11820,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11838,13 +11838,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -11870,19 +11870,19 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of the Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of the enumeration value."
                 }, 
                 {
                     "default": "", 
@@ -11908,13 +11908,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -11956,25 +11956,25 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] MA method. It can be any of Moving Average method"
+                    "description": "[in] MA method. It can be any of enumeration value."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of Applied price"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of enumeration value."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": "MODE_GATORJAW - blue line (Jaw line),"
+                    "description": "MODE_GATORJAW - blue line (Jaw line),MODE_GATORTEETH - red line (Teeth line),MODE_GATORLIPS - green line (Lips line)."
                 }
             ]
         }
@@ -11994,13 +11994,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12024,7 +12024,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Source of data. It can be one of the Ichimoku Kinko Hyo mode"
+                    "description": "[in] Source of data. It can be one of the enumeration (1 - MODE_TENKANSEN, 2 - MODE_KIJUNSEN, 3 - MODE_SENKOUSPANA, 4 - MODE_SENKOUSPANB, 5 - MODE_CHIKOUSPAN)."
                 }, 
                 {
                     "default": "", 
@@ -12050,13 +12050,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12082,13 +12082,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12100,7 +12100,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12164,13 +12164,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12202,13 +12202,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12226,13 +12226,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12282,7 +12282,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12308,13 +12308,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12338,7 +12338,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12364,13 +12364,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12394,13 +12394,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be one of the Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be one of the enumeration values (0-MODE_MAIN, 1-MODE_SIGNAL)."
                 }, 
                 {
                     "default": "", 
@@ -12426,19 +12426,19 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12464,13 +12464,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12502,13 +12502,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12520,7 +12520,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12584,13 +12584,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12602,7 +12602,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of enumeration value."
                 }, 
                 {
                     "default": "", 
@@ -12628,13 +12628,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12652,13 +12652,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "applied_price", 
-                    "description": "[in] Applied price. It can be any of ENUM_APPLIED_PRICE"
+                    "description": "[in] Applied price. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12708,7 +12708,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "ma_method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12734,13 +12734,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 
@@ -12764,7 +12764,7 @@
                     "default": "", 
                     "type": "int", 
                     "name": "method", 
-                    "description": "[in] Moving Average method. It can be any of ENUM_MA_METHOD"
+                    "description": "[in] Moving Average method. It can be any of enumeration values."
                 }, 
                 {
                     "default": "", 
@@ -12776,13 +12776,13 @@
                     "default": "", 
                     "type": "int", 
                     "name": "mode", 
-                    "description": "[in] Indicator line index. It can be any of the Indicators line identifiers"
+                    "description": "[in] Indicator line index. It can be any of the enumeration value (0 - MODE_MAIN, 1 - MODE_SIGNAL)."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "shift", 
-                    "description": ")."
+                    "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
                 }
             ]
         }
@@ -12802,13 +12802,13 @@
                     "default": "", 
                     "type": "string", 
                     "name": "symbol", 
-                    "description": "[in] Symbol name on the data of which the indicator will be calculated. NULL"
+                    "description": "[in] Symbol name on the data of which the indicator will be calculated. means the current symbol."
                 }, 
                 {
                     "default": "", 
                     "type": "int", 
                     "name": "timeframe", 
-                    "description": "[in] Timeframe. It can be any of ENUM_TIMEFRAMES"
+                    "description": "[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe."
                 }, 
                 {
                     "default": "", 

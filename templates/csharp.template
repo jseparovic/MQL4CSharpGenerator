@@ -1,0 +1,41 @@
+using log4net;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using mqlsharp.Util;
+using MQL4CSharp.Base.Enums;
+
+namespace MQL4CSharp.Base
+{
+    public abstract class MQL
+    {
+        public ILog LOG;
+
+        public MQL()
+        {
+            LOG = LogManager.GetLogger(GetType());
+        }
+
+{% for c in data %}{% for f in c.functions %}
+        /// <summary>
+        /// Function: {{c.title}}
+        /// Description: {{c.description}}
+        /// URL: {{c.url}}
+        /// </summary>
+        {% for p in f.parameters %}/// <param name="{{p.name}}">{{p.description}}</param>
+        {% endfor %}public {{f.returnType}} {{f.name}} ({% for p in f.parameters %}{{p.type}} {{p.name}}{% if not loop.last %}, {% endif %}{% if loop.last %}){% endif %}{% endfor %}
+        {
+            List<Object> parameters = new List<Object>();
+            {% for p in f.parameters %}parameters.Add({{p.name}});
+            {% endfor %}
+            CommandManager.getInstance().ExecCommand(Command.{{c.title}}, parameters);
+            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            return ({{f.returnType}}) CommandManager.getInstance().GetCommandResult();
+        }
+{% endfor %}{% endfor %}
+    }
+}

@@ -12,10 +12,14 @@ def pp(e):
 def clean(str):
     c = str.replace(u"\u00A0", " ")
     c = c.replace(u"\xa0", " ")
+    c = c.replace(u'\x96', " ")
+    c = c.replace(u'\xae', " ")
+
     c = c.replace("// ", "")
     c = re.sub(" +$", "", c)
     c = re.sub("^ +", "", c)
     c = re.sub("  ", " ", c)
+    c = re.sub("\r\n", "", c)
     return c
 
 def parseParamName(str):
@@ -48,18 +52,17 @@ def getData(url):
 
     # get function descriptions
     paramNames = tree.xpath(basePath + '/p[@class="p_FunctionParameter"]/span[@class="f_FunctionParameter"]/text()')
-    paramDescs = tree.xpath(basePath + '/p[@class="p_ParameterDesrciption"]/span[@class="f_ParameterDesrciption"]')
+    paramDescs = tree.xpath(basePath + '/p[@class="p_ParameterDesrciption"]')
     functionParamDescs = {}
 
     i=0
     for name in paramNames:
         pname, pdefault = parseParamName(name)
 
-        text = paramDescs[i].text
-        a = paramDescs[i].xpath('./a/text()')
-
-        if a:
-            text += clean(a[0])
+        textelements = paramDescs[i].xpath('./*/text()')
+        text = ''
+        for t in textelements:
+            text += t
 
         if paramDescs[i].tail:
             text += paramDescs[i].tail
@@ -71,6 +74,9 @@ def getData(url):
             'default': clean(pdefault)
         }
         i += 1
+
+
+    #print functionParamDescs
 
     classes = ["f_Keywords", "f_Functions", "f_Param", "f_Comments", "f_Indicators"]
     contains = ' or '.join('contains(@class,("%s"))' % c for c in classes)
