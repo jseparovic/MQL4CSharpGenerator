@@ -14,8 +14,13 @@ def render_template(template_filename, data):
 def create_csharp_code(context):
     fname = "MQL.cs"
     with open(fname, 'w') as f:
-        html = render_template('csharp.template', context)
-        f.write(html)
+        code = render_template('csharp.template', context)
+        f.write(code)
+
+    fname = "MQLCommand.cs"
+    with open(fname, 'w') as f:
+        code = render_template('command_enum.template', context)
+        f.write(code)
 
 def main():
     with open('function.dump.json') as json_data:

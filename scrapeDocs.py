@@ -31,7 +31,15 @@ def parseParamName(str):
 
     return pname,pdefault
 
-def getData(url):
+def getData(url, numfuncs):
+
+    if not numfuncs:
+        numfuncs = 1000
+
+    numfuncs = int(numfuncs)
+
+    #print "URL: " + url
+    #print numfuncs
 
     data = {
         'url': url,
@@ -93,12 +101,15 @@ def getData(url):
     prev = ''
     paramCheck = False
 
+    numf = 0
     for c in code:
         c = clean(c)
 #        print c
         if re.search(data['title'], c):
             if function:
-                data['functions'].append(function)
+                if numf < numfuncs:
+                    data['functions'].append(function)
+                    numf += 1
 
             function = {
                 'parameters': [],
@@ -142,31 +153,53 @@ def getData(url):
 
         prev = c
 
-    data['functions'].append(function)
+    if numf < numfuncs:
+        data['functions'].append(function)
+
+
+    # Do cleanup and type swapping here
+    for f in data['functions']:
+        f['returnType'] = f['returnType'].replace("datetime", "DateTime");
+        #if f['returnType'] == 'string':
+        if 'parameters' in f:
+            for p in f['parameters']:
+                if p['type'] == 'argument':
+                    p['type'] = 'string'
+                    p['name'] = 'argument'
+
+                if "[]" in p['name']:
+                    p['name'] = p['type'].replace("[]", "");
+                    p['type'] = p['type'] + "[]";
+
+                if p['name'] == "double":
+                    p['name'] = "array"
+
+                p['type'] = p['type'].replace("color", "COLOR");
+                p['type'] = p['type'].replace("const ", "");
+                p['type'] = p['type'].replace("datetime", "DateTime");
+
 
     return data
 
 
-baseUrl = 'http://mm.l/mql4/docs.mql4.com/'
-
-
-
-
-def usage():
-    print "python scrapeDocs.py -u <relativeurl>"
-
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-u',  '--url')
-    args = parser.parse_args()
+    baseUrl = 'http://mm.l/mql4/docs.mql4.com/'
+    functionsList = 'functionlist.txt'
+    jsonFile = 'function.dump.json'
 
+    functions = []
+    lines = [line.rstrip('\n') for line in open(functionsList)]
 
-    if args.url:
-        data = getData(baseUrl + args.url)
-        print json.dumps(data, indent=4)
-    else:
-        print "Must enter a relative url. Eg. objects/objectmove"
+    for url in lines:
+        bits = url.split(" ")
+        url = bits[0]
+        numfuncs = None
+        if len(bits) > 1:
+            numfuncs = bits[1]
+        functions.append(getData(baseUrl + url + '.html', numfuncs))
 
+    with open(jsonFile, "w") as f:
+    	f.write(json.dumps(functions, indent=4))
 
 if __name__ == "__main__":
     main()

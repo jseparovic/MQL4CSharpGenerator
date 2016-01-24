@@ -1,13 +1,9 @@
 using log4net;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using mqlsharp.Util;
 using MQL4CSharp.Base.Enums;
+using MQL4CSharp.Base;
+using System.Threading;
 
 namespace MQL4CSharp.Base
 {
@@ -20,22 +16,119 @@ namespace MQL4CSharp.Base
             LOG = LogManager.GetLogger(GetType());
         }
 
-{% for c in data %}{% for f in c.functions %}
+        public void setTimerInterval(Int64 intervalMillis)
+        {
+            Expert.setTimerInterval(intervalMillis);
+        }
+
+        public abstract void OnInit();
+        public abstract void OnDeinit();
+        public abstract void OnTick();
+        public abstract void OnTimer();
+
+        /// <summary>
+        /// ITime from the RatesInfo Structure, this is for the current chart symbol and timeframe
+        /// </summary>
+        /// <param name="i">Shift</param>
+        /// <returns>DateTime</returns>
+        public unsafe DateTime ITime(int i)
+        {
+            return Rates.getInstance().ITime(i);
+        }
+
+        /// <summary>
+        /// IOpen from the RatesInfo Structure, this is for the current chart symbol and timeframe
+        /// </summary>
+        /// <param name="i">Shift</param>
+        /// <returns>double</returns>
+        public unsafe double IOpen(int i)
+        {
+            return Rates.getInstance().IOpen(i);
+        }
+
+        /// <summary>
+        /// IHigh from the RatesInfo Structure, this is for the current chart symbol and timeframe
+        /// </summary>
+        /// <param name="i">Shift</param>
+        /// <returns>double</returns>
+        public unsafe double IHigh(int i)
+        {
+            return Rates.getInstance().IHigh(i);
+        }
+
+        /// <summary>
+        /// ILow from the RatesInfo Structure, this is for the current chart symbol and timeframe
+        /// </summary>
+        /// <param name="i">Shift</param>
+        /// <returns>double</returns>
+        public unsafe double ILow(int i)
+        {
+            return Rates.getInstance().ILow(i);
+        }
+
+        /// <summary>
+        /// IVolume from the RatesInfo Structure, this is for the current chart symbol and timeframe
+        /// </summary>
+        /// <param name="i">Shift</param>
+        /// <returns>double</returns>
+        public unsafe double IVolume(int i)
+        {
+            return Rates.getInstance().IVolume(i);
+        }
+
+        /// <summary>
+        /// IClose from the RatesInfo Structure, this is for the current chart symbol and timeframe
+        /// </summary>
+        /// <param name="i">Shift</param>
+        /// <returns>double</returns>
+        public unsafe double IClose(int i)
+        {
+            return Rates.getInstance().IClose(i);
+        }
+
+
+{% for c in data %}{% set cmd_loop = loop %}{% for f in c.functions %}
         /// <summary>
         /// Function: {{c.title}}
         /// Description: {{c.description}}
         /// URL: {{c.url}}
         /// </summary>
         {% for p in f.parameters %}/// <param name="{{p.name}}">{{p.description}}</param>
-        {% endfor %}public {{f.returnType}} {{f.name}} ({% for p in f.parameters %}{{p.type}} {{p.name}}{% if not loop.last %}, {% endif %}{% if loop.last %}){% endif %}{% endfor %}
+        {% endfor %}public {{f.returnType}} {{f.name}} ({% for p in f.parameters %}{{p.type}} {{p.name}}{% if not loop.last %}, {% endif %}{% endfor %})
         {
             List<Object> parameters = new List<Object>();
             {% for p in f.parameters %}parameters.Add({{p.name}});
             {% endfor %}
-            CommandManager.getInstance().ExecCommand(Command.{{c.title}}, parameters);
+            CommandManager.getInstance().ExecCommand(MQLCommand.{{c.title}}_{{loop.index}}, parameters); // MQLCommand ENUM = {{cmd_loop.index}}
             while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return ({{f.returnType}}) CommandManager.getInstance().GetCommandResult();
+            {%  if f.returnType != 'void' %}return ({{f.returnType}}) CommandManager.getInstance().GetCommandResult();{%  endif %}
         }
 {% endfor %}{% endfor %}
+
+        /// <summary>
+        /// Function: iCustom
+        /// Description: Calculates the specified custom indicator and returns its value.
+        /// URL: http://mm.l/mql4/docs.mql4.com/indicators/icustom.html
+        /// </summary>
+        /// <param name="symbol">[in] Symbol name on the data of which the indicator will be calculated. means the current symbol.</param>
+        /// <param name="timeframe">[in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</param>
+        /// <param name="name">[in] Custom indicator compiled program name, relative to the root indicators directory (MQL4/Indicators/). If the indicator is located in subdirectory, for example, in MQL4/Indicators/Examples, its name must be specified as "Examples\\indicator_name" (double backslash "\\"must be specified as separator instead of a single one).</param>
+        /// <param name="mode"></param>
+        /// <param name="shift"></param>
+        public double iCustom(string symbol, int timeframe, string name, int mode, int shift)
+        {
+            List<Object> parameters = new List<Object>();
+            parameters.Add(symbol);
+            parameters.Add(timeframe);
+            parameters.Add(name);
+            parameters.Add(mode);
+            parameters.Add(shift);
+
+            CommandManager.getInstance().ExecCommand(MQLCommand.iCustom_1, parameters); // MQLCommand ENUM = 1000
+            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            return (double) CommandManager.getInstance().GetCommandResult();
+        }
     }
+
+
 }
