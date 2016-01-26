@@ -190,4 +190,13 @@ chart_operations/chartgetstring
 customind/setindexbuffer
 objects/textout
 objects/textgetsize
-indicators/icustom >> added manually
+indicators/irsionarray
+indicators/istddevonarray
+indicators/imaonarray
+indicators/imomentumonarray
+indicators/ienvelopesonarray
+indicators/iccionarray
+indicators/ibandsonarray
+
+indicators/icustom >> will add manually
+chart_operations/chartperiod >> will add manually

@@ -86,7 +86,7 @@ def getData(url, numfuncs):
 
     #print functionParamDescs
 
-    classes = ["f_Keywords", "f_Functions", "f_Param", "f_Comments", "f_Indicators"]
+    classes = ["f_Keywords", "f_Functions", "f_Param", "f_Indicators"]
     contains = ' or '.join('contains(@class,("%s"))' % c for c in classes)
 
     codeBasePath = basePath + '/div/table[@class="help"]/tr/td/p[@class="p_CodeExample"]/span[%s]/text()' % contains
@@ -104,7 +104,7 @@ def getData(url, numfuncs):
     numf = 0
     for c in code:
         c = clean(c)
-#        print c
+        print c
         if re.search(data['title'], c):
             if function:
                 if numf < numfuncs:
@@ -133,16 +133,10 @@ def getData(url, numfuncs):
             #print "p==1 %s" % c
             paramName, paramDefault = parseParamName(c)
             #print "paramName %s" % c
-            p = 2
-        elif paramCheck and (re.search("^,$", c) or re.search("^$", c)): # for some crappy rubbish tags
-            p = p
-        elif paramCheck and p == 2:
-            #print "p==2 %s" % c
             try:
                 description = functionParamDescs[paramName]['description']
             except Exception:
                 description = ''
-
             function['parameters'].append({
                 'name': clean(paramName),
                 'type': clean(paramType),
@@ -150,6 +144,7 @@ def getData(url, numfuncs):
                 'description': clean(description)
             })
             p = 0
+
 
         prev = c
 
@@ -184,6 +179,7 @@ def getData(url, numfuncs):
 
 def main():
     baseUrl = 'http://mm.l/mql4/docs.mql4.com/'
+    functionsList = 'functionlist-tmp.txt'
     functionsList = 'functionlist.txt'
     jsonFile = 'function.dump.json'
 

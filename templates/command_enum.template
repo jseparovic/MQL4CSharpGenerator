@@ -3,8 +3,9 @@ namespace MQL4CSharp.Base.Enums
 {
     public enum MQLCommand
     {
-{% for c in data %}{% set cmd_loop = loop %}{% for f in c.functions %}      {{c.title}}_{{loop.index}} = {{cmd_loop.index}},
-{% endfor %}{% endfor %}
+{% set count = [1] %}
+{% for c in data %}{% set cmd_loop = loop %}{% for f in c.functions %}      {{c.title}}_{{loop.index}} = {{count[0]}},
+{% if count.append(count.pop() + 1) %}{% endif %}{% endfor %}{% endfor %}
         iCustom_1 = 1000,
     }
 }

@@ -88,23 +88,26 @@ namespace MQL4CSharp.Base
 
 
 {% for c in data %}{% set cmd_loop = loop %}{% for f in c.functions %}
+
         /// <summary>
         /// Function: {{c.title}}
         /// Description: {{c.description}}
         /// URL: {{c.url}}
         /// </summary>
-        {% for p in f.parameters %}/// <param name="{{p.name}}">{{p.description}}</param>
-        {% endfor %}public {{f.returnType}} {{f.name}} ({% for p in f.parameters %}{{p.type}} {{p.name}}{% if not loop.last %}, {% endif %}{% endfor %})
+        {% for p in f.parameters %}        /// <param name="{{p.name}}">{{p.description}}</param>
+        {% endfor %}        public {{f.returnType}} {{f.name}} ({% for p in f.parameters %}{{p.type}} {{p.name}}{% if not loop.last %}, {% endif %}{% endfor %})
         {
             List<Object> parameters = new List<Object>();
-            {% for p in f.parameters %}parameters.Add({{p.name}});
+            {% for p in f.parameters %}            parameters.Add({{p.name}}{% if p.type.startswith('ENUM') %}.ToString(){%  endif %});
             {% endfor %}
             CommandManager.getInstance().ExecCommand(MQLCommand.{{c.title}}_{{loop.index}}, parameters); // MQLCommand ENUM = {{cmd_loop.index}}
             while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            {%  if f.returnType != 'void' %}return ({{f.returnType}}) CommandManager.getInstance().GetCommandResult();{%  endif %}
+            {%  if f.returnType != 'void' %}            return ({{f.returnType}}) CommandManager.getInstance().GetCommandResult();
+            {%  endif %}
         }
 {% endfor %}{% endfor %}
 
+        /*
         /// <summary>
         /// Function: iCustom
         /// Description: Calculates the specified custom indicator and returns its value.
@@ -127,8 +130,7 @@ namespace MQL4CSharp.Base
             CommandManager.getInstance().ExecCommand(MQLCommand.iCustom_1, parameters); // MQLCommand ENUM = 1000
             while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
             return (double) CommandManager.getInstance().GetCommandResult();
-        }
+        }*/
+
     }
-
-
 }

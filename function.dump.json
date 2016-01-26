@@ -29,7 +29,7 @@
                         "default": "", 
                         "type": "string", 
                         "name": "argument", 
-                        "description": ""
+                        "description": "[in] Any values, separated by commas. To delimit output information into several lines, a line break symbol \"\\n\" or \"\\r\\n\" is used. Number of parameters cannot exceed 64. Total length of the input comment (including invisible symbols) cannot exceed 2045 characters (excess symbols will be cut out during output)."
                     }
                 ]
             }
@@ -1420,25 +1420,6 @@
         ], 
         "description": "Returns the symbol name for the specified chart.", 
         "title": "ChartSymbol"
-    }, 
-    {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartperiod.html", 
-        "functions": [
-            {
-                "returnType": "ENUM_TIMEFRAMES", 
-                "name": "ChartPeriod", 
-                "parameters": [
-                    {
-                        "default": "0", 
-                        "type": "long", 
-                        "name": "chart_id", 
-                        "description": "[in] Chart ID. 0 means the current chart."
-                    }
-                ]
-            }
-        ], 
-        "description": "Returns the timeframe", 
-        "title": "ChartPeriod"
     }, 
     {
         "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartredraw.html", 
@@ -4926,61 +4907,6 @@
         "title": "iBands"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ibandsonarray.html", 
-        "functions": [
-            {
-                "returnType": "double", 
-                "name": "iBandsOnArray", 
-                "parameters": [
-                    {
-                        "default": "", 
-                        "type": "double[]", 
-                        "name": "array", 
-                        "description": "[in] Array with data."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "total", 
-                        "description": "[in] The number of items to be counted. 0 means the whole array."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "period", 
-                        "description": "[in] Averaging period to calculate the main line."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "double", 
-                        "name": "deviation", 
-                        "description": "[in] Number of standard deviations from the main line."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "bands_shift", 
-                        "description": "[in] The indicator shift relative to the chart."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "mode", 
-                        "description": "[in] Indicator line index. It can be any of the enumeration value (0 - MODE_MAIN, 1 - MODE_UPPER, 2 - MODE_LOWER)."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "shift", 
-                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
-                    }
-                ]
-            }
-        ], 
-        "description": "Calculates the Bollinger Bands indicator on data, stored in array, and returns its value.", 
-        "title": "iBandsOnArray"
-    }, 
-    {
         "url": "http://mm.l/mql4/docs.mql4.com/indicators/ibullspower.html", 
         "functions": [
             {
@@ -5065,43 +4991,6 @@
         ], 
         "description": "Calculates the Commodity Channel Index indicator and returns its value.", 
         "title": "iCCI"
-    }, 
-    {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iccionarray.html", 
-        "functions": [
-            {
-                "returnType": "double", 
-                "name": "iCCIOnArray", 
-                "parameters": [
-                    {
-                        "default": "", 
-                        "type": "double[]", 
-                        "name": "array", 
-                        "description": "[in] Array with data."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "total", 
-                        "description": "[in] The number of items to be counted. 0 means the whole array."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "period", 
-                        "description": "[in] Averaging period for calculation."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "shift", 
-                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
-                    }
-                ]
-            }
-        ], 
-        "description": "Calculates the Commodity Channel Index indicator on data, stored in array, and returns its value.", 
-        "title": "iCCIOnArray"
     }, 
     {
         "url": "http://mm.l/mql4/docs.mql4.com/indicators/idemarker.html", 
@@ -5206,67 +5095,6 @@
         ], 
         "description": "Calculates the Envelopes indicator and returns its value.", 
         "title": "iEnvelopes"
-    }, 
-    {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ienvelopesonarray.html", 
-        "functions": [
-            {
-                "returnType": "double", 
-                "name": "iEnvelopesOnArray", 
-                "parameters": [
-                    {
-                        "default": "", 
-                        "type": "double[]", 
-                        "name": "array", 
-                        "description": "[in] Array with data."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "total", 
-                        "description": "[in] The number of items to be counted. 0 means the whole array."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_period", 
-                        "description": "[in] Averaging period for calculation of the main line."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_method", 
-                        "description": "[in] Moving Average method. It can be any of enumeration values."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_shift", 
-                        "description": "[in] MA shift. Indicator line offset relate to the chart by timeframe."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "double", 
-                        "name": "deviation", 
-                        "description": "[in] Percent deviation from the main line."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "mode", 
-                        "description": "[in] Indicator line index. It can be any of enumeration value (0 - MODE_MAIN, 1 - MODE_UPPER, 2 - MODE_LOWER)."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "shift", 
-                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
-                    }
-                ]
-            }
-        ], 
-        "description": "Calculates the Envelopes indicator on data, stored in array, and returns its value.", 
-        "title": "iEnvelopesOnArray"
     }, 
     {
         "url": "http://mm.l/mql4/docs.mql4.com/indicators/iforce.html", 
@@ -5569,43 +5397,6 @@
         "title": "iMomentum"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/imomentumonarray.html", 
-        "functions": [
-            {
-                "returnType": "double", 
-                "name": "iMomentumOnArray", 
-                "parameters": [
-                    {
-                        "default": "", 
-                        "type": "double[]", 
-                        "name": "array", 
-                        "description": "[in] Array with data."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "total", 
-                        "description": "[in] The number of items to be counted. 0 means the whole array."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "period", 
-                        "description": "[in] Averaging period (amount of bars) for calculation of price changes."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "shift", 
-                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
-                    }
-                ]
-            }
-        ], 
-        "description": "Calculates the Momentum indicator on data, stored in array, and returns its value.", 
-        "title": "iMomentumOnArray"
-    }, 
-    {
         "url": "http://mm.l/mql4/docs.mql4.com/indicators/imfi.html", 
         "functions": [
             {
@@ -5696,55 +5487,6 @@
         ], 
         "description": "Calculates the Moving Average indicator and returns its value.", 
         "title": "iMA"
-    }, 
-    {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/imaonarray.html", 
-        "functions": [
-            {
-                "returnType": "double", 
-                "name": "iMAOnArray", 
-                "parameters": [
-                    {
-                        "default": "", 
-                        "type": "double[]", 
-                        "name": "array", 
-                        "description": "[in] Array with data."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "total", 
-                        "description": "[in] The number of items to be counted. 0 means the whole array."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_period", 
-                        "description": "[in] Averaging period for calculation."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_shift", 
-                        "description": "[in] MA shift. Indicators line offset relate to the chart by timeframe."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_method", 
-                        "description": "[in] Moving Average method. It can be any of enumeration values."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "shift", 
-                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
-                    }
-                ]
-            }
-        ], 
-        "description": "Calculates the Moving Average indicator on data, stored in array, and returns its value.", 
-        "title": "iMAOnArray"
     }, 
     {
         "url": "http://mm.l/mql4/docs.mql4.com/indicators/iosma.html", 
@@ -5929,6 +5671,12 @@
                         "type": "double", 
                         "name": "maximum", 
                         "description": "[in] The maximum step, usually 0.2."
+                    }, 
+                    {
+                        "default": "", 
+                        "type": "int", 
+                        "name": "shift", 
+                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
                     }
                 ]
             }
@@ -5978,43 +5726,6 @@
         ], 
         "description": "Calculates the Relative Strength Index indicator and returns its value.", 
         "title": "iRSI"
-    }, 
-    {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/irsionarray.html", 
-        "functions": [
-            {
-                "returnType": "double", 
-                "name": "iRSIOnArray", 
-                "parameters": [
-                    {
-                        "default": "", 
-                        "type": "double[]", 
-                        "name": "array", 
-                        "description": "[in] Array with data."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "total", 
-                        "description": "[in] The number of items to be counted. 0 means the whole array."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "period", 
-                        "description": "[in] Averaging period for calculation."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "shift", 
-                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
-                    }
-                ]
-            }
-        ], 
-        "description": "Calculates the Relative Strength Index indicator on data, stored in array, and returns its value.", 
-        "title": "iRSIOnArray"
     }, 
     {
         "url": "http://mm.l/mql4/docs.mql4.com/indicators/irvi.html", 
@@ -6113,55 +5824,6 @@
         ], 
         "description": "Calculates the Standard Deviation indicator and returns its value.", 
         "title": "iStdDev"
-    }, 
-    {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/istddevonarray.html", 
-        "functions": [
-            {
-                "returnType": "double", 
-                "name": "iStdDevOnArray", 
-                "parameters": [
-                    {
-                        "default": "", 
-                        "type": "double[]", 
-                        "name": "array", 
-                        "description": "[in] Array with data."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "total", 
-                        "description": "[in] The number of items to be counted. 0 means the whole array."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_period", 
-                        "description": "[in] Moving Average period."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_shift", 
-                        "description": "[in] Moving Average shift."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "ma_method", 
-                        "description": "[in] Moving Average method. It can be any of enumeration values."
-                    }, 
-                    {
-                        "default": "", 
-                        "type": "int", 
-                        "name": "shift", 
-                        "description": "[in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago)."
-                    }
-                ]
-            }
-        ], 
-        "description": "Calculates the Standard Deviation indicator on data, stored in array, and returns its value.", 
-        "title": "iStdDevOnArray"
     }, 
     {
         "url": "http://mm.l/mql4/docs.mql4.com/indicators/istochastic.html", 

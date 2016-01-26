@@ -1,0 +1,18 @@
+
+{% for t in data %}
+int CONVERT_{% if t.type != 'COLOR' %}ENUM_{% endif %}{{ t.type }}(string value)
+{
+{% for input in t.inputs %}
+    {% if loop.index == 1 %}    if{% else %}    else if{% endif %}(value == "{{ input }}")
+    {
+        return {% if t.type == 'COLOR' %}clr{% endif %}{{ input }};
+    }
+{% endfor %}
+    else
+    {
+         return -1;
+    }
+}
+
+{% endfor %}
+

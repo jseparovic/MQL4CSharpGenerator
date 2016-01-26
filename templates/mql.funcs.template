@@ -1,0 +1,42 @@
+
+
+
+{% set types = ['bool', 'double', 'int', 'string', 'void', 'long', 'DateTime'] %}
+{% set typeOuts = ['bool', 'double', 'int', 'string', 'void', 'long', 'datetime'] %}
+{% set typeNames = ['Bool', 'Double', 'Int', 'String', 'Void', 'Long', 'DateTime'] %}
+{% set typeCount = [0] %}
+{% for typeName in typeNames %}
+{{typeOuts[typeCount[0]]}} execute{{ typeName }}Command(int id, string params[])
+{
+   switch(id)
+   {
+{% set count = [1] %}
+{% for c in data %}
+    {% set cmd_loop = loop %}
+    {% for f in c.functions %}
+    {% if f.returnType.startswith(types[typeCount[0]]) %}
+      case {{count[0]}}:
+          {% if f.returnType != 'void' %}         return {% else %}          {% endif %}{{c.title}}({% for p in f.parameters %}{% if p.type == 'bool' %}
+(bool)params[{{loop.index0}}]{% if not loop.last %}, {% endif %}
+                {% elif p.type == 'int' %}
+StrToInteger(params[{{loop.index0}}]){% if not loop.last %}, {% endif %}
+                {% elif p.type == 'string' %}
+params[{{loop.index0}}]{% if not loop.last %}, {% endif %}
+                {% elif p.type == 'double' %}
+StringToDouble(params[{{loop.index0}}]){% if not loop.last %}, {% endif %}
+                {% elif p.type == 'long' %}
+StringToInteger(params[{{loop.index0}}]){% if not loop.last %}, {% endif %}
+                {% elif p.type == 'DateTime' %}
+StringToTime(params[{{loop.index0}}]){% if not loop.last %}, {% endif %}
+                {% elif p.type.startswith('ENUM') %}
+CONVERT_{{p.type}}(params[{{loop.index0}}]){% if not loop.last %}, {% endif %}
+                {% elif p.type == 'COLOR' %}
+CONVERT_{{p.type}}(params[{{loop.index0}}]){% if not loop.last %}, {% endif %}
+                {% endif %}{% endfor %});
+    {% endif %}
+{% if count.append(count.pop() + 1) %}{% endif %}{% endfor %}{% endfor %}
+   }
+}
+
+{% if typeCount.append(typeCount.pop() + 1) %}{% endif %}{% endfor %}
+
