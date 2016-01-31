@@ -1,0 +1,37 @@
+using System;
+
+namespace MQL4CSharp.Base.Exceptions
+{
+    public class MQLException : Exception
+    {
+        public MQLException(string message) : base(message)
+        {
+
+        }
+
+        public static void throwMQLException(int error)
+        {
+        {% for obj in data %}
+            {% if loop.first %}
+            if(error == {{ obj.Code }})
+            {% else %}
+            else if(error == {{ obj.Code }})
+            {% endif %}
+            {
+                throw new {{ obj.ID }}Exception();
+            }
+        {% endfor %}
+        }
+    }
+
+{% for obj in data %}
+    public class {{ obj.ID }}Exception : MQLException
+    {
+        public {{ obj.ID }}Exception() : base("{{ obj.Description }}")
+        {
+
+        }
+    }
+{% endfor %}
+
+}

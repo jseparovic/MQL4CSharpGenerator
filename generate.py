@@ -25,6 +25,18 @@ def create_csharp_code(context):
         code = render_template('command_enum.template', context)
         f.write(code)
 
+
+def create_csharp_errors(context):
+    fname = "out/MQLExceptions.cs"
+    with open(fname, 'w') as f:
+        code = render_template('csharp.errors.template', context)
+        f.write(code)
+
+    fname = "out/MQLCommand.cs"
+    with open(fname, 'w') as f:
+        code = render_template('command_enum.template', context)
+        f.write(code)
+
 def create_mql_code(context):
     fname = "out/mc_funcs.mqh"
     with open(fname, 'w') as f:
@@ -55,12 +67,16 @@ def create_mql_helpers(context):
 
 
 def main():
-
     with open('function.dump.json') as json_data:
         data = json.load(json_data)
     create_csharp_code(data)
     create_mql_code(data)
     create_mql_helpers(data)
+
+    with open('errors.json') as json_data:
+        data = json.load(json_data)
+    create_csharp_errors(data)
+
 
 if __name__ == "__main__":
     main()

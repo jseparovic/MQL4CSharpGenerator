@@ -1,0 +1,802 @@
+[
+  {
+    "Code": 1,
+    "ID": "NoResult",
+    "Description": "No error returned, but the result is unknown"
+  },
+  {
+    "Code": 2,
+    "ID": "CommonError",
+    "Description": "Common error"
+  },
+  {
+    "Code": 3,
+    "ID": "InvalidTradeParameters",
+    "Description": "Invalid trade parameters"
+  },
+  {
+    "Code": 4,
+    "ID": "ServerBusy",
+    "Description": "Trade server is busy"
+  },
+  {
+    "Code": 5,
+    "ID": "OldVersion",
+    "Description": "Old version of the client terminal"
+  },
+  {
+    "Code": 6,
+    "ID": "NoConnection",
+    "Description": "No connection with trade server"
+  },
+  {
+    "Code": 7,
+    "ID": "NotEnoughRights",
+    "Description": "Not enough rights"
+  },
+  {
+    "Code": 8,
+    "ID": "TooFrequentRequests",
+    "Description": "Too frequent requests"
+  },
+  {
+    "Code": 9,
+    "ID": "MalfunctionalTrade",
+    "Description": "Malfunctional trade operation"
+  },
+  {
+    "Code": 64,
+    "ID": "AccountDisabled",
+    "Description": "Account disabled"
+  },
+  {
+    "Code": 65,
+    "ID": "InvalidAccount",
+    "Description": "Invalid account"
+  },
+  {
+    "Code": 128,
+    "ID": "TradeTimeout",
+    "Description": "Trade timeout"
+  },
+  {
+    "Code": 129,
+    "ID": "InvalidPrice",
+    "Description": "Invalid price"
+  },
+  {
+    "Code": 130,
+    "ID": "InvalidStops",
+    "Description": "Invalid stops"
+  },
+  {
+    "Code": 131,
+    "ID": "InvalidTradeVolume",
+    "Description": "Invalid trade volume"
+  },
+  {
+    "Code": 132,
+    "ID": "MarketClosed",
+    "Description": "Market is closed"
+  },
+  {
+    "Code": 133,
+    "ID": "TradeDisabled",
+    "Description": "Trade is disabled"
+  },
+  {
+    "Code": 134,
+    "ID": "NotEnoughMoney",
+    "Description": "Not enough money"
+  },
+  {
+    "Code": 135,
+    "ID": "PriceChanged",
+    "Description": "Price changed"
+  },
+  {
+    "Code": 136,
+    "ID": "OffQuotes",
+    "Description": "Off quotes"
+  },
+  {
+    "Code": 137,
+    "ID": "BrokerBusy",
+    "Description": "Broker is busy"
+  },
+  {
+    "Code": 138,
+    "ID": "Requote",
+    "Description": "Requote"
+  },
+  {
+    "Code": 139,
+    "ID": "OrderLocked",
+    "Description": "Order is locked"
+  },
+  {
+    "Code": 140,
+    "ID": "LongPositionsOnlyAllowed",
+    "Description": "Buy orders only allowed"
+  },
+  {
+    "Code": 141,
+    "ID": "TooManyRequests",
+    "Description": "Too many requests"
+  },
+  {
+    "Code": 145,
+    "ID": "TradeModifyDenied",
+    "Description": "Modification denied because order is too close to market"
+  },
+  {
+    "Code": 146,
+    "ID": "TradeContextBusy",
+    "Description": "Trade context is busy"
+  },
+  {
+    "Code": 147,
+    "ID": "TradeExpirationDenied",
+    "Description": "Expirations are denied by broker"
+  },
+  {
+    "Code": 148,
+    "ID": "TradeTooManyOrders",
+    "Description": "The amount of open and pending orders has reached the limit set by the broker"
+  },
+  {
+    "Code": 149,
+    "ID": "TradeHedgeProhibited",
+    "Description": "An attempt to open an order opposite to the existing one when hedging is disabled"
+  },
+  {
+    "Code": 150,
+    "ID": "TradeProhibitedByFifo",
+    "Description": "An attempt to close an order contravening the FIFO rule"
+  },
+  {
+    "Code": 4000,
+    "ID": "NoMqlerror",
+    "Description": "No error returned"
+  },
+  {
+    "Code": 4001,
+    "ID": "WrongFunctionPointer",
+    "Description": "Wrong function pointer"
+  },
+  {
+    "Code": 4002,
+    "ID": "ArrayIndexOutOfRange",
+    "Description": "Array index is out of range"
+  },
+  {
+    "Code": 4003,
+    "ID": "NoMemoryForCallStack",
+    "Description": "No memory for function call stack"
+  },
+  {
+    "Code": 4004,
+    "ID": "RecursiveStackOverflow",
+    "Description": "Recursive stack overflow"
+  },
+  {
+    "Code": 4005,
+    "ID": "NotEnoughStackForParam",
+    "Description": "Not enough stack for parameter"
+  },
+  {
+    "Code": 4006,
+    "ID": "NoMemoryForParamString",
+    "Description": "No memory for parameter string"
+  },
+  {
+    "Code": 4007,
+    "ID": "NoMemoryForTempString",
+    "Description": "No memory for temp string"
+  },
+  {
+    "Code": 4008,
+    "ID": "NotInitializedString",
+    "Description": "Not initialized string"
+  },
+  {
+    "Code": 4009,
+    "ID": "NotInitializedArraystring",
+    "Description": "Not initialized string in array"
+  },
+  {
+    "Code": 4010,
+    "ID": "NoMemoryForArraystring",
+    "Description": "No memory for array string"
+  },
+  {
+    "Code": 4011,
+    "ID": "TooLongString",
+    "Description": "Too long string"
+  },
+  {
+    "Code": 4012,
+    "ID": "RemainderFromZeroDivide",
+    "Description": "Remainder from zero divide"
+  },
+  {
+    "Code": 4013,
+    "ID": "ZeroDivide",
+    "Description": "Zero divide"
+  },
+  {
+    "Code": 4014,
+    "ID": "UnknownCommand",
+    "Description": "Unknown command"
+  },
+  {
+    "Code": 4015,
+    "ID": "WrongJump",
+    "Description": "Wrong jump (never generated error)"
+  },
+  {
+    "Code": 4016,
+    "ID": "NotInitializedArray",
+    "Description": "Not initialized array"
+  },
+  {
+    "Code": 4017,
+    "ID": "DllCallsNotAllowed",
+    "Description": "DLL calls are not allowed"
+  },
+  {
+    "Code": 4018,
+    "ID": "CannotLoadLibrary",
+    "Description": "Cannot load library"
+  },
+  {
+    "Code": 4019,
+    "ID": "CannotCallFunction",
+    "Description": "Cannot call function"
+  },
+  {
+    "Code": 4020,
+    "ID": "ExternalCallsNotAllowed",
+    "Description": "Expert function calls are not allowed"
+  },
+  {
+    "Code": 4021,
+    "ID": "NoMemoryForReturnedStr",
+    "Description": "Not enough memory for temp string returned from function"
+  },
+  {
+    "Code": 4022,
+    "ID": "SystemBusy",
+    "Description": "System is busy (never generated error)"
+  },
+  {
+    "Code": 4023,
+    "ID": "DllfuncCriticalerror",
+    "Description": "DLL-function call critical error"
+  },
+  {
+    "Code": 4024,
+    "ID": "InternalError",
+    "Description": "Internal error"
+  },
+  {
+    "Code": 4025,
+    "ID": "OutOfMemory",
+    "Description": "Out of memory"
+  },
+  {
+    "Code": 4026,
+    "ID": "InvalidPointer",
+    "Description": "Invalid pointer"
+  },
+  {
+    "Code": 4027,
+    "ID": "FormatTooManyFormatters",
+    "Description": "Too many formatters in the format function"
+  },
+  {
+    "Code": 4028,
+    "ID": "FormatTooManyParameters",
+    "Description": "Parameters count exceeds formatters count"
+  },
+  {
+    "Code": 4029,
+    "ID": "ArrayInvalid",
+    "Description": "Invalid array"
+  },
+  {
+    "Code": 4030,
+    "ID": "ChartNoreply",
+    "Description": "No reply from chart"
+  },
+  {
+    "Code": 4050,
+    "ID": "InvalidFunctionParamscnt",
+    "Description": "Invalid function parameters count"
+  },
+  {
+    "Code": 4051,
+    "ID": "InvalidFunctionParamvalue",
+    "Description": "Invalid function parameter value"
+  },
+  {
+    "Code": 4052,
+    "ID": "StringFunctionInternal",
+    "Description": "String function internal error"
+  },
+  {
+    "Code": 4053,
+    "ID": "SomeArrayError",
+    "Description": "Some array error"
+  },
+  {
+    "Code": 4054,
+    "ID": "IncorrectSeriesarrayUsing",
+    "Description": "Incorrect series array using"
+  },
+  {
+    "Code": 4055,
+    "ID": "CustomIndicatorError",
+    "Description": "Custom indicator error"
+  },
+  {
+    "Code": 4056,
+    "ID": "IncompatibleArrays",
+    "Description": "Arrays are incompatible"
+  },
+  {
+    "Code": 4057,
+    "ID": "GlobalVariablesProcessing",
+    "Description": "Global variables processing error"
+  },
+  {
+    "Code": 4058,
+    "ID": "GlobalVariableNotFound",
+    "Description": "Global variable not found"
+  },
+  {
+    "Code": 4059,
+    "ID": "FuncNotAllowedInTesting",
+    "Description": "Function is not allowed in testing mode"
+  },
+  {
+    "Code": 4060,
+    "ID": "FunctionNotConfirmed",
+    "Description": "Function is not allowed for call"
+  },
+  {
+    "Code": 4061,
+    "ID": "SendMailError",
+    "Description": "Send mail error"
+  },
+  {
+    "Code": 4062,
+    "ID": "StringParameterExpected",
+    "Description": "String parameter expected"
+  },
+  {
+    "Code": 4063,
+    "ID": "IntegerParameterExpected",
+    "Description": "Integer parameter expected"
+  },
+  {
+    "Code": 4064,
+    "ID": "DoubleParameterExpected",
+    "Description": "Double parameter expected"
+  },
+  {
+    "Code": 4065,
+    "ID": "ArrayAsParameterExpected",
+    "Description": "Array as parameter expected"
+  },
+  {
+    "Code": 4066,
+    "ID": "HistoryWillUpdated",
+    "Description": "Requested history data is in updating state"
+  },
+  {
+    "Code": 4067,
+    "ID": "TradeError",
+    "Description": "Internal trade error"
+  },
+  {
+    "Code": 4068,
+    "ID": "ResourceNotFound",
+    "Description": "Resource not found"
+  },
+  {
+    "Code": 4069,
+    "ID": "ResourceNotSupported",
+    "Description": "Resource not supported"
+  },
+  {
+    "Code": 4070,
+    "ID": "ResourceDuplicated",
+    "Description": "Duplicate resource"
+  },
+  {
+    "Code": 4071,
+    "ID": "IndicatorCannotInit",
+    "Description": "Custom indicator cannot initialize"
+  },
+  {
+    "Code": 4072,
+    "ID": "IndicatorCannotLoad",
+    "Description": "Cannot load custom indicator"
+  },
+  {
+    "Code": 4073,
+    "ID": "NoHistoryData",
+    "Description": "No history data"
+  },
+  {
+    "Code": 4074,
+    "ID": "NoMemoryForHistory",
+    "Description": "No memory for history data"
+  },
+  {
+    "Code": 4075,
+    "ID": "NoMemoryForIndicator",
+    "Description": "Not enough memory for indicator calculation"
+  },
+  {
+    "Code": 4099,
+    "ID": "EndOfFile",
+    "Description": "End of file"
+  },
+  {
+    "Code": 4100,
+    "ID": "SomeFileError",
+    "Description": "Some file error"
+  },
+  {
+    "Code": 4101,
+    "ID": "WrongFileName",
+    "Description": "Wrong file name"
+  },
+  {
+    "Code": 4102,
+    "ID": "TooManyOpenedFiles",
+    "Description": "Too many opened files"
+  },
+  {
+    "Code": 4103,
+    "ID": "CannotOpenFile",
+    "Description": "Cannot open file"
+  },
+  {
+    "Code": 4104,
+    "ID": "IncompatibleFileaccess",
+    "Description": "Incompatible access to a file"
+  },
+  {
+    "Code": 4105,
+    "ID": "NoOrderSelected",
+    "Description": "No order selected"
+  },
+  {
+    "Code": 4106,
+    "ID": "UnknownSymbol",
+    "Description": "Unknown symbol"
+  },
+  {
+    "Code": 4107,
+    "ID": "InvalidPriceParam",
+    "Description": "Invalid price"
+  },
+  {
+    "Code": 4108,
+    "ID": "InvalidTicket",
+    "Description": "Invalid ticket"
+  },
+  {
+    "Code": 4109,
+    "ID": "TradeNotAllowed",
+    "Description": "Trade is not allowed. Enable checkbox"
+  },
+  {
+    "Code": 4110,
+    "ID": "LongsNotAllowed",
+    "Description": "Longs are not allowed. Check the Expert Advisor properties"
+  },
+  {
+    "Code": 4111,
+    "ID": "ShortsNotAllowedException",
+    "Description": "Shorts are not allowed. Check the Expert Advisor properties"
+  },
+  {
+    "Code": 4112,
+    "ID": "TradeExpertDisabledByServer",
+    "Description": "Automated trading by Expert Advisors/Scripts disabled by trade server"
+  },
+  {
+    "Code": 4200,
+    "ID": "ObjectAlreadyExists",
+    "Description": "Object already exists"
+  },
+  {
+    "Code": 4201,
+    "ID": "UnknownObjectProperty",
+    "Description": "Unknown object property"
+  },
+  {
+    "Code": 4202,
+    "ID": "ObjectDoesNotExist",
+    "Description": "Object does not exist"
+  },
+  {
+    "Code": 4203,
+    "ID": "UnknownObjectType",
+    "Description": "Unknown object type"
+  },
+  {
+    "Code": 4204,
+    "ID": "NoObjectName",
+    "Description": "No object name"
+  },
+  {
+    "Code": 4205,
+    "ID": "ObjectCoordinatesError",
+    "Description": "Object coordinates error"
+  },
+  {
+    "Code": 4206,
+    "ID": "NoSpecifiedSubwindow",
+    "Description": "No specified subwindow"
+  },
+  {
+    "Code": 4207,
+    "ID": "SomeObjectError",
+    "Description": "Graphical object error"
+  },
+  {
+    "Code": 4210,
+    "ID": "ChartPropInvalid",
+    "Description": "Unknown chart property"
+  },
+  {
+    "Code": 4211,
+    "ID": "ChartNotFound",
+    "Description": "Chart not found"
+  },
+  {
+    "Code": 4212,
+    "ID": "ChartwindowNotFound",
+    "Description": "Chart subwindow not found"
+  },
+  {
+    "Code": 4213,
+    "ID": "ChartindicatorNotFound",
+    "Description": "Chart indicator not found"
+  },
+  {
+    "Code": 4220,
+    "ID": "SymbolSelect",
+    "Description": "Symbol select error"
+  },
+  {
+    "Code": 4250,
+    "ID": "NotificationError",
+    "Description": "Notification error"
+  },
+  {
+    "Code": 4251,
+    "ID": "NotificationParameter",
+    "Description": "Notification parameter error"
+  },
+  {
+    "Code": 4252,
+    "ID": "NotificationSettings",
+    "Description": "Notifications disabled"
+  },
+  {
+    "Code": 4253,
+    "ID": "NotificationTooFrequent",
+    "Description": "Notification send too frequent"
+  },
+  {
+    "Code": 4260,
+    "ID": "FtpNoserver",
+    "Description": "FTP server is not specified"
+  },
+  {
+    "Code": 4261,
+    "ID": "FtpNologin",
+    "Description": "FTP login is not specified"
+  },
+  {
+    "Code": 4262,
+    "ID": "FtpConnectFailed",
+    "Description": "FTP connection failed"
+  },
+  {
+    "Code": 4263,
+    "ID": "FtpClosed",
+    "Description": "FTP connection closed"
+  },
+  {
+    "Code": 4264,
+    "ID": "FtpChangedir",
+    "Description": "FTP path not found on server"
+  },
+  {
+    "Code": 4265,
+    "ID": "FtpFileError",
+    "Description": "File not found in the MQL4\\\\Files directory to send on FTP server"
+  },
+  {
+    "Code": 4266,
+    "ID": "FtpError",
+    "Description": "Common error during FTP data transmission"
+  },
+  {
+    "Code": 5001,
+    "ID": "FileTooManyOpened",
+    "Description": "Too many opened files"
+  },
+  {
+    "Code": 5002,
+    "ID": "FileWrongFilename",
+    "Description": "Wrong file name"
+  },
+  {
+    "Code": 5003,
+    "ID": "FileTooLongFilename",
+    "Description": "Too long file name"
+  },
+  {
+    "Code": 5004,
+    "ID": "FileCannotOpen",
+    "Description": "Cannot open file"
+  },
+  {
+    "Code": 5005,
+    "ID": "FileBufferAllocationError",
+    "Description": "Text file buffer allocation error"
+  },
+  {
+    "Code": 5006,
+    "ID": "FileCannotDelete",
+    "Description": "Cannot delete file"
+  },
+  {
+    "Code": 5007,
+    "ID": "FileInvalidHandle",
+    "Description": "Invalid file handle (file closed or was not opened)"
+  },
+  {
+    "Code": 5008,
+    "ID": "FileWrongHandle",
+    "Description": "Wrong file handle (handle index is out of handle table)"
+  },
+  {
+    "Code": 5009,
+    "ID": "FileNotTowrite",
+    "Description": "File must be opened with FILE_WRITE flag"
+  },
+  {
+    "Code": 5010,
+    "ID": "FileNotToread",
+    "Description": "File must be opened with FILE_READ flag"
+  },
+  {
+    "Code": 5011,
+    "ID": "FileNotBin",
+    "Description": "File must be opened with FILE_BIN flag"
+  },
+  {
+    "Code": 5012,
+    "ID": "FileNotTxt",
+    "Description": "File must be opened with FILE_TXT flag"
+  },
+  {
+    "Code": 5013,
+    "ID": "FileNotTxtorcsv",
+    "Description": "File must be opened with FILE_TXT or FILE_CSV flag"
+  },
+  {
+    "Code": 5014,
+    "ID": "FileNotCsv",
+    "Description": "File must be opened with FILE_CSV flag"
+  },
+  {
+    "Code": 5015,
+    "ID": "FileReadError",
+    "Description": "File read error"
+  },
+  {
+    "Code": 5016,
+    "ID": "FileWriteError",
+    "Description": "File write error"
+  },
+  {
+    "Code": 5017,
+    "ID": "FileBinStringsize",
+    "Description": "String size must be specified for binary file"
+  },
+  {
+    "Code": 5018,
+    "ID": "FileIncompatible",
+    "Description": "Incompatible file (for string arrays-TXT, for others-BIN)"
+  },
+  {
+    "Code": 5019,
+    "ID": "FileIsDirectory",
+    "Description": "File is directory not file"
+  },
+  {
+    "Code": 5020,
+    "ID": "FileNotExist",
+    "Description": "File does not exist"
+  },
+  {
+    "Code": 5021,
+    "ID": "FileCannotRewrite",
+    "Description": "File cannot be rewritten"
+  },
+  {
+    "Code": 5022,
+    "ID": "FileWrongDirectoryname",
+    "Description": "Wrong directory name"
+  },
+  {
+    "Code": 5023,
+    "ID": "FileDirectoryNotExist",
+    "Description": "Directory does not exist"
+  },
+  {
+    "Code": 5024,
+    "ID": "FileNotDirectory",
+    "Description": "Specified file is not directory"
+  },
+  {
+    "Code": 5025,
+    "ID": "FileCannotDeleteDirectory",
+    "Description": "Cannot delete directory"
+  },
+  {
+    "Code": 5026,
+    "ID": "FileCannotCleanDirectory",
+    "Description": "Cannot clean directory"
+  },
+  {
+    "Code": 5027,
+    "ID": "FileArrayresizeError",
+    "Description": "Array resize error"
+  },
+  {
+    "Code": 5028,
+    "ID": "FileStringresizeError",
+    "Description": "String resize error"
+  },
+  {
+    "Code": 5029,
+    "ID": "FileStructWithObjects",
+    "Description": "Structure contains strings or dynamic arrays"
+  },
+  {
+    "Code": 5200,
+    "ID": "WebrequestInvalidAddress",
+    "Description": "Invalid URL"
+  },
+  {
+    "Code": 5201,
+    "ID": "WebrequestConnectFailed",
+    "Description": "Failed to connect to specified URL"
+  },
+  {
+    "Code": 5202,
+    "ID": "WebrequestTimeout",
+    "Description": "Timeout exceeded"
+  },
+  {
+    "Code": 5203,
+    "ID": "WebrequestRequestFailed",
+    "Description": "HTTP request failed"
+  },
+  {
+    "Code": 65536,
+    "ID": "UserErrorFirst",
+    "Description": "User defined errors start with this code"
+  }
+]

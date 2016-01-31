@@ -2,23 +2,23 @@ using log4net;
 using System;
 using System.Collections.Generic;
 using MQL4CSharp.Base.Enums;
-using MQL4CSharp.Base;
+using MQL4CSharp.Base.MQL;
 using System.Threading;
 
 namespace MQL4CSharp.Base
 {
-    public abstract class MQL
+    public abstract class MQLBase
     {
         public ILog LOG;
 
-        public MQL()
+        public MQLBase()
         {
             LOG = LogManager.GetLogger(GetType());
         }
 
         public void setTimerInterval(Int64 intervalMillis)
         {
-            Expert.setTimerInterval(intervalMillis);
+            MQLExpert.setTimerInterval(intervalMillis);
         }
 
         public abstract void OnInit();
@@ -33,7 +33,7 @@ namespace MQL4CSharp.Base
         /// <returns>DateTime</returns>
         public unsafe DateTime ITime(int i)
         {
-            return Rates.getInstance().ITime(i);
+            return MQLRates.getInstance().ITime(i);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IOpen(int i)
         {
-            return Rates.getInstance().IOpen(i);
+            return MQLRates.getInstance().IOpen(i);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IHigh(int i)
         {
-            return Rates.getInstance().IHigh(i);
+            return MQLRates.getInstance().IHigh(i);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double ILow(int i)
         {
-            return Rates.getInstance().ILow(i);
+            return MQLRates.getInstance().ILow(i);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IVolume(int i)
         {
-            return Rates.getInstance().IVolume(i);
+            return MQLRates.getInstance().IVolume(i);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IClose(int i)
         {
-            return Rates.getInstance().IClose(i);
+            return MQLRates.getInstance().IClose(i);
         }
 
 
@@ -100,9 +100,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             {% for p in f.parameters %}            parameters.Add({{p.name}}{% if p.type.startswith('ENUM') %}.ToString(){%  endif %});
             {% endfor %}
-            CommandManager.getInstance().ExecCommand(MQLCommand.{{c.title}}_{{loop.index}}, parameters); // MQLCommand ENUM = {{cmd_loop.index}}
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            {%  if f.returnType != 'void' %}            return ({{f.returnType}}) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.{{c.title}}_{{loop.index}}, parameters); // MQLCommand ENUM = {{cmd_loop.index}}
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            {%  if f.returnType != 'void' %}            return ({{f.returnType}}) MQLCommandManager.getInstance().GetCommandResult();
             {%  endif %}
         }
 {% endfor %}{% endfor %}
@@ -127,9 +128,10 @@ namespace MQL4CSharp.Base
             parameters.Add(mode);
             parameters.Add(shift);
 
-            CommandManager.getInstance().ExecCommand(MQLCommand.iCustom_1, parameters); // MQLCommand ENUM = 1000
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iCustom_1, parameters); // MQLCommand ENUM = 1000
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }*/
 
     }

@@ -2,23 +2,23 @@ using log4net;
 using System;
 using System.Collections.Generic;
 using MQL4CSharp.Base.Enums;
-using MQL4CSharp.Base;
+using MQL4CSharp.Base.MQL;
 using System.Threading;
 
 namespace MQL4CSharp.Base
 {
-    public abstract class MQL
+    public abstract class MQLBase
     {
         public ILog LOG;
 
-        public MQL()
+        public MQLBase()
         {
             LOG = LogManager.GetLogger(GetType());
         }
 
         public void setTimerInterval(Int64 intervalMillis)
         {
-            Expert.setTimerInterval(intervalMillis);
+            MQLExpert.setTimerInterval(intervalMillis);
         }
 
         public abstract void OnInit();
@@ -33,7 +33,7 @@ namespace MQL4CSharp.Base
         /// <returns>DateTime</returns>
         public unsafe DateTime ITime(int i)
         {
-            return Rates.getInstance().ITime(i);
+            return MQLRates.getInstance().ITime(i);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IOpen(int i)
         {
-            return Rates.getInstance().IOpen(i);
+            return MQLRates.getInstance().IOpen(i);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IHigh(int i)
         {
-            return Rates.getInstance().IHigh(i);
+            return MQLRates.getInstance().IHigh(i);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double ILow(int i)
         {
-            return Rates.getInstance().ILow(i);
+            return MQLRates.getInstance().ILow(i);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IVolume(int i)
         {
-            return Rates.getInstance().IVolume(i);
+            return MQLRates.getInstance().IVolume(i);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace MQL4CSharp.Base
         /// <returns>double</returns>
         public unsafe double IClose(int i)
         {
-            return Rates.getInstance().IClose(i);
+            return MQLRates.getInstance().IClose(i);
         }
 
 
@@ -98,8 +98,9 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(argument);
-            CommandManager.getInstance().ExecCommand(MQLCommand.Alert_1, parameters); // MQLCommand ENUM = 1
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Alert_1, parameters); // MQLCommand ENUM = 1
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -112,8 +113,9 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(argument);
-            CommandManager.getInstance().ExecCommand(MQLCommand.Comment_1, parameters); // MQLCommand ENUM = 2
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Comment_1, parameters); // MQLCommand ENUM = 2
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -128,9 +130,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(filename);
             parameters.Add(ftp_path);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SendFTP_1, parameters); // MQLCommand ENUM = 3
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SendFTP_1, parameters); // MQLCommand ENUM = 3
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -143,9 +146,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(text);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SendNotification_1, parameters); // MQLCommand ENUM = 4
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SendNotification_1, parameters); // MQLCommand ENUM = 4
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -160,9 +164,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(subject);
             parameters.Add(some_text);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SendMail_1, parameters); // MQLCommand ENUM = 5
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SendMail_1, parameters); // MQLCommand ENUM = 5
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -175,9 +180,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountInfoDouble_1, parameters); // MQLCommand ENUM = 6
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountInfoDouble_1, parameters); // MQLCommand ENUM = 6
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -190,9 +196,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountInfoInteger_1, parameters); // MQLCommand ENUM = 7
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountInfoInteger_1, parameters); // MQLCommand ENUM = 7
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -205,9 +212,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountInfoString_1, parameters); // MQLCommand ENUM = 8
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountInfoString_1, parameters); // MQLCommand ENUM = 8
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -218,9 +226,10 @@ namespace MQL4CSharp.Base
         public double AccountBalance ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountBalance_1, parameters); // MQLCommand ENUM = 9
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountBalance_1, parameters); // MQLCommand ENUM = 9
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -231,9 +240,10 @@ namespace MQL4CSharp.Base
         public double AccountCredit ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountCredit_1, parameters); // MQLCommand ENUM = 10
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountCredit_1, parameters); // MQLCommand ENUM = 10
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -244,9 +254,10 @@ namespace MQL4CSharp.Base
         public string AccountCompany ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountCompany_1, parameters); // MQLCommand ENUM = 11
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountCompany_1, parameters); // MQLCommand ENUM = 11
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -257,9 +268,10 @@ namespace MQL4CSharp.Base
         public string AccountCurrency ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountCurrency_1, parameters); // MQLCommand ENUM = 12
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountCurrency_1, parameters); // MQLCommand ENUM = 12
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -270,9 +282,10 @@ namespace MQL4CSharp.Base
         public double AccountEquity ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountEquity_1, parameters); // MQLCommand ENUM = 13
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountEquity_1, parameters); // MQLCommand ENUM = 13
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -283,9 +296,10 @@ namespace MQL4CSharp.Base
         public double AccountFreeMargin ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountFreeMargin_1, parameters); // MQLCommand ENUM = 14
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountFreeMargin_1, parameters); // MQLCommand ENUM = 14
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -302,9 +316,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(cmd);
             parameters.Add(volume);
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountFreeMarginCheck_1, parameters); // MQLCommand ENUM = 15
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountFreeMarginCheck_1, parameters); // MQLCommand ENUM = 15
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -315,9 +330,10 @@ namespace MQL4CSharp.Base
         public double AccountFreeMarginMode ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountFreeMarginMode_1, parameters); // MQLCommand ENUM = 16
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountFreeMarginMode_1, parameters); // MQLCommand ENUM = 16
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -328,9 +344,10 @@ namespace MQL4CSharp.Base
         public int AccountLeverage ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountLeverage_1, parameters); // MQLCommand ENUM = 17
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountLeverage_1, parameters); // MQLCommand ENUM = 17
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -341,9 +358,10 @@ namespace MQL4CSharp.Base
         public double AccountMargin ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountMargin_1, parameters); // MQLCommand ENUM = 18
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountMargin_1, parameters); // MQLCommand ENUM = 18
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -354,9 +372,10 @@ namespace MQL4CSharp.Base
         public string AccountName ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountName_1, parameters); // MQLCommand ENUM = 19
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountName_1, parameters); // MQLCommand ENUM = 19
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -367,9 +386,10 @@ namespace MQL4CSharp.Base
         public int AccountNumber ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountNumber_1, parameters); // MQLCommand ENUM = 20
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountNumber_1, parameters); // MQLCommand ENUM = 20
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -380,9 +400,10 @@ namespace MQL4CSharp.Base
         public double AccountProfit ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountProfit_1, parameters); // MQLCommand ENUM = 21
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountProfit_1, parameters); // MQLCommand ENUM = 21
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -393,9 +414,10 @@ namespace MQL4CSharp.Base
         public string AccountServer ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountServer_1, parameters); // MQLCommand ENUM = 22
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountServer_1, parameters); // MQLCommand ENUM = 22
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -406,9 +428,10 @@ namespace MQL4CSharp.Base
         public int AccountStopoutLevel ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountStopoutLevel_1, parameters); // MQLCommand ENUM = 23
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountStopoutLevel_1, parameters); // MQLCommand ENUM = 23
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -419,9 +442,10 @@ namespace MQL4CSharp.Base
         public int AccountStopoutMode ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.AccountStopoutMode_1, parameters); // MQLCommand ENUM = 24
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.AccountStopoutMode_1, parameters); // MQLCommand ENUM = 24
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -432,9 +456,10 @@ namespace MQL4CSharp.Base
         public int GetLastError ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.GetLastError_1, parameters); // MQLCommand ENUM = 25
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GetLastError_1, parameters); // MQLCommand ENUM = 25
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -445,9 +470,10 @@ namespace MQL4CSharp.Base
         public bool IsStopped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsStopped_1, parameters); // MQLCommand ENUM = 26
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsStopped_1, parameters); // MQLCommand ENUM = 26
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -458,9 +484,10 @@ namespace MQL4CSharp.Base
         public int UninitializeReason ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.UninitializeReason_1, parameters); // MQLCommand ENUM = 27
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.UninitializeReason_1, parameters); // MQLCommand ENUM = 27
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -473,9 +500,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.MQLInfoInteger_1, parameters); // MQLCommand ENUM = 28
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.MQLInfoInteger_1, parameters); // MQLCommand ENUM = 28
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -488,9 +516,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.MQLInfoString_1, parameters); // MQLCommand ENUM = 29
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.MQLInfoString_1, parameters); // MQLCommand ENUM = 29
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -505,8 +534,9 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
             parameters.Add(property_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.MQLSetInteger_1, parameters); // MQLCommand ENUM = 30
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.MQLSetInteger_1, parameters); // MQLCommand ENUM = 30
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -519,9 +549,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.TerminalInfoInteger_1, parameters); // MQLCommand ENUM = 31
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.TerminalInfoInteger_1, parameters); // MQLCommand ENUM = 31
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -534,9 +565,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.TerminalInfoDouble_1, parameters); // MQLCommand ENUM = 32
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.TerminalInfoDouble_1, parameters); // MQLCommand ENUM = 32
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -549,9 +581,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.TerminalInfoString_1, parameters); // MQLCommand ENUM = 33
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.TerminalInfoString_1, parameters); // MQLCommand ENUM = 33
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -562,9 +595,10 @@ namespace MQL4CSharp.Base
         public string Symbol ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.Symbol_1, parameters); // MQLCommand ENUM = 34
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Symbol_1, parameters); // MQLCommand ENUM = 34
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -575,9 +609,10 @@ namespace MQL4CSharp.Base
         public int Period ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.Period_1, parameters); // MQLCommand ENUM = 35
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Period_1, parameters); // MQLCommand ENUM = 35
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -588,9 +623,10 @@ namespace MQL4CSharp.Base
         public int Digits ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.Digits_1, parameters); // MQLCommand ENUM = 36
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Digits_1, parameters); // MQLCommand ENUM = 36
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -601,9 +637,10 @@ namespace MQL4CSharp.Base
         public double Point ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.Point_1, parameters); // MQLCommand ENUM = 37
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Point_1, parameters); // MQLCommand ENUM = 37
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -614,9 +651,10 @@ namespace MQL4CSharp.Base
         public bool IsConnected ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsConnected_1, parameters); // MQLCommand ENUM = 38
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsConnected_1, parameters); // MQLCommand ENUM = 38
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -627,9 +665,10 @@ namespace MQL4CSharp.Base
         public bool IsDemo ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsDemo_1, parameters); // MQLCommand ENUM = 39
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsDemo_1, parameters); // MQLCommand ENUM = 39
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -640,9 +679,10 @@ namespace MQL4CSharp.Base
         public bool IsDllsAllowed ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsDllsAllowed_1, parameters); // MQLCommand ENUM = 40
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsDllsAllowed_1, parameters); // MQLCommand ENUM = 40
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -653,9 +693,10 @@ namespace MQL4CSharp.Base
         public bool IsExpertEnabled ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsExpertEnabled_1, parameters); // MQLCommand ENUM = 41
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsExpertEnabled_1, parameters); // MQLCommand ENUM = 41
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -666,9 +707,10 @@ namespace MQL4CSharp.Base
         public bool IsLibrariesAllowed ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsLibrariesAllowed_1, parameters); // MQLCommand ENUM = 42
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsLibrariesAllowed_1, parameters); // MQLCommand ENUM = 42
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -679,9 +721,10 @@ namespace MQL4CSharp.Base
         public bool IsOptimization ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsOptimization_1, parameters); // MQLCommand ENUM = 43
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsOptimization_1, parameters); // MQLCommand ENUM = 43
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -692,9 +735,10 @@ namespace MQL4CSharp.Base
         public bool IsTesting ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsTesting_1, parameters); // MQLCommand ENUM = 44
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsTesting_1, parameters); // MQLCommand ENUM = 44
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -705,9 +749,10 @@ namespace MQL4CSharp.Base
         public bool IsTradeAllowed ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsTradeAllowed_1, parameters); // MQLCommand ENUM = 45
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsTradeAllowed_1, parameters); // MQLCommand ENUM = 45
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -722,9 +767,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(symbol);
             parameters.Add(tested_time);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsTradeAllowed_2, parameters); // MQLCommand ENUM = 45
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsTradeAllowed_2, parameters); // MQLCommand ENUM = 45
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -735,9 +781,10 @@ namespace MQL4CSharp.Base
         public bool IsTradeContextBusy ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsTradeContextBusy_1, parameters); // MQLCommand ENUM = 46
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsTradeContextBusy_1, parameters); // MQLCommand ENUM = 46
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -748,9 +795,10 @@ namespace MQL4CSharp.Base
         public bool IsVisualMode ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IsVisualMode_1, parameters); // MQLCommand ENUM = 47
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IsVisualMode_1, parameters); // MQLCommand ENUM = 47
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -761,9 +809,10 @@ namespace MQL4CSharp.Base
         public string TerminalCompany ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.TerminalCompany_1, parameters); // MQLCommand ENUM = 48
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.TerminalCompany_1, parameters); // MQLCommand ENUM = 48
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -774,9 +823,10 @@ namespace MQL4CSharp.Base
         public string TerminalName ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.TerminalName_1, parameters); // MQLCommand ENUM = 49
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.TerminalName_1, parameters); // MQLCommand ENUM = 49
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -787,9 +837,10 @@ namespace MQL4CSharp.Base
         public string TerminalPath ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.TerminalPath_1, parameters); // MQLCommand ENUM = 50
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.TerminalPath_1, parameters); // MQLCommand ENUM = 50
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -804,9 +855,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(symbol);
             parameters.Add(type);
-            CommandManager.getInstance().ExecCommand(MQLCommand.MarketInfo_1, parameters); // MQLCommand ENUM = 51
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.MarketInfo_1, parameters); // MQLCommand ENUM = 51
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -819,9 +871,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(selected);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SymbolsTotal_1, parameters); // MQLCommand ENUM = 52
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SymbolsTotal_1, parameters); // MQLCommand ENUM = 52
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -836,9 +889,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(pos);
             parameters.Add(selected);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SymbolName_1, parameters); // MQLCommand ENUM = 53
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SymbolName_1, parameters); // MQLCommand ENUM = 53
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -853,9 +907,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
             parameters.Add(select);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SymbolSelect_1, parameters); // MQLCommand ENUM = 54
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SymbolSelect_1, parameters); // MQLCommand ENUM = 54
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -866,9 +921,10 @@ namespace MQL4CSharp.Base
         public bool RefreshRates ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.RefreshRates_1, parameters); // MQLCommand ENUM = 55
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.RefreshRates_1, parameters); // MQLCommand ENUM = 55
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -883,9 +939,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(symbol_name);
             parameters.Add(timeframe.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.Bars_1, parameters); // MQLCommand ENUM = 56
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Bars_1, parameters); // MQLCommand ENUM = 56
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -904,9 +961,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe.ToString());
             parameters.Add(start_time);
             parameters.Add(stop_time);
-            CommandManager.getInstance().ExecCommand(MQLCommand.Bars_2, parameters); // MQLCommand ENUM = 56
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.Bars_2, parameters); // MQLCommand ENUM = 56
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -921,9 +979,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(symbol);
             parameters.Add(timeframe);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iBars_1, parameters); // MQLCommand ENUM = 57
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iBars_1, parameters); // MQLCommand ENUM = 57
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -942,9 +1001,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe);
             parameters.Add(time);
             parameters.Add(exact);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iBarShift_1, parameters); // MQLCommand ENUM = 58
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iBarShift_1, parameters); // MQLCommand ENUM = 58
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -961,9 +1021,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iClose_1, parameters); // MQLCommand ENUM = 59
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iClose_1, parameters); // MQLCommand ENUM = 59
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -980,9 +1041,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iHigh_1, parameters); // MQLCommand ENUM = 60
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iHigh_1, parameters); // MQLCommand ENUM = 60
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1003,9 +1065,10 @@ namespace MQL4CSharp.Base
             parameters.Add(type);
             parameters.Add(count);
             parameters.Add(start);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iHighest_1, parameters); // MQLCommand ENUM = 61
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iHighest_1, parameters); // MQLCommand ENUM = 61
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1022,9 +1085,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iLow_1, parameters); // MQLCommand ENUM = 62
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iLow_1, parameters); // MQLCommand ENUM = 62
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1045,9 +1109,10 @@ namespace MQL4CSharp.Base
             parameters.Add(type);
             parameters.Add(count);
             parameters.Add(start);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iLowest_1, parameters); // MQLCommand ENUM = 63
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iLowest_1, parameters); // MQLCommand ENUM = 63
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1064,9 +1129,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iOpen_1, parameters); // MQLCommand ENUM = 64
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iOpen_1, parameters); // MQLCommand ENUM = 64
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1083,9 +1149,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iTime_1, parameters); // MQLCommand ENUM = 65
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iTime_1, parameters); // MQLCommand ENUM = 65
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1102,9 +1169,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iVolume_1, parameters); // MQLCommand ENUM = 66
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iVolume_1, parameters); // MQLCommand ENUM = 66
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1119,9 +1187,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
             parameters.Add(filename);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartApplyTemplate_1, parameters); // MQLCommand ENUM = 67
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartApplyTemplate_1, parameters); // MQLCommand ENUM = 67
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1136,9 +1205,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
             parameters.Add(filename);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartSaveTemplate_1, parameters); // MQLCommand ENUM = 68
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartSaveTemplate_1, parameters); // MQLCommand ENUM = 68
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1153,9 +1223,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
             parameters.Add(indicator_shortname);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartWindowFind_1, parameters); // MQLCommand ENUM = 69
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartWindowFind_1, parameters); // MQLCommand ENUM = 69
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1166,9 +1237,10 @@ namespace MQL4CSharp.Base
         public int ChartWindowFind ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartWindowFind_2, parameters); // MQLCommand ENUM = 69
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartWindowFind_2, parameters); // MQLCommand ENUM = 69
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1183,9 +1255,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(symbol);
             parameters.Add(period.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartOpen_1, parameters); // MQLCommand ENUM = 70
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartOpen_1, parameters); // MQLCommand ENUM = 70
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1196,9 +1269,10 @@ namespace MQL4CSharp.Base
         public long ChartFirst ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartFirst_1, parameters); // MQLCommand ENUM = 71
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartFirst_1, parameters); // MQLCommand ENUM = 71
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1211,9 +1285,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartNext_1, parameters); // MQLCommand ENUM = 72
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartNext_1, parameters); // MQLCommand ENUM = 72
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1226,9 +1301,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartClose_1, parameters); // MQLCommand ENUM = 73
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartClose_1, parameters); // MQLCommand ENUM = 73
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1241,9 +1317,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartSymbol_1, parameters); // MQLCommand ENUM = 74
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartSymbol_1, parameters); // MQLCommand ENUM = 74
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1256,8 +1333,9 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartRedraw_1, parameters); // MQLCommand ENUM = 75
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartRedraw_1, parameters); // MQLCommand ENUM = 75
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -1274,9 +1352,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(prop_id);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartSetDouble_1, parameters); // MQLCommand ENUM = 76
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartSetDouble_1, parameters); // MQLCommand ENUM = 76
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1293,9 +1372,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(prop_id);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartSetInteger_1, parameters); // MQLCommand ENUM = 77
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartSetInteger_1, parameters); // MQLCommand ENUM = 77
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1314,9 +1394,10 @@ namespace MQL4CSharp.Base
             parameters.Add(property_id);
             parameters.Add(sub_window);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartSetInteger_2, parameters); // MQLCommand ENUM = 77
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartSetInteger_2, parameters); // MQLCommand ENUM = 77
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1333,9 +1414,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(prop_id);
             parameters.Add(str_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartSetString_1, parameters); // MQLCommand ENUM = 78
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartSetString_1, parameters); // MQLCommand ENUM = 78
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1352,9 +1434,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(position);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartNavigate_1, parameters); // MQLCommand ENUM = 79
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartNavigate_1, parameters); // MQLCommand ENUM = 79
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1365,9 +1448,10 @@ namespace MQL4CSharp.Base
         public long ChartID ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartID_1, parameters); // MQLCommand ENUM = 80
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartID_1, parameters); // MQLCommand ENUM = 80
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1384,9 +1468,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(sub_window);
             parameters.Add(indicator_shortname);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartIndicatorDelete_1, parameters); // MQLCommand ENUM = 81
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartIndicatorDelete_1, parameters); // MQLCommand ENUM = 81
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1403,9 +1488,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(sub_window);
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartIndicatorName_1, parameters); // MQLCommand ENUM = 82
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartIndicatorName_1, parameters); // MQLCommand ENUM = 82
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1420,9 +1506,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
             parameters.Add(sub_window);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartIndicatorsTotal_1, parameters); // MQLCommand ENUM = 83
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartIndicatorsTotal_1, parameters); // MQLCommand ENUM = 83
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1433,9 +1520,10 @@ namespace MQL4CSharp.Base
         public int ChartWindowOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartWindowOnDropped_1, parameters); // MQLCommand ENUM = 84
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartWindowOnDropped_1, parameters); // MQLCommand ENUM = 84
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1446,9 +1534,10 @@ namespace MQL4CSharp.Base
         public double ChartPriceOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartPriceOnDropped_1, parameters); // MQLCommand ENUM = 85
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartPriceOnDropped_1, parameters); // MQLCommand ENUM = 85
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1459,9 +1548,10 @@ namespace MQL4CSharp.Base
         public DateTime ChartTimeOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartTimeOnDropped_1, parameters); // MQLCommand ENUM = 86
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartTimeOnDropped_1, parameters); // MQLCommand ENUM = 86
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1472,9 +1562,10 @@ namespace MQL4CSharp.Base
         public int ChartXOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartXOnDropped_1, parameters); // MQLCommand ENUM = 87
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartXOnDropped_1, parameters); // MQLCommand ENUM = 87
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1485,9 +1576,10 @@ namespace MQL4CSharp.Base
         public int ChartYOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartYOnDropped_1, parameters); // MQLCommand ENUM = 88
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartYOnDropped_1, parameters); // MQLCommand ENUM = 88
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1504,9 +1596,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(symbol);
             parameters.Add(period.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartSetSymbolPeriod_1, parameters); // MQLCommand ENUM = 89
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartSetSymbolPeriod_1, parameters); // MQLCommand ENUM = 89
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1527,9 +1620,10 @@ namespace MQL4CSharp.Base
             parameters.Add(width);
             parameters.Add(height);
             parameters.Add(align_mode.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.ChartScreenShot_1, parameters); // MQLCommand ENUM = 90
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ChartScreenShot_1, parameters); // MQLCommand ENUM = 90
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1540,9 +1634,10 @@ namespace MQL4CSharp.Base
         public int WindowBarsPerChart ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowBarsPerChart_1, parameters); // MQLCommand ENUM = 91
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowBarsPerChart_1, parameters); // MQLCommand ENUM = 91
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1553,9 +1648,10 @@ namespace MQL4CSharp.Base
         public string WindowExpertName ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowExpertName_1, parameters); // MQLCommand ENUM = 92
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowExpertName_1, parameters); // MQLCommand ENUM = 92
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1568,9 +1664,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowFind_1, parameters); // MQLCommand ENUM = 93
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowFind_1, parameters); // MQLCommand ENUM = 93
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1581,9 +1678,10 @@ namespace MQL4CSharp.Base
         public int WindowFirstVisibleBar ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowFirstVisibleBar_1, parameters); // MQLCommand ENUM = 94
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowFirstVisibleBar_1, parameters); // MQLCommand ENUM = 94
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1598,9 +1696,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(symbol);
             parameters.Add(timeframe);
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowHandle_1, parameters); // MQLCommand ENUM = 95
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowHandle_1, parameters); // MQLCommand ENUM = 95
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1613,9 +1712,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowIsVisible_1, parameters); // MQLCommand ENUM = 96
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowIsVisible_1, parameters); // MQLCommand ENUM = 96
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1626,9 +1726,10 @@ namespace MQL4CSharp.Base
         public int WindowOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowOnDropped_1, parameters); // MQLCommand ENUM = 97
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowOnDropped_1, parameters); // MQLCommand ENUM = 97
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1641,9 +1742,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowPriceMax_1, parameters); // MQLCommand ENUM = 98
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowPriceMax_1, parameters); // MQLCommand ENUM = 98
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1656,9 +1758,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowPriceMin_1, parameters); // MQLCommand ENUM = 99
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowPriceMin_1, parameters); // MQLCommand ENUM = 99
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1669,9 +1772,10 @@ namespace MQL4CSharp.Base
         public double WindowPriceOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowPriceOnDropped_1, parameters); // MQLCommand ENUM = 100
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowPriceOnDropped_1, parameters); // MQLCommand ENUM = 100
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1682,8 +1786,9 @@ namespace MQL4CSharp.Base
         public void WindowRedraw ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowRedraw_1, parameters); // MQLCommand ENUM = 101
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowRedraw_1, parameters); // MQLCommand ENUM = 101
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -1706,9 +1811,10 @@ namespace MQL4CSharp.Base
             parameters.Add(start_bar);
             parameters.Add(chart_scale);
             parameters.Add(chart_mode);
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowScreenShot_1, parameters); // MQLCommand ENUM = 102
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowScreenShot_1, parameters); // MQLCommand ENUM = 102
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1719,9 +1825,10 @@ namespace MQL4CSharp.Base
         public DateTime WindowTimeOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowTimeOnDropped_1, parameters); // MQLCommand ENUM = 103
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowTimeOnDropped_1, parameters); // MQLCommand ENUM = 103
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1732,9 +1839,10 @@ namespace MQL4CSharp.Base
         public int WindowsTotal ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowsTotal_1, parameters); // MQLCommand ENUM = 104
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowsTotal_1, parameters); // MQLCommand ENUM = 104
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1745,9 +1853,10 @@ namespace MQL4CSharp.Base
         public int WindowXOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowXOnDropped_1, parameters); // MQLCommand ENUM = 105
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowXOnDropped_1, parameters); // MQLCommand ENUM = 105
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1758,9 +1867,10 @@ namespace MQL4CSharp.Base
         public int WindowYOnDropped ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.WindowYOnDropped_1, parameters); // MQLCommand ENUM = 106
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.WindowYOnDropped_1, parameters); // MQLCommand ENUM = 106
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1781,9 +1891,10 @@ namespace MQL4CSharp.Base
             parameters.Add(price);
             parameters.Add(slippage);
             parameters.Add(arrow_color);
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderClose_1, parameters); // MQLCommand ENUM = 107
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderClose_1, parameters); // MQLCommand ENUM = 107
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1800,9 +1911,10 @@ namespace MQL4CSharp.Base
             parameters.Add(ticket);
             parameters.Add(opposite);
             parameters.Add(arrow_color);
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderCloseBy_1, parameters); // MQLCommand ENUM = 108
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderCloseBy_1, parameters); // MQLCommand ENUM = 108
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1813,9 +1925,10 @@ namespace MQL4CSharp.Base
         public double OrderClosePrice ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderClosePrice_1, parameters); // MQLCommand ENUM = 109
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderClosePrice_1, parameters); // MQLCommand ENUM = 109
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1826,9 +1939,10 @@ namespace MQL4CSharp.Base
         public DateTime OrderCloseTime ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderCloseTime_1, parameters); // MQLCommand ENUM = 110
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderCloseTime_1, parameters); // MQLCommand ENUM = 110
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1839,9 +1953,10 @@ namespace MQL4CSharp.Base
         public string OrderComment ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderComment_1, parameters); // MQLCommand ENUM = 111
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderComment_1, parameters); // MQLCommand ENUM = 111
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1852,9 +1967,10 @@ namespace MQL4CSharp.Base
         public double OrderCommission ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderCommission_1, parameters); // MQLCommand ENUM = 112
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderCommission_1, parameters); // MQLCommand ENUM = 112
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1869,9 +1985,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(ticket);
             parameters.Add(arrow_color);
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderDelete_1, parameters); // MQLCommand ENUM = 113
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderDelete_1, parameters); // MQLCommand ENUM = 113
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1882,9 +1999,10 @@ namespace MQL4CSharp.Base
         public DateTime OrderExpiration ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderExpiration_1, parameters); // MQLCommand ENUM = 114
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderExpiration_1, parameters); // MQLCommand ENUM = 114
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1895,9 +2013,10 @@ namespace MQL4CSharp.Base
         public double OrderLots ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderLots_1, parameters); // MQLCommand ENUM = 115
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderLots_1, parameters); // MQLCommand ENUM = 115
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1908,9 +2027,10 @@ namespace MQL4CSharp.Base
         public int OrderMagicNumber ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderMagicNumber_1, parameters); // MQLCommand ENUM = 116
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderMagicNumber_1, parameters); // MQLCommand ENUM = 116
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1933,9 +2053,10 @@ namespace MQL4CSharp.Base
             parameters.Add(takeprofit);
             parameters.Add(expiration);
             parameters.Add(arrow_color);
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderModify_1, parameters); // MQLCommand ENUM = 117
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderModify_1, parameters); // MQLCommand ENUM = 117
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1946,9 +2067,10 @@ namespace MQL4CSharp.Base
         public double OrderOpenPrice ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderOpenPrice_1, parameters); // MQLCommand ENUM = 118
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderOpenPrice_1, parameters); // MQLCommand ENUM = 118
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1959,9 +2081,10 @@ namespace MQL4CSharp.Base
         public DateTime OrderOpenTime ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderOpenTime_1, parameters); // MQLCommand ENUM = 119
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderOpenTime_1, parameters); // MQLCommand ENUM = 119
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -1972,8 +2095,9 @@ namespace MQL4CSharp.Base
         public void OrderPrint ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderPrint_1, parameters); // MQLCommand ENUM = 120
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderPrint_1, parameters); // MQLCommand ENUM = 120
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -1984,9 +2108,10 @@ namespace MQL4CSharp.Base
         public double OrderProfit ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderProfit_1, parameters); // MQLCommand ENUM = 121
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderProfit_1, parameters); // MQLCommand ENUM = 121
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2003,9 +2128,10 @@ namespace MQL4CSharp.Base
             parameters.Add(index);
             parameters.Add(select);
             parameters.Add(pool);
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderSelect_1, parameters); // MQLCommand ENUM = 122
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderSelect_1, parameters); // MQLCommand ENUM = 122
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2038,9 +2164,10 @@ namespace MQL4CSharp.Base
             parameters.Add(magic);
             parameters.Add(expiration);
             parameters.Add(arrow_color);
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderSend_1, parameters); // MQLCommand ENUM = 123
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderSend_1, parameters); // MQLCommand ENUM = 123
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2051,9 +2178,10 @@ namespace MQL4CSharp.Base
         public int OrdersHistoryTotal ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrdersHistoryTotal_1, parameters); // MQLCommand ENUM = 124
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrdersHistoryTotal_1, parameters); // MQLCommand ENUM = 124
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2064,9 +2192,10 @@ namespace MQL4CSharp.Base
         public double OrderStopLoss ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderStopLoss_1, parameters); // MQLCommand ENUM = 125
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderStopLoss_1, parameters); // MQLCommand ENUM = 125
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2077,9 +2206,10 @@ namespace MQL4CSharp.Base
         public int OrdersTotal ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrdersTotal_1, parameters); // MQLCommand ENUM = 126
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrdersTotal_1, parameters); // MQLCommand ENUM = 126
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2090,9 +2220,10 @@ namespace MQL4CSharp.Base
         public double OrderSwap ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderSwap_1, parameters); // MQLCommand ENUM = 127
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderSwap_1, parameters); // MQLCommand ENUM = 127
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2103,9 +2234,10 @@ namespace MQL4CSharp.Base
         public string OrderSymbol ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderSymbol_1, parameters); // MQLCommand ENUM = 128
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderSymbol_1, parameters); // MQLCommand ENUM = 128
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2116,9 +2248,10 @@ namespace MQL4CSharp.Base
         public double OrderTakeProfit ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderTakeProfit_1, parameters); // MQLCommand ENUM = 129
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderTakeProfit_1, parameters); // MQLCommand ENUM = 129
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2129,9 +2262,10 @@ namespace MQL4CSharp.Base
         public int OrderTicket ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderTicket_1, parameters); // MQLCommand ENUM = 130
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderTicket_1, parameters); // MQLCommand ENUM = 130
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2142,9 +2276,10 @@ namespace MQL4CSharp.Base
         public int OrderType ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.OrderType_1, parameters); // MQLCommand ENUM = 131
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.OrderType_1, parameters); // MQLCommand ENUM = 131
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2157,9 +2292,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseGetDouble_1, parameters); // MQLCommand ENUM = 132
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseGetDouble_1, parameters); // MQLCommand ENUM = 132
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2172,9 +2308,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseGetInteger_1, parameters); // MQLCommand ENUM = 133
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseGetInteger_1, parameters); // MQLCommand ENUM = 133
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2187,9 +2324,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseGetString_1, parameters); // MQLCommand ENUM = 134
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseGetString_1, parameters); // MQLCommand ENUM = 134
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2202,9 +2340,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseSelect_1, parameters); // MQLCommand ENUM = 135
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseSelect_1, parameters); // MQLCommand ENUM = 135
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2215,9 +2354,10 @@ namespace MQL4CSharp.Base
         public int SignalBaseTotal ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseTotal_1, parameters); // MQLCommand ENUM = 136
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalBaseTotal_1, parameters); // MQLCommand ENUM = 136
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2230,9 +2370,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoGetDouble_1, parameters); // MQLCommand ENUM = 137
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoGetDouble_1, parameters); // MQLCommand ENUM = 137
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2245,9 +2386,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoGetInteger_1, parameters); // MQLCommand ENUM = 138
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoGetInteger_1, parameters); // MQLCommand ENUM = 138
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2260,9 +2402,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoGetString_1, parameters); // MQLCommand ENUM = 139
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoGetString_1, parameters); // MQLCommand ENUM = 139
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2277,9 +2420,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoSetDouble_1, parameters); // MQLCommand ENUM = 140
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoSetDouble_1, parameters); // MQLCommand ENUM = 140
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2294,9 +2438,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(property_id.ToString());
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoSetInteger_1, parameters); // MQLCommand ENUM = 141
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalInfoSetInteger_1, parameters); // MQLCommand ENUM = 141
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2309,9 +2454,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(signal_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalSubscribe_1, parameters); // MQLCommand ENUM = 142
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalSubscribe_1, parameters); // MQLCommand ENUM = 142
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2322,9 +2468,10 @@ namespace MQL4CSharp.Base
         public bool SignalUnsubscribe ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.SignalUnsubscribe_1, parameters); // MQLCommand ENUM = 143
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SignalUnsubscribe_1, parameters); // MQLCommand ENUM = 143
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2337,9 +2484,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableCheck_1, parameters); // MQLCommand ENUM = 144
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableCheck_1, parameters); // MQLCommand ENUM = 144
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2352,9 +2500,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableTime_1, parameters); // MQLCommand ENUM = 145
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableTime_1, parameters); // MQLCommand ENUM = 145
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2367,9 +2516,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableDel_1, parameters); // MQLCommand ENUM = 146
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableDel_1, parameters); // MQLCommand ENUM = 146
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2382,9 +2532,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableGet_1, parameters); // MQLCommand ENUM = 147
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableGet_1, parameters); // MQLCommand ENUM = 147
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2397,9 +2548,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableName_1, parameters); // MQLCommand ENUM = 148
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableName_1, parameters); // MQLCommand ENUM = 148
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2414,9 +2566,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableSet_1, parameters); // MQLCommand ENUM = 149
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableSet_1, parameters); // MQLCommand ENUM = 149
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2427,8 +2580,9 @@ namespace MQL4CSharp.Base
         public void GlobalVariablesFlush ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariablesFlush_1, parameters); // MQLCommand ENUM = 150
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariablesFlush_1, parameters); // MQLCommand ENUM = 150
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2441,9 +2595,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableTemp_1, parameters); // MQLCommand ENUM = 151
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableTemp_1, parameters); // MQLCommand ENUM = 151
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2460,9 +2615,10 @@ namespace MQL4CSharp.Base
             parameters.Add(name);
             parameters.Add(value);
             parameters.Add(check_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableSetOnCondition_1, parameters); // MQLCommand ENUM = 152
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariableSetOnCondition_1, parameters); // MQLCommand ENUM = 152
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2477,9 +2633,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(prefix_name);
             parameters.Add(limit_data);
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariablesDeleteAll_1, parameters); // MQLCommand ENUM = 153
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariablesDeleteAll_1, parameters); // MQLCommand ENUM = 153
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2490,9 +2647,10 @@ namespace MQL4CSharp.Base
         public int GlobalVariablesTotal ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariablesTotal_1, parameters); // MQLCommand ENUM = 154
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.GlobalVariablesTotal_1, parameters); // MQLCommand ENUM = 154
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2505,8 +2663,9 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(hide);
-            CommandManager.getInstance().ExecCommand(MQLCommand.HideTestIndicators_1, parameters); // MQLCommand ENUM = 155
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.HideTestIndicators_1, parameters); // MQLCommand ENUM = 155
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2521,9 +2680,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(prop_id);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetDouble_1, parameters); // MQLCommand ENUM = 156
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetDouble_1, parameters); // MQLCommand ENUM = 156
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2540,9 +2700,10 @@ namespace MQL4CSharp.Base
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetDouble_2, parameters); // MQLCommand ENUM = 156
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetDouble_2, parameters); // MQLCommand ENUM = 156
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2557,9 +2718,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(prop_id);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetInteger_1, parameters); // MQLCommand ENUM = 157
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetInteger_1, parameters); // MQLCommand ENUM = 157
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2576,9 +2738,10 @@ namespace MQL4CSharp.Base
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetInteger_2, parameters); // MQLCommand ENUM = 157
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetInteger_2, parameters); // MQLCommand ENUM = 157
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2593,9 +2756,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(prop_id);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetString_1, parameters); // MQLCommand ENUM = 158
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetString_1, parameters); // MQLCommand ENUM = 158
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2612,9 +2776,10 @@ namespace MQL4CSharp.Base
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetString_2, parameters); // MQLCommand ENUM = 158
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorSetString_2, parameters); // MQLCommand ENUM = 158
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2627,9 +2792,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(count);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorBuffers_1, parameters); // MQLCommand ENUM = 159
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorBuffers_1, parameters); // MQLCommand ENUM = 159
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2640,9 +2806,10 @@ namespace MQL4CSharp.Base
         public int IndicatorCounted ()
         {
             List<Object> parameters = new List<Object>();
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorCounted_1, parameters); // MQLCommand ENUM = 160
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorCounted_1, parameters); // MQLCommand ENUM = 160
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2655,8 +2822,9 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(digits);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorDigits_1, parameters); // MQLCommand ENUM = 161
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorDigits_1, parameters); // MQLCommand ENUM = 161
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2669,8 +2837,9 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.IndicatorShortName_1, parameters); // MQLCommand ENUM = 162
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.IndicatorShortName_1, parameters); // MQLCommand ENUM = 162
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2685,8 +2854,9 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
             parameters.Add(code);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetIndexArrow_1, parameters); // MQLCommand ENUM = 163
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetIndexArrow_1, parameters); // MQLCommand ENUM = 163
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2701,8 +2871,9 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
             parameters.Add(begin);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetIndexDrawBegin_1, parameters); // MQLCommand ENUM = 164
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetIndexDrawBegin_1, parameters); // MQLCommand ENUM = 164
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2717,8 +2888,9 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetIndexEmptyValue_1, parameters); // MQLCommand ENUM = 165
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetIndexEmptyValue_1, parameters); // MQLCommand ENUM = 165
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2733,8 +2905,9 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
             parameters.Add(text);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetIndexLabel_1, parameters); // MQLCommand ENUM = 166
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetIndexLabel_1, parameters); // MQLCommand ENUM = 166
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2749,8 +2922,9 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(index);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetIndexShift_1, parameters); // MQLCommand ENUM = 167
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetIndexShift_1, parameters); // MQLCommand ENUM = 167
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2771,8 +2945,9 @@ namespace MQL4CSharp.Base
             parameters.Add(style);
             parameters.Add(width);
             parameters.Add(clr);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetIndexStyle_1, parameters); // MQLCommand ENUM = 168
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetIndexStyle_1, parameters); // MQLCommand ENUM = 168
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2789,8 +2964,9 @@ namespace MQL4CSharp.Base
             parameters.Add(draw_style);
             parameters.Add(line_width);
             parameters.Add(clr);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetLevelStyle_1, parameters); // MQLCommand ENUM = 169
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetLevelStyle_1, parameters); // MQLCommand ENUM = 169
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2805,8 +2981,9 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(level);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.SetLevelValue_1, parameters); // MQLCommand ENUM = 170
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.SetLevelValue_1, parameters); // MQLCommand ENUM = 170
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
         }
 
         /// <summary>
@@ -2833,9 +3010,10 @@ namespace MQL4CSharp.Base
             parameters.Add(price1);
             parameters.Add(timeN);
             parameters.Add(priceN);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectCreate_1, parameters); // MQLCommand ENUM = 171
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectCreate_1, parameters); // MQLCommand ENUM = 171
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2864,9 +3042,10 @@ namespace MQL4CSharp.Base
             parameters.Add(price2);
             parameters.Add(time3);
             parameters.Add(price3);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectCreate_2, parameters); // MQLCommand ENUM = 171
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectCreate_2, parameters); // MQLCommand ENUM = 171
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2879,9 +3058,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(object_index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectName_1, parameters); // MQLCommand ENUM = 172
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectName_1, parameters); // MQLCommand ENUM = 172
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2896,9 +3076,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
             parameters.Add(object_name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectDelete_1, parameters); // MQLCommand ENUM = 173
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectDelete_1, parameters); // MQLCommand ENUM = 173
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2911,9 +3092,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectDelete_2, parameters); // MQLCommand ENUM = 173
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectDelete_2, parameters); // MQLCommand ENUM = 173
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2930,9 +3112,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(sub_window);
             parameters.Add(object_type);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectsDeleteAll_1, parameters); // MQLCommand ENUM = 174
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectsDeleteAll_1, parameters); // MQLCommand ENUM = 174
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2947,9 +3130,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(sub_window);
             parameters.Add(object_type);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectsDeleteAll_2, parameters); // MQLCommand ENUM = 174
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectsDeleteAll_2, parameters); // MQLCommand ENUM = 174
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2968,9 +3152,10 @@ namespace MQL4CSharp.Base
             parameters.Add(prefix);
             parameters.Add(sub_window);
             parameters.Add(object_type);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectsDeleteAll_3, parameters); // MQLCommand ENUM = 174
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectsDeleteAll_3, parameters); // MQLCommand ENUM = 174
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -2985,9 +3170,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(chart_id);
             parameters.Add(object_name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectFind_1, parameters); // MQLCommand ENUM = 175
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectFind_1, parameters); // MQLCommand ENUM = 175
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3000,9 +3186,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectFind_2, parameters); // MQLCommand ENUM = 175
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectFind_2, parameters); // MQLCommand ENUM = 175
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3019,9 +3206,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(value);
             parameters.Add(line_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetTimeByValue_1, parameters); // MQLCommand ENUM = 176
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (DateTime) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetTimeByValue_1, parameters); // MQLCommand ENUM = 176
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (DateTime) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3040,9 +3228,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(time);
             parameters.Add(line_id);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetValueByTime_1, parameters); // MQLCommand ENUM = 177
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetValueByTime_1, parameters); // MQLCommand ENUM = 177
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3061,9 +3250,10 @@ namespace MQL4CSharp.Base
             parameters.Add(point_index);
             parameters.Add(time);
             parameters.Add(price);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectMove_1, parameters); // MQLCommand ENUM = 178
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectMove_1, parameters); // MQLCommand ENUM = 178
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3080,9 +3270,10 @@ namespace MQL4CSharp.Base
             parameters.Add(chart_id);
             parameters.Add(sub_window);
             parameters.Add(type);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectsTotal_1, parameters); // MQLCommand ENUM = 179
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectsTotal_1, parameters); // MQLCommand ENUM = 179
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3095,9 +3286,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(type);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectsTotal_2, parameters); // MQLCommand ENUM = 179
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectsTotal_2, parameters); // MQLCommand ENUM = 179
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3116,9 +3308,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetDouble_1, parameters); // MQLCommand ENUM = 180
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetDouble_1, parameters); // MQLCommand ENUM = 180
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3137,9 +3330,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetInteger_1, parameters); // MQLCommand ENUM = 181
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (long) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetInteger_1, parameters); // MQLCommand ENUM = 181
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (long) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3158,9 +3352,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetString_1, parameters); // MQLCommand ENUM = 182
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetString_1, parameters); // MQLCommand ENUM = 182
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3179,9 +3374,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(prop_id);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetDouble_1, parameters); // MQLCommand ENUM = 183
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetDouble_1, parameters); // MQLCommand ENUM = 183
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3202,9 +3398,10 @@ namespace MQL4CSharp.Base
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetDouble_2, parameters); // MQLCommand ENUM = 183
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetDouble_2, parameters); // MQLCommand ENUM = 183
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3223,9 +3420,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(prop_id);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetInteger_1, parameters); // MQLCommand ENUM = 184
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetInteger_1, parameters); // MQLCommand ENUM = 184
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3246,9 +3444,10 @@ namespace MQL4CSharp.Base
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetInteger_2, parameters); // MQLCommand ENUM = 184
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetInteger_2, parameters); // MQLCommand ENUM = 184
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3267,9 +3466,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(prop_id);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetString_1, parameters); // MQLCommand ENUM = 185
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetString_1, parameters); // MQLCommand ENUM = 185
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3290,9 +3490,10 @@ namespace MQL4CSharp.Base
             parameters.Add(prop_id);
             parameters.Add(prop_modifier);
             parameters.Add(prop_value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetString_2, parameters); // MQLCommand ENUM = 185
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetString_2, parameters); // MQLCommand ENUM = 185
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3311,9 +3512,10 @@ namespace MQL4CSharp.Base
             parameters.Add(size);
             parameters.Add(flags);
             parameters.Add(orientation);
-            CommandManager.getInstance().ExecCommand(MQLCommand.TextSetFont_1, parameters); // MQLCommand ENUM = 186
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.TextSetFont_1, parameters); // MQLCommand ENUM = 186
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3326,9 +3528,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectDescription_1, parameters); // MQLCommand ENUM = 187
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectDescription_1, parameters); // MQLCommand ENUM = 187
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3343,9 +3546,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGet_1, parameters); // MQLCommand ENUM = 188
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGet_1, parameters); // MQLCommand ENUM = 188
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3360,9 +3564,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
             parameters.Add(index);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetFiboDescription_1, parameters); // MQLCommand ENUM = 189
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (string) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetFiboDescription_1, parameters); // MQLCommand ENUM = 189
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (string) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3377,9 +3582,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetShiftByValue_1, parameters); // MQLCommand ENUM = 190
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetShiftByValue_1, parameters); // MQLCommand ENUM = 190
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3394,9 +3600,10 @@ namespace MQL4CSharp.Base
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetValueByShift_1, parameters); // MQLCommand ENUM = 191
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectGetValueByShift_1, parameters); // MQLCommand ENUM = 191
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3413,9 +3620,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(index);
             parameters.Add(value);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSet_1, parameters); // MQLCommand ENUM = 192
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSet_1, parameters); // MQLCommand ENUM = 192
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3432,9 +3640,10 @@ namespace MQL4CSharp.Base
             parameters.Add(object_name);
             parameters.Add(index);
             parameters.Add(text);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetFiboDescription_1, parameters); // MQLCommand ENUM = 193
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetFiboDescription_1, parameters); // MQLCommand ENUM = 193
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3455,9 +3664,10 @@ namespace MQL4CSharp.Base
             parameters.Add(font_size);
             parameters.Add(font_name);
             parameters.Add(text_color);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetText_1, parameters); // MQLCommand ENUM = 194
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (bool) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectSetText_1, parameters); // MQLCommand ENUM = 194
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (bool) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3470,9 +3680,10 @@ namespace MQL4CSharp.Base
         {
             List<Object> parameters = new List<Object>();
             parameters.Add(object_name);
-            CommandManager.getInstance().ExecCommand(MQLCommand.ObjectType_1, parameters); // MQLCommand ENUM = 195
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (int) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.ObjectType_1, parameters); // MQLCommand ENUM = 195
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (int) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3489,9 +3700,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iAC_1, parameters); // MQLCommand ENUM = 196
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iAC_1, parameters); // MQLCommand ENUM = 196
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3508,9 +3720,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iAD_1, parameters); // MQLCommand ENUM = 197
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iAD_1, parameters); // MQLCommand ENUM = 197
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3533,9 +3746,10 @@ namespace MQL4CSharp.Base
             parameters.Add(applied_price);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iADX_1, parameters); // MQLCommand ENUM = 198
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iADX_1, parameters); // MQLCommand ENUM = 198
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3570,9 +3784,10 @@ namespace MQL4CSharp.Base
             parameters.Add(applied_price);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iAlligator_1, parameters); // MQLCommand ENUM = 199
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iAlligator_1, parameters); // MQLCommand ENUM = 199
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3589,9 +3804,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iAO_1, parameters); // MQLCommand ENUM = 200
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iAO_1, parameters); // MQLCommand ENUM = 200
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3610,9 +3826,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe);
             parameters.Add(period);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iATR_1, parameters); // MQLCommand ENUM = 201
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iATR_1, parameters); // MQLCommand ENUM = 201
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3633,9 +3850,10 @@ namespace MQL4CSharp.Base
             parameters.Add(period);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iBearsPower_1, parameters); // MQLCommand ENUM = 202
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iBearsPower_1, parameters); // MQLCommand ENUM = 202
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3662,9 +3880,10 @@ namespace MQL4CSharp.Base
             parameters.Add(applied_price);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iBands_1, parameters); // MQLCommand ENUM = 203
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iBands_1, parameters); // MQLCommand ENUM = 203
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3685,9 +3904,10 @@ namespace MQL4CSharp.Base
             parameters.Add(period);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iBullsPower_1, parameters); // MQLCommand ENUM = 204
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iBullsPower_1, parameters); // MQLCommand ENUM = 204
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3708,9 +3928,10 @@ namespace MQL4CSharp.Base
             parameters.Add(period);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iCCI_1, parameters); // MQLCommand ENUM = 205
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iCCI_1, parameters); // MQLCommand ENUM = 205
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3729,9 +3950,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe);
             parameters.Add(period);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iDeMarker_1, parameters); // MQLCommand ENUM = 206
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iDeMarker_1, parameters); // MQLCommand ENUM = 206
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3760,9 +3982,10 @@ namespace MQL4CSharp.Base
             parameters.Add(deviation);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iEnvelopes_1, parameters); // MQLCommand ENUM = 207
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iEnvelopes_1, parameters); // MQLCommand ENUM = 207
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3785,9 +4008,10 @@ namespace MQL4CSharp.Base
             parameters.Add(ma_method);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iForce_1, parameters); // MQLCommand ENUM = 208
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iForce_1, parameters); // MQLCommand ENUM = 208
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3806,9 +4030,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iFractals_1, parameters); // MQLCommand ENUM = 209
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iFractals_1, parameters); // MQLCommand ENUM = 209
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3843,9 +4068,10 @@ namespace MQL4CSharp.Base
             parameters.Add(applied_price);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iGator_1, parameters); // MQLCommand ENUM = 210
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iGator_1, parameters); // MQLCommand ENUM = 210
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3870,9 +4096,10 @@ namespace MQL4CSharp.Base
             parameters.Add(senkou_span_b);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iIchimoku_1, parameters); // MQLCommand ENUM = 211
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iIchimoku_1, parameters); // MQLCommand ENUM = 211
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3889,9 +4116,10 @@ namespace MQL4CSharp.Base
             parameters.Add(symbol);
             parameters.Add(timeframe);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iBWMFI_1, parameters); // MQLCommand ENUM = 212
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iBWMFI_1, parameters); // MQLCommand ENUM = 212
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3912,9 +4140,10 @@ namespace MQL4CSharp.Base
             parameters.Add(period);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iMomentum_1, parameters); // MQLCommand ENUM = 213
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iMomentum_1, parameters); // MQLCommand ENUM = 213
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3933,9 +4162,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe);
             parameters.Add(period);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iMFI_1, parameters); // MQLCommand ENUM = 214
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iMFI_1, parameters); // MQLCommand ENUM = 214
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3960,9 +4190,10 @@ namespace MQL4CSharp.Base
             parameters.Add(ma_method);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iMA_1, parameters); // MQLCommand ENUM = 215
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iMA_1, parameters); // MQLCommand ENUM = 215
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -3987,9 +4218,10 @@ namespace MQL4CSharp.Base
             parameters.Add(signal_period);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iOsMA_1, parameters); // MQLCommand ENUM = 216
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iOsMA_1, parameters); // MQLCommand ENUM = 216
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4016,9 +4248,10 @@ namespace MQL4CSharp.Base
             parameters.Add(applied_price);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iMACD_1, parameters); // MQLCommand ENUM = 217
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iMACD_1, parameters); // MQLCommand ENUM = 217
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4037,9 +4270,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iOBV_1, parameters); // MQLCommand ENUM = 218
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iOBV_1, parameters); // MQLCommand ENUM = 218
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4060,9 +4294,10 @@ namespace MQL4CSharp.Base
             parameters.Add(step);
             parameters.Add(maximum);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iSAR_1, parameters); // MQLCommand ENUM = 219
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iSAR_1, parameters); // MQLCommand ENUM = 219
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4083,9 +4318,10 @@ namespace MQL4CSharp.Base
             parameters.Add(period);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iRSI_1, parameters); // MQLCommand ENUM = 220
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iRSI_1, parameters); // MQLCommand ENUM = 220
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4106,9 +4342,10 @@ namespace MQL4CSharp.Base
             parameters.Add(period);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iRVI_1, parameters); // MQLCommand ENUM = 221
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iRVI_1, parameters); // MQLCommand ENUM = 221
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4133,9 +4370,10 @@ namespace MQL4CSharp.Base
             parameters.Add(ma_method);
             parameters.Add(applied_price);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iStdDev_1, parameters); // MQLCommand ENUM = 222
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iStdDev_1, parameters); // MQLCommand ENUM = 222
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4164,9 +4402,10 @@ namespace MQL4CSharp.Base
             parameters.Add(price_field);
             parameters.Add(mode);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iStochastic_1, parameters); // MQLCommand ENUM = 223
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iStochastic_1, parameters); // MQLCommand ENUM = 223
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /// <summary>
@@ -4185,9 +4424,10 @@ namespace MQL4CSharp.Base
             parameters.Add(timeframe);
             parameters.Add(period);
             parameters.Add(shift);
-            CommandManager.getInstance().ExecCommand(MQLCommand.iWPR_1, parameters); // MQLCommand ENUM = 224
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iWPR_1, parameters); // MQLCommand ENUM = 224
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
         }
 
         /*
@@ -4210,11 +4450,11 @@ namespace MQL4CSharp.Base
             parameters.Add(mode);
             parameters.Add(shift);
 
-            CommandManager.getInstance().ExecCommand(MQLCommand.iCustom_1, parameters); // MQLCommand ENUM = 1000
-            while (CommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
-            return (double) CommandManager.getInstance().GetCommandResult();
-        }
-    }*/
+            MQLCommandManager.getInstance().ExecCommand(MQLCommand.iCustom_1, parameters); // MQLCommand ENUM = 1000
+            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
+            return (double) MQLCommandManager.getInstance().GetCommandResult();
+        }*/
 
-
+    }
 }
