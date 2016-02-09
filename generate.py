@@ -25,6 +25,11 @@ def create_csharp_code(context):
         code = render_template('command_enum.template', context)
         f.write(code)
 
+    fname = "out/MQLRESTResource.cs"
+    with open(fname, 'w') as f:
+        code = render_template('csharp-rest.template', context)
+        f.write(code)
+
 
 def create_csharp_errors(context):
     fname = "out/MQLExceptions.cs"

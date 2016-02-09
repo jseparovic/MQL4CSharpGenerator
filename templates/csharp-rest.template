@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Net;
+using Grapevine;
+using Grapevine.Server;
+using log4net;
+using MQL4CSharp.Base.Enums;
+using MQL4CSharp.Base.MQL;
+using Newtonsoft.Json.Linq;
+
+namespace MQL4CSharp.Base.REST
+{
+    public sealed class MQLRESTResource : RESTResource
+    {
+        private static readonly ILog LOG = LogManager.GetLogger(typeof(MQLRESTResource));
+
+        int DEFAULT_CHART_ID = 0;
+
+{% for c in data %}{% set cmd_loop = loop %}{% for f in c.functions %}
+        /// <summary>
+        /// <b>Function:</b> {{c.title}}<br>
+        /// <b>Description:</b> {{c.description}}<br>
+        /// <b>URL:</b> {{c.url}}<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        {% for p in f.parameters %}        /// <li><b>{{p.name}}</b> :  {{p.description}}</li>
+        {% endfor %}
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/{{f.name.lower()}}")]
+        public void Handle_{{f.name}}_{{loop.index}}(HttpListenerContext context)
+        {
+            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
+            this.SendJsonResponse(context, {{f.name}}_{{loop.index}}(context, chartid));
+        }
+
+        /// <summary>
+        /// <b>Function:</b> {{c.title}}<br>
+        /// <b>Description:</b> {{c.description}}<br>
+        /// <b>URL:</b> {{c.url}}<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        {% for p in f.parameters %}        /// <li><b>{{p.name}}</b> :  {{p.description}}</li>
+        {% endfor %}
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/{{f.name.lower()}}")]
+        public void Handle_{{f.name}}_{{loop.index}}_Default(HttpListenerContext context)
+        {
+            this.SendJsonResponse(context, {{f.name}}_{{loop.index}}(context, DEFAULT_CHART_ID));
+        }
+
+        private JObject {{f.name}}_{{loop.index}}(HttpListenerContext context, long chartId)
+        {
+            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
+            JObject payload = this.GetJsonPayload(context.Request);
+            List<Object> parameters = new List<Object>();
+            {% for p in f.parameters %}            parameters.Add(payload["{{p.name}}"]);
+            {% endfor %}
+            int id = mqlCommandManager.ExecCommand(MQLCommand.{{c.title}}_{{loop.index}}, parameters); // MQLCommand ENUM = {{cmd_loop.index}}
+            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
+            JObject result = new JObject();
+            try
+            {
+                mqlCommandManager.throwExceptionIfErrorResponse(id);
+            }
+            catch(Exception e)
+            {
+                result["error"] = e.ToString();
+            }
+            {% if f.returnType == "double" %}
+            result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
+            {% elif f.returnType == "int" %}
+            result["result"] = Convert.ToInt32(mqlCommandManager.GetCommandResult(id));
+            {% elif f.returnType == "long" %}
+            result["result"] = Convert.ToInt64(mqlCommandManager.GetCommandResult(id));
+            {% elif f.returnType == "datetime" %}
+            result["result"] = (DateTime)mqlCommandManager.GetCommandResult(id);
+            {% elif f.returnType == "void" %}
+            result["result"] = "";
+            {% else %}
+            result["result"] = ({{ f.returnType }})mqlCommandManager.GetCommandResult(id);
+            {% endif %}
+            return result;
+        }
+{% endfor %}{% endfor %}
+    }
+}

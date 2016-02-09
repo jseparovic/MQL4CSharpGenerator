@@ -18,7 +18,7 @@ namespace MQL4CSharp.Base
 
         public void setTimerInterval(Int64 intervalMillis)
         {
-            MQLExpert.setTimerInterval(intervalMillis);
+            MQLExpert.getInstance().setTimerInterval(intervalMillis);
         }
 
         public abstract void OnInit();
@@ -101,7 +101,10 @@ namespace MQL4CSharp.Base
             {% for p in f.parameters %}            parameters.Add({{p.name}}{% if p.type.startswith('ENUM') %}.ToString(){%  endif %});
             {% endfor %}
             MQLCommandManager.getInstance().ExecCommand(MQLCommand.{{c.title}}_{{loop.index}}, parameters); // MQLCommand ENUM = {{cmd_loop.index}}
-            while (MQLCommandManager.getInstance().IsCommandRunning()) Thread.Sleep(1);
+            while (MQLCommandManager.getInstance().IsCommandRunning())
+            {
+                //Thread.Sleep(1);
+            }
             MQLCommandManager.getInstance().throwExceptionIfErrorResponse();
             {%  if f.returnType != 'void' %}            return ({{f.returnType}}) MQLCommandManager.getInstance().GetCommandResult();
             {%  endif %}
