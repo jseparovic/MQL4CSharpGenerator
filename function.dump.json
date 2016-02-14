@@ -1,6 +1,6 @@
 [
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/common/alert.html", 
+        "url": "http://docs.mql4.com/common/alert.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -19,7 +19,7 @@
         "title": "Alert"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/common/comment.html", 
+        "url": "http://docs.mql4.com/common/comment.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -38,7 +38,7 @@
         "title": "Comment"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/common/sendftp.html", 
+        "url": "http://docs.mql4.com/common/sendftp.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -63,7 +63,7 @@
         "title": "SendFTP"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/common/sendnotification.html", 
+        "url": "http://docs.mql4.com/common/sendnotification.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -82,7 +82,7 @@
         "title": "SendNotification"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/common/sendmail.html", 
+        "url": "http://docs.mql4.com/common/sendmail.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -107,7 +107,7 @@
         "title": "SendMail"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountinfodouble.html", 
+        "url": "http://docs.mql4.com/account/accountinfodouble.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -126,7 +126,7 @@
         "title": "AccountInfoDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountinfointeger.html", 
+        "url": "http://docs.mql4.com/account/accountinfointeger.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -145,7 +145,7 @@
         "title": "AccountInfoInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountinfostring.html", 
+        "url": "http://docs.mql4.com/account/accountinfostring.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -164,7 +164,7 @@
         "title": "AccountInfoString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountbalance.html", 
+        "url": "http://docs.mql4.com/account/accountbalance.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -176,7 +176,7 @@
         "title": "AccountBalance"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountcredit.html", 
+        "url": "http://docs.mql4.com/account/accountcredit.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -188,7 +188,7 @@
         "title": "AccountCredit"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountcompany.html", 
+        "url": "http://docs.mql4.com/account/accountcompany.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -200,7 +200,7 @@
         "title": "AccountCompany"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountcurrency.html", 
+        "url": "http://docs.mql4.com/account/accountcurrency.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -212,7 +212,7 @@
         "title": "AccountCurrency"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountequity.html", 
+        "url": "http://docs.mql4.com/account/accountequity.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -224,7 +224,7 @@
         "title": "AccountEquity"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountfreemargin.html", 
+        "url": "http://docs.mql4.com/account/accountfreemargin.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -236,7 +236,7 @@
         "title": "AccountFreeMargin"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountfreemargincheck.html", 
+        "url": "http://docs.mql4.com/account/accountfreemargincheck.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -267,7 +267,7 @@
         "title": "AccountFreeMarginCheck"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountfreemarginmode.html", 
+        "url": "http://docs.mql4.com/account/accountfreemarginmode.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -279,7 +279,7 @@
         "title": "AccountFreeMarginMode"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountleverage.html", 
+        "url": "http://docs.mql4.com/account/accountleverage.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -291,7 +291,7 @@
         "title": "AccountLeverage"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountmargin.html", 
+        "url": "http://docs.mql4.com/account/accountmargin.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -303,7 +303,7 @@
         "title": "AccountMargin"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountname.html", 
+        "url": "http://docs.mql4.com/account/accountname.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -315,7 +315,7 @@
         "title": "AccountName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountnumber.html", 
+        "url": "http://docs.mql4.com/account/accountnumber.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -327,7 +327,7 @@
         "title": "AccountNumber"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountprofit.html", 
+        "url": "http://docs.mql4.com/account/accountprofit.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -339,7 +339,7 @@
         "title": "AccountProfit"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountserver.html", 
+        "url": "http://docs.mql4.com/account/accountserver.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -351,7 +351,7 @@
         "title": "AccountServer"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountstopoutlevel.html", 
+        "url": "http://docs.mql4.com/account/accountstopoutlevel.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -363,7 +363,7 @@
         "title": "AccountStopoutLevel"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/account/accountstopoutmode.html", 
+        "url": "http://docs.mql4.com/account/accountstopoutmode.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -375,7 +375,7 @@
         "title": "AccountStopoutMode"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/getlasterror.html", 
+        "url": "http://docs.mql4.com/check/getlasterror.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -387,7 +387,7 @@
         "title": "GetLastError"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/isstopped.html", 
+        "url": "http://docs.mql4.com/check/isstopped.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -399,7 +399,7 @@
         "title": "IsStopped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/uninitializereason.html", 
+        "url": "http://docs.mql4.com/check/uninitializereason.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -411,7 +411,7 @@
         "title": "UninitializeReason"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/mqlinfointeger.html", 
+        "url": "http://docs.mql4.com/check/mqlinfointeger.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -430,7 +430,7 @@
         "title": "MQLInfoInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/mqlinfostring.html", 
+        "url": "http://docs.mql4.com/check/mqlinfostring.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -449,7 +449,7 @@
         "title": "MQLInfoString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/mqlsetinteger.html", 
+        "url": "http://docs.mql4.com/check/mqlsetinteger.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -474,7 +474,7 @@
         "title": "MQLSetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/terminalinfointeger.html", 
+        "url": "http://docs.mql4.com/check/terminalinfointeger.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -493,7 +493,7 @@
         "title": "TerminalInfoInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/terminalinfodouble.html", 
+        "url": "http://docs.mql4.com/check/terminalinfodouble.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -512,7 +512,7 @@
         "title": "TerminalInfoDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/terminalinfostring.html", 
+        "url": "http://docs.mql4.com/check/terminalinfostring.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -531,7 +531,7 @@
         "title": "TerminalInfoString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/symbol.html", 
+        "url": "http://docs.mql4.com/check/symbol.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -543,7 +543,7 @@
         "title": "Symbol"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/period.html", 
+        "url": "http://docs.mql4.com/check/period.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -555,7 +555,7 @@
         "title": "Period"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/digits.html", 
+        "url": "http://docs.mql4.com/check/digits.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -567,7 +567,7 @@
         "title": "Digits"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/point.html", 
+        "url": "http://docs.mql4.com/check/point.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -579,7 +579,7 @@
         "title": "Point"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/isconnected.html", 
+        "url": "http://docs.mql4.com/check/isconnected.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -591,7 +591,7 @@
         "title": "IsConnected"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/isdemo.html", 
+        "url": "http://docs.mql4.com/check/isdemo.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -603,7 +603,7 @@
         "title": "IsDemo"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/isdllsallowed.html", 
+        "url": "http://docs.mql4.com/check/isdllsallowed.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -615,7 +615,7 @@
         "title": "IsDllsAllowed"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/isexpertenabled.html", 
+        "url": "http://docs.mql4.com/check/isexpertenabled.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -627,7 +627,7 @@
         "title": "IsExpertEnabled"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/islibrariesallowed.html", 
+        "url": "http://docs.mql4.com/check/islibrariesallowed.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -639,7 +639,7 @@
         "title": "IsLibrariesAllowed"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/isoptimization.html", 
+        "url": "http://docs.mql4.com/check/isoptimization.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -651,7 +651,7 @@
         "title": "IsOptimization"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/istesting.html", 
+        "url": "http://docs.mql4.com/check/istesting.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -663,7 +663,7 @@
         "title": "IsTesting"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/istradeallowed.html", 
+        "url": "http://docs.mql4.com/check/istradeallowed.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -693,7 +693,7 @@
         "title": "IsTradeAllowed"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/istradecontextbusy.html", 
+        "url": "http://docs.mql4.com/check/istradecontextbusy.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -705,7 +705,7 @@
         "title": "IsTradeContextBusy"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/isvisualmode.html", 
+        "url": "http://docs.mql4.com/check/isvisualmode.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -717,7 +717,7 @@
         "title": "IsVisualMode"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/terminalcompany.html", 
+        "url": "http://docs.mql4.com/check/terminalcompany.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -729,7 +729,7 @@
         "title": "TerminalCompany"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/terminalname.html", 
+        "url": "http://docs.mql4.com/check/terminalname.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -741,7 +741,7 @@
         "title": "TerminalName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/check/terminalpath.html", 
+        "url": "http://docs.mql4.com/check/terminalpath.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -753,7 +753,7 @@
         "title": "TerminalPath"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/marketinformation/marketinfo.html", 
+        "url": "http://docs.mql4.com/marketinformation/marketinfo.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -778,7 +778,7 @@
         "title": "MarketInfo"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/marketinformation/symbolstotal.html", 
+        "url": "http://docs.mql4.com/marketinformation/symbolstotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -797,7 +797,7 @@
         "title": "SymbolsTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/marketinformation/symbolname.html", 
+        "url": "http://docs.mql4.com/marketinformation/symbolname.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -822,7 +822,7 @@
         "title": "SymbolName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/marketinformation/symbolselect.html", 
+        "url": "http://docs.mql4.com/marketinformation/symbolselect.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -847,7 +847,7 @@
         "title": "SymbolSelect"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/refreshrates.html", 
+        "url": "http://docs.mql4.com/series/refreshrates.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -859,7 +859,7 @@
         "title": "RefreshRates"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/barsfunction.html", 
+        "url": "http://docs.mql4.com/series/barsfunction.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -914,7 +914,7 @@
         "title": "Bars"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/ibars.html", 
+        "url": "http://docs.mql4.com/series/ibars.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -939,7 +939,7 @@
         "title": "iBars"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/ibarshift.html", 
+        "url": "http://docs.mql4.com/series/ibarshift.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -976,7 +976,7 @@
         "title": "iBarShift"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/iclose.html", 
+        "url": "http://docs.mql4.com/series/iclose.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -1007,7 +1007,7 @@
         "title": "iClose"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/ihigh.html", 
+        "url": "http://docs.mql4.com/series/ihigh.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -1038,7 +1038,7 @@
         "title": "iHigh"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/ihighest.html", 
+        "url": "http://docs.mql4.com/series/ihighest.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1081,7 +1081,7 @@
         "title": "iHighest"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/ilow.html", 
+        "url": "http://docs.mql4.com/series/ilow.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -1112,7 +1112,7 @@
         "title": "iLow"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/ilowest.html", 
+        "url": "http://docs.mql4.com/series/ilowest.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1155,7 +1155,7 @@
         "title": "iLowest"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/iopen.html", 
+        "url": "http://docs.mql4.com/series/iopen.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -1186,7 +1186,7 @@
         "title": "iOpen"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/itime.html", 
+        "url": "http://docs.mql4.com/series/itime.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -1217,7 +1217,7 @@
         "title": "iTime"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/series/ivolume.html", 
+        "url": "http://docs.mql4.com/series/ivolume.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -1248,7 +1248,7 @@
         "title": "iVolume"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartapplytemplate.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartapplytemplate.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1273,7 +1273,7 @@
         "title": "ChartApplyTemplate"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartsavetemplate.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartsavetemplate.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1298,7 +1298,7 @@
         "title": "ChartSaveTemplate"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartwindowfind.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartwindowfind.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1328,7 +1328,7 @@
         "title": "ChartWindowFind"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartopen.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartopen.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -1353,7 +1353,7 @@
         "title": "ChartOpen"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartfirst.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartfirst.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -1365,7 +1365,7 @@
         "title": "ChartFirst"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartnext.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartnext.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -1384,7 +1384,7 @@
         "title": "ChartNext"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartclose.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartclose.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1403,7 +1403,7 @@
         "title": "ChartClose"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartsymbol.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartsymbol.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -1422,7 +1422,7 @@
         "title": "ChartSymbol"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartredraw.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartredraw.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -1441,7 +1441,7 @@
         "title": "ChartRedraw"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartsetdouble.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartsetdouble.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1472,7 +1472,7 @@
         "title": "ChartSetDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartsetinteger.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartsetinteger.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1533,7 +1533,7 @@
         "title": "ChartSetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartsetstring.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartsetstring.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1564,7 +1564,7 @@
         "title": "ChartSetString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartnavigate.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartnavigate.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1595,7 +1595,7 @@
         "title": "ChartNavigate"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartid.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartid.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -1607,7 +1607,7 @@
         "title": "ChartID"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartindicatordelete.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartindicatordelete.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1638,7 +1638,7 @@
         "title": "ChartIndicatorDelete"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartindicatorname.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartindicatorname.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -1669,7 +1669,7 @@
         "title": "ChartIndicatorName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartindicatorstotal.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartindicatorstotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1694,7 +1694,7 @@
         "title": "ChartIndicatorsTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartwindowondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartwindowondropped.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1706,7 +1706,7 @@
         "title": "ChartWindowOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartpriceondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartpriceondropped.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -1718,7 +1718,7 @@
         "title": "ChartPriceOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/charttimeondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/charttimeondropped.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -1730,7 +1730,7 @@
         "title": "ChartTimeOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartxondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartxondropped.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1742,7 +1742,7 @@
         "title": "ChartXOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartyondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartyondropped.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1754,7 +1754,7 @@
         "title": "ChartYOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartsetsymbolperiod.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartsetsymbolperiod.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1785,7 +1785,7 @@
         "title": "ChartSetSymbolPeriod"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/chartscreenshot.html", 
+        "url": "http://docs.mql4.com/chart_operations/chartscreenshot.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -1828,7 +1828,7 @@
         "title": "ChartScreenShot"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowbarsperchart.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowbarsperchart.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1840,7 +1840,7 @@
         "title": "WindowBarsPerChart"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowexpertname.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowexpertname.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -1852,7 +1852,7 @@
         "title": "WindowExpertName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowfind.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowfind.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1871,7 +1871,7 @@
         "title": "WindowFind"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowfirstvisiblebar.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowfirstvisiblebar.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1883,7 +1883,7 @@
         "title": "WindowFirstVisibleBar"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowhandle.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowhandle.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1908,7 +1908,7 @@
         "title": "WindowHandle"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowisvisible.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowisvisible.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1927,7 +1927,7 @@
         "title": "WindowIsVisible"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowondropped.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1939,7 +1939,7 @@
         "title": "WindowOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowpricemax.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowpricemax.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1958,7 +1958,7 @@
         "title": "WindowPriceMax"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowpricemin.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowpricemin.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -1977,7 +1977,7 @@
         "title": "WindowPriceMin"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowpriceondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowpriceondropped.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -1989,7 +1989,7 @@
         "title": "WindowPriceOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowredraw.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowredraw.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -2001,7 +2001,7 @@
         "title": "WindowRedraw"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowscreenshot.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowscreenshot.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2050,7 +2050,7 @@
         "title": "WindowScreenShot"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowtimeondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowtimeondropped.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -2062,7 +2062,7 @@
         "title": "WindowTimeOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowstotal.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowstotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2074,7 +2074,7 @@
         "title": "WindowsTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowxondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowxondropped.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2086,7 +2086,7 @@
         "title": "WindowXOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/chart_operations/windowyondropped.html", 
+        "url": "http://docs.mql4.com/chart_operations/windowyondropped.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2098,7 +2098,7 @@
         "title": "WindowYOnDropped"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderclose.html", 
+        "url": "http://docs.mql4.com/trading/orderclose.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2141,7 +2141,7 @@
         "title": "OrderClose"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordercloseby.html", 
+        "url": "http://docs.mql4.com/trading/ordercloseby.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2172,7 +2172,7 @@
         "title": "OrderCloseBy"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordercloseprice.html", 
+        "url": "http://docs.mql4.com/trading/ordercloseprice.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2184,7 +2184,7 @@
         "title": "OrderClosePrice"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderclosetime.html", 
+        "url": "http://docs.mql4.com/trading/orderclosetime.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -2196,7 +2196,7 @@
         "title": "OrderCloseTime"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordercomment.html", 
+        "url": "http://docs.mql4.com/trading/ordercomment.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -2208,7 +2208,7 @@
         "title": "OrderComment"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordercommission.html", 
+        "url": "http://docs.mql4.com/trading/ordercommission.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2220,7 +2220,7 @@
         "title": "OrderCommission"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderdelete.html", 
+        "url": "http://docs.mql4.com/trading/orderdelete.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2245,7 +2245,7 @@
         "title": "OrderDelete"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderexpiration.html", 
+        "url": "http://docs.mql4.com/trading/orderexpiration.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -2257,7 +2257,7 @@
         "title": "OrderExpiration"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderlots.html", 
+        "url": "http://docs.mql4.com/trading/orderlots.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2269,7 +2269,7 @@
         "title": "OrderLots"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordermagicnumber.html", 
+        "url": "http://docs.mql4.com/trading/ordermagicnumber.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2281,7 +2281,7 @@
         "title": "OrderMagicNumber"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordermodify.html", 
+        "url": "http://docs.mql4.com/trading/ordermodify.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2330,7 +2330,7 @@
         "title": "OrderModify"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderopenprice.html", 
+        "url": "http://docs.mql4.com/trading/orderopenprice.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2342,7 +2342,7 @@
         "title": "OrderOpenPrice"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderopentime.html", 
+        "url": "http://docs.mql4.com/trading/orderopentime.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -2354,7 +2354,7 @@
         "title": "OrderOpenTime"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderprint.html", 
+        "url": "http://docs.mql4.com/trading/orderprint.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -2366,7 +2366,7 @@
         "title": "OrderPrint"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderprofit.html", 
+        "url": "http://docs.mql4.com/trading/orderprofit.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2378,7 +2378,7 @@
         "title": "OrderProfit"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderselect.html", 
+        "url": "http://docs.mql4.com/trading/orderselect.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2409,7 +2409,7 @@
         "title": "OrderSelect"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordersend.html", 
+        "url": "http://docs.mql4.com/trading/ordersend.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2488,7 +2488,7 @@
         "title": "OrderSend"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordershistorytotal.html", 
+        "url": "http://docs.mql4.com/trading/ordershistorytotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2500,7 +2500,7 @@
         "title": "OrdersHistoryTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderstoploss.html", 
+        "url": "http://docs.mql4.com/trading/orderstoploss.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2512,7 +2512,7 @@
         "title": "OrderStopLoss"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderstotal.html", 
+        "url": "http://docs.mql4.com/trading/orderstotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2524,7 +2524,7 @@
         "title": "OrdersTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderswap.html", 
+        "url": "http://docs.mql4.com/trading/orderswap.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2536,7 +2536,7 @@
         "title": "OrderSwap"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordersymbol.html", 
+        "url": "http://docs.mql4.com/trading/ordersymbol.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -2548,7 +2548,7 @@
         "title": "OrderSymbol"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordertakeprofit.html", 
+        "url": "http://docs.mql4.com/trading/ordertakeprofit.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2560,7 +2560,7 @@
         "title": "OrderTakeProfit"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/orderticket.html", 
+        "url": "http://docs.mql4.com/trading/orderticket.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2572,7 +2572,7 @@
         "title": "OrderTicket"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/trading/ordertype.html", 
+        "url": "http://docs.mql4.com/trading/ordertype.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2584,7 +2584,7 @@
         "title": "OrderType"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalbasegetdouble.html", 
+        "url": "http://docs.mql4.com/signals/signalbasegetdouble.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2603,7 +2603,7 @@
         "title": "SignalBaseGetDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalbasegetinteger.html", 
+        "url": "http://docs.mql4.com/signals/signalbasegetinteger.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -2622,7 +2622,7 @@
         "title": "SignalBaseGetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalbasegetstring.html", 
+        "url": "http://docs.mql4.com/signals/signalbasegetstring.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -2641,7 +2641,7 @@
         "title": "SignalBaseGetString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalbaseselect.html", 
+        "url": "http://docs.mql4.com/signals/signalbaseselect.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2660,7 +2660,7 @@
         "title": "SignalBaseSelect"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalbasetotal.html", 
+        "url": "http://docs.mql4.com/signals/signalbasetotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -2672,7 +2672,7 @@
         "title": "SignalBaseTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalinfogetdouble.html", 
+        "url": "http://docs.mql4.com/signals/signalinfogetdouble.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2691,7 +2691,7 @@
         "title": "SignalInfoGetDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalinfogetinteger.html", 
+        "url": "http://docs.mql4.com/signals/signalinfogetinteger.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -2710,7 +2710,7 @@
         "title": "SignalInfoGetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalinfogetstring.html", 
+        "url": "http://docs.mql4.com/signals/signalinfogetstring.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -2729,7 +2729,7 @@
         "title": "SignalInfoGetString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalinfosetdouble.html", 
+        "url": "http://docs.mql4.com/signals/signalinfosetdouble.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2754,7 +2754,7 @@
         "title": "SignalInfoSetDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalinfosetinteger.html", 
+        "url": "http://docs.mql4.com/signals/signalinfosetinteger.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2779,7 +2779,7 @@
         "title": "SignalInfoSetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalsubscribe.html", 
+        "url": "http://docs.mql4.com/signals/signalsubscribe.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2798,7 +2798,7 @@
         "title": "SignalSubscribe"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/signals/signalunsubscribe.html", 
+        "url": "http://docs.mql4.com/signals/signalunsubscribe.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2810,7 +2810,7 @@
         "title": "SignalUnsubscribe"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariablecheck.html", 
+        "url": "http://docs.mql4.com/globals/globalvariablecheck.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2829,7 +2829,7 @@
         "title": "GlobalVariableCheck"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariabletime.html", 
+        "url": "http://docs.mql4.com/globals/globalvariabletime.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -2848,7 +2848,7 @@
         "title": "GlobalVariableTime"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariabledel.html", 
+        "url": "http://docs.mql4.com/globals/globalvariabledel.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2867,7 +2867,7 @@
         "title": "GlobalVariableDel"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariableget.html", 
+        "url": "http://docs.mql4.com/globals/globalvariableget.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -2886,7 +2886,7 @@
         "title": "GlobalVariableGet"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariablename.html", 
+        "url": "http://docs.mql4.com/globals/globalvariablename.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -2905,7 +2905,7 @@
         "title": "GlobalVariableName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariableset.html", 
+        "url": "http://docs.mql4.com/globals/globalvariableset.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -2930,7 +2930,7 @@
         "title": "GlobalVariableSet"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariablesflush.html", 
+        "url": "http://docs.mql4.com/globals/globalvariablesflush.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -2942,7 +2942,7 @@
         "title": "GlobalVariablesFlush"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariabletemp.html", 
+        "url": "http://docs.mql4.com/globals/globalvariabletemp.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2961,7 +2961,7 @@
         "title": "GlobalVariableTemp"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariablesetoncondition.html", 
+        "url": "http://docs.mql4.com/globals/globalvariablesetoncondition.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -2992,7 +2992,7 @@
         "title": "GlobalVariableSetOnCondition"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariablesdeleteall.html", 
+        "url": "http://docs.mql4.com/globals/globalvariablesdeleteall.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -3017,7 +3017,7 @@
         "title": "GlobalVariablesDeleteAll"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/globals/globalvariablestotal.html", 
+        "url": "http://docs.mql4.com/globals/globalvariablestotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -3029,7 +3029,7 @@
         "title": "GlobalVariablesTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/hidetestindicators.html", 
+        "url": "http://docs.mql4.com/customind/hidetestindicators.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3048,7 +3048,7 @@
         "title": "HideTestIndicators"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/indicatorsetdouble.html", 
+        "url": "http://docs.mql4.com/customind/indicatorsetdouble.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -3097,7 +3097,7 @@
         "title": "IndicatorSetDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/indicatorsetinteger.html", 
+        "url": "http://docs.mql4.com/customind/indicatorsetinteger.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -3146,7 +3146,7 @@
         "title": "IndicatorSetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/indicatorsetstring.html", 
+        "url": "http://docs.mql4.com/customind/indicatorsetstring.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -3195,7 +3195,7 @@
         "title": "IndicatorSetString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/indicatorbuffers.html", 
+        "url": "http://docs.mql4.com/customind/indicatorbuffers.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -3214,7 +3214,7 @@
         "title": "IndicatorBuffers"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/indicatorcounted.html", 
+        "url": "http://docs.mql4.com/customind/indicatorcounted.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -3226,7 +3226,7 @@
         "title": "IndicatorCounted"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/indicatordigits.html", 
+        "url": "http://docs.mql4.com/customind/indicatordigits.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3245,7 +3245,7 @@
         "title": "IndicatorDigits"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/indicatorshortname.html", 
+        "url": "http://docs.mql4.com/customind/indicatorshortname.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3264,7 +3264,7 @@
         "title": "IndicatorShortName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setindexarrow.html", 
+        "url": "http://docs.mql4.com/customind/setindexarrow.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3289,7 +3289,7 @@
         "title": "SetIndexArrow"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setindexdrawbegin.html", 
+        "url": "http://docs.mql4.com/customind/setindexdrawbegin.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3314,7 +3314,7 @@
         "title": "SetIndexDrawBegin"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setindexemptyvalue.html", 
+        "url": "http://docs.mql4.com/customind/setindexemptyvalue.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3339,7 +3339,7 @@
         "title": "SetIndexEmptyValue"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setindexlabel.html", 
+        "url": "http://docs.mql4.com/customind/setindexlabel.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3364,7 +3364,7 @@
         "title": "SetIndexLabel"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setindexshift.html", 
+        "url": "http://docs.mql4.com/customind/setindexshift.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3389,7 +3389,7 @@
         "title": "SetIndexShift"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setindexstyle.html", 
+        "url": "http://docs.mql4.com/customind/setindexstyle.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3432,7 +3432,7 @@
         "title": "SetIndexStyle"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setlevelstyle.html", 
+        "url": "http://docs.mql4.com/customind/setlevelstyle.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3463,7 +3463,7 @@
         "title": "SetLevelStyle"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/customind/setlevelvalue.html", 
+        "url": "http://docs.mql4.com/customind/setlevelvalue.html", 
         "functions": [
             {
                 "returnType": "void", 
@@ -3488,7 +3488,7 @@
         "title": "SetLevelValue"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectcreate.html", 
+        "url": "http://docs.mql4.com/objects/objectcreate.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -3609,7 +3609,7 @@
         "title": "ObjectCreate"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectname.html", 
+        "url": "http://docs.mql4.com/objects/objectname.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -3628,7 +3628,7 @@
         "title": "ObjectName"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectdelete.html", 
+        "url": "http://docs.mql4.com/objects/objectdelete.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -3665,7 +3665,7 @@
         "title": "ObjectDelete"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectsdeleteall.html", 
+        "url": "http://docs.mql4.com/objects/objectsdeleteall.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -3744,7 +3744,7 @@
         "title": "ObjectsDeleteAll"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectfind.html", 
+        "url": "http://docs.mql4.com/objects/objectfind.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -3781,7 +3781,7 @@
         "title": "ObjectFind"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgettimebyvalue.html", 
+        "url": "http://docs.mql4.com/objects/objectgettimebyvalue.html", 
         "functions": [
             {
                 "returnType": "DateTime", 
@@ -3812,7 +3812,7 @@
         "title": "ObjectGetTimeByValue"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgetvaluebytime.html", 
+        "url": "http://docs.mql4.com/objects/objectgetvaluebytime.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -3849,7 +3849,7 @@
         "title": "ObjectGetValueByTime"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectmove.html", 
+        "url": "http://docs.mql4.com/objects/objectmove.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -3886,7 +3886,7 @@
         "title": "ObjectMove"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectstotal.html", 
+        "url": "http://docs.mql4.com/objects/objectstotal.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -3929,7 +3929,7 @@
         "title": "ObjectsTotal"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgetdouble.html", 
+        "url": "http://docs.mql4.com/objects/objectgetdouble.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -3966,7 +3966,7 @@
         "title": "ObjectGetDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgetinteger.html", 
+        "url": "http://docs.mql4.com/objects/objectgetinteger.html", 
         "functions": [
             {
                 "returnType": "long", 
@@ -4003,7 +4003,7 @@
         "title": "ObjectGetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgetstring.html", 
+        "url": "http://docs.mql4.com/objects/objectgetstring.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -4040,7 +4040,7 @@
         "title": "ObjectGetString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectsetdouble.html", 
+        "url": "http://docs.mql4.com/objects/objectsetdouble.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -4113,7 +4113,7 @@
         "title": "ObjectSetDouble"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectsetinteger.html", 
+        "url": "http://docs.mql4.com/objects/objectsetinteger.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -4186,7 +4186,7 @@
         "title": "ObjectSetInteger"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectsetstring.html", 
+        "url": "http://docs.mql4.com/objects/objectsetstring.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -4259,7 +4259,7 @@
         "title": "ObjectSetString"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/textsetfont.html", 
+        "url": "http://docs.mql4.com/objects/textsetfont.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -4296,7 +4296,7 @@
         "title": "TextSetFont"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectdescription.html", 
+        "url": "http://docs.mql4.com/objects/objectdescription.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -4315,7 +4315,7 @@
         "title": "ObjectDescription"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectget.html", 
+        "url": "http://docs.mql4.com/objects/objectget.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4340,7 +4340,7 @@
         "title": "ObjectGet"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgetfibodescription.html", 
+        "url": "http://docs.mql4.com/objects/objectgetfibodescription.html", 
         "functions": [
             {
                 "returnType": "string", 
@@ -4365,7 +4365,7 @@
         "title": "ObjectGetFiboDescription"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgetshiftbyvalue.html", 
+        "url": "http://docs.mql4.com/objects/objectgetshiftbyvalue.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -4390,7 +4390,7 @@
         "title": "ObjectGetShiftByValue"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectgetvaluebyshift.html", 
+        "url": "http://docs.mql4.com/objects/objectgetvaluebyshift.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4415,7 +4415,7 @@
         "title": "ObjectGetValueByShift"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectset.html", 
+        "url": "http://docs.mql4.com/objects/objectset.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -4446,7 +4446,7 @@
         "title": "ObjectSet"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectsetfibodescription.html", 
+        "url": "http://docs.mql4.com/objects/objectsetfibodescription.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -4477,7 +4477,7 @@
         "title": "ObjectSetFiboDescription"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objectsettext.html", 
+        "url": "http://docs.mql4.com/objects/objectsettext.html", 
         "functions": [
             {
                 "returnType": "bool", 
@@ -4520,7 +4520,7 @@
         "title": "ObjectSetText"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/objects/objecttype.html", 
+        "url": "http://docs.mql4.com/objects/objecttype.html", 
         "functions": [
             {
                 "returnType": "int", 
@@ -4539,7 +4539,7 @@
         "title": "ObjectType"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iac.html", 
+        "url": "http://docs.mql4.com/indicators/iac.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4570,7 +4570,7 @@
         "title": "iAC"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iad.html", 
+        "url": "http://docs.mql4.com/indicators/iad.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4601,7 +4601,7 @@
         "title": "iAD"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iadx.html", 
+        "url": "http://docs.mql4.com/indicators/iadx.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4650,7 +4650,7 @@
         "title": "iADX"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ialligator.html", 
+        "url": "http://docs.mql4.com/indicators/ialligator.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4735,7 +4735,7 @@
         "title": "iAlligator"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iao.html", 
+        "url": "http://docs.mql4.com/indicators/iao.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4766,7 +4766,7 @@
         "title": "iAO"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iatr.html", 
+        "url": "http://docs.mql4.com/indicators/iatr.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4803,7 +4803,7 @@
         "title": "iATR"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ibearspower.html", 
+        "url": "http://docs.mql4.com/indicators/ibearspower.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4846,7 +4846,7 @@
         "title": "iBearsPower"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ibands.html", 
+        "url": "http://docs.mql4.com/indicators/ibands.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4907,7 +4907,7 @@
         "title": "iBands"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ibullspower.html", 
+        "url": "http://docs.mql4.com/indicators/ibullspower.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4950,7 +4950,7 @@
         "title": "iBullsPower"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/icci.html", 
+        "url": "http://docs.mql4.com/indicators/icci.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -4993,7 +4993,7 @@
         "title": "iCCI"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/idemarker.html", 
+        "url": "http://docs.mql4.com/indicators/idemarker.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5030,7 +5030,7 @@
         "title": "iDeMarker"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ienvelopes.html", 
+        "url": "http://docs.mql4.com/indicators/ienvelopes.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5097,7 +5097,7 @@
         "title": "iEnvelopes"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iforce.html", 
+        "url": "http://docs.mql4.com/indicators/iforce.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5146,7 +5146,7 @@
         "title": "iForce"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ifractals.html", 
+        "url": "http://docs.mql4.com/indicators/ifractals.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5183,7 +5183,7 @@
         "title": "iFractals"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/igator.html", 
+        "url": "http://docs.mql4.com/indicators/igator.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5268,7 +5268,7 @@
         "title": "iGator"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iichimoku.html", 
+        "url": "http://docs.mql4.com/indicators/iichimoku.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5323,7 +5323,7 @@
         "title": "iIchimoku"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ibwmfi.html", 
+        "url": "http://docs.mql4.com/indicators/ibwmfi.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5354,7 +5354,7 @@
         "title": "iBWMFI"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/imomentum.html", 
+        "url": "http://docs.mql4.com/indicators/imomentum.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5397,7 +5397,7 @@
         "title": "iMomentum"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/imfi.html", 
+        "url": "http://docs.mql4.com/indicators/imfi.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5434,7 +5434,7 @@
         "title": "iMFI"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/ima.html", 
+        "url": "http://docs.mql4.com/indicators/ima.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5489,7 +5489,7 @@
         "title": "iMA"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iosma.html", 
+        "url": "http://docs.mql4.com/indicators/iosma.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5544,7 +5544,7 @@
         "title": "iOsMA"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/imacd.html", 
+        "url": "http://docs.mql4.com/indicators/imacd.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5605,7 +5605,7 @@
         "title": "iMACD"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iobv.html", 
+        "url": "http://docs.mql4.com/indicators/iobv.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5642,7 +5642,7 @@
         "title": "iOBV"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/isar.html", 
+        "url": "http://docs.mql4.com/indicators/isar.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5685,7 +5685,7 @@
         "title": "iSAR"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/irsi.html", 
+        "url": "http://docs.mql4.com/indicators/irsi.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5728,7 +5728,7 @@
         "title": "iRSI"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/irvi.html", 
+        "url": "http://docs.mql4.com/indicators/irvi.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5771,7 +5771,7 @@
         "title": "iRVI"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/istddev.html", 
+        "url": "http://docs.mql4.com/indicators/istddev.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5826,7 +5826,7 @@
         "title": "iStdDev"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/istochastic.html", 
+        "url": "http://docs.mql4.com/indicators/istochastic.html", 
         "functions": [
             {
                 "returnType": "double", 
@@ -5893,7 +5893,7 @@
         "title": "iStochastic"
     }, 
     {
-        "url": "http://mm.l/mql4/docs.mql4.com/indicators/iwpr.html", 
+        "url": "http://docs.mql4.com/indicators/iwpr.html", 
         "functions": [
             {
                 "returnType": "double", 

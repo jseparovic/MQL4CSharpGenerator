@@ -7,6 +7,7 @@ using log4net;
 using MQL4CSharp.Base.Enums;
 using MQL4CSharp.Base.MQL;
 using Newtonsoft.Json.Linq;
+using MQL4CSharp.Base.Exceptions;
 
 namespace MQL4CSharp.Base.REST
 {
@@ -15,6 +16,8 @@ namespace MQL4CSharp.Base.REST
         private static readonly ILog LOG = LogManager.GetLogger(typeof(MQLRESTResource));
 
         int DEFAULT_CHART_ID = 0;
+
+        private String PARSE_ERROR = "JSON Parse Error. Check the input format";
 
 {% for c in data %}{% set cmd_loop = loop %}{% for f in c.functions %}
         /// <summary>
@@ -54,33 +57,40 @@ namespace MQL4CSharp.Base.REST
         {
             MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
             JObject payload = this.GetJsonPayload(context.Request);
+            JObject result = new JObject();
+            {% if f.parameters|length > 0 %}            if (payload == null)
+            {
+                result["result"] = PARSE_ERROR;
+                return result;
+            }
+            {% endif %}
             List<Object> parameters = new List<Object>();
             {% for p in f.parameters %}            parameters.Add(payload["{{p.name}}"]);
             {% endfor %}
             int id = mqlCommandManager.ExecCommand(MQLCommand.{{c.title}}_{{loop.index}}, parameters); // MQLCommand ENUM = {{cmd_loop.index}}
             while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
-            JObject result = new JObject();
             try
             {
                 mqlCommandManager.throwExceptionIfErrorResponse(id);
+                {% if f.returnType == "double" %}
+                result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
+                {% elif f.returnType == "int" %}
+                result["result"] = Convert.ToInt32(mqlCommandManager.GetCommandResult(id));
+                {% elif f.returnType == "long" %}
+                result["result"] = Convert.ToInt64(mqlCommandManager.GetCommandResult(id));
+                {% elif f.returnType == "datetime" %}
+                result["result"] = (DateTime)mqlCommandManager.GetCommandResult(id);
+                {% elif f.returnType == "void" %}
+                result["result"] = "";
+                {% else %}
+                result["result"] = ({{ f.returnType }})mqlCommandManager.GetCommandResult(id);
+                {% endif %}
             }
             catch(Exception e)
             {
-                result["error"] = e.ToString();
+                result["error"] = MQLExceptions.convertRESTException(e.ToString());
             }
-            {% if f.returnType == "double" %}
-            result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
-            {% elif f.returnType == "int" %}
-            result["result"] = Convert.ToInt32(mqlCommandManager.GetCommandResult(id));
-            {% elif f.returnType == "long" %}
-            result["result"] = Convert.ToInt64(mqlCommandManager.GetCommandResult(id));
-            {% elif f.returnType == "datetime" %}
-            result["result"] = (DateTime)mqlCommandManager.GetCommandResult(id);
-            {% elif f.returnType == "void" %}
-            result["result"] = "";
-            {% else %}
-            result["result"] = ({{ f.returnType }})mqlCommandManager.GetCommandResult(id);
-            {% endif %}
+
             return result;
         }
 {% endfor %}{% endfor %}
